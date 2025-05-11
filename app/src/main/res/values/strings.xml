@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">RaceTime App</string>
+    <string name="topappbar">RaceTime App</string>
+
+    <string name="last_results">Last Results:</string>
+    <string name="see_calenar">See calendar</string>
+
+    <string name="position">Pos</string>
+    <string name="driver">Driver</string>
+    <string name="team">Team</string>
+    <string name="status">Status</string>
+    <string name="points">Points</string>
+
+    <string name="driverStandings">Driver Standings</string>
 </resources>
