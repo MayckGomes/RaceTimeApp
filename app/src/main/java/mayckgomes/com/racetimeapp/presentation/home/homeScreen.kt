@@ -32,28 +32,7 @@ fun HomeScreen() {
 
     RaceTimeAppTheme {
 
-        Scaffold(
-
-            topBar = {
-
-                TopAppBar(
-
-                    title = {
-                        Text(
-                            text = stringResource(R.string.topappbar),
-                            color = MaterialTheme.colorScheme.secondary
-                        )
-                    },
-                    colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        titleContentColor = MaterialTheme.colorScheme.onBackground
-                    )
-
-                )
-
-            }
-
-        ) { padding ->
+        Scaffold { padding ->
 
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,

@@ -12,4 +12,12 @@
     <string name="points">Points</string>
 
     <string name="driverStandings">Driver Standings</string>
+    <string name="teamsStandings">Teams Standings</string>
+
+    <string name="myfavorites">My Fav</string>
+    <string name="drivers">Drivers</string>
+    <string name="teams">Teams</string>
+
+    <string name="home">Home</string>
+
 </resources>

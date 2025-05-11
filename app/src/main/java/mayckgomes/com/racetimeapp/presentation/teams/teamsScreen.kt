@@ -1,4 +1,4 @@
-package mayckgomes.com.racetimeapp.presentation.drivers
+package mayckgomes.com.racetimeapp.presentation.teams
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -21,11 +21,14 @@ import androidx.compose.ui.unit.dp
 import mayckgomes.com.racetimeapp.R
 import mayckgomes.com.racetimeapp.components.driversStandingsTable.DriversStandingsTable
 import mayckgomes.com.racetimeapp.components.driversStandingsTable.driverstandingslist
+import mayckgomes.com.racetimeapp.components.teamsStandingsTable.TeamsStandingsTable
+import mayckgomes.com.racetimeapp.components.teamsStandingsTable.teamstandingslist
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DriversScreen() {
+fun TeamsScreen() {
+
     RaceTimeAppTheme {
 
         Scaffold { padding ->
@@ -41,24 +44,25 @@ fun DriversScreen() {
 
                 Text(
                     modifier = Modifier.align(Alignment.Start),
-                    text = stringResource(R.string.driverStandings),
+                    text = stringResource(R.string.teamsStandings),
                     fontSize = MaterialTheme.typography.headlineMedium.fontSize,
                     fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
                 )
 
                 Spacer(Modifier.size(50.dp))
 
-                DriversStandingsTable(driverstandingslist)
+                TeamsStandingsTable(teamstandingslist)
 
             }
 
         }
 
     }
+
 }
 
 @Preview(showSystemUi = true)
 @Composable
-fun DriversScreenPreview(){
-    DriversScreen()
+private fun TeamsTableScreenPreview() {
+    TeamsScreen()
 }
