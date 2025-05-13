@@ -44,6 +44,9 @@ fun DriversTable(list: List<Driver>) {
     RaceTimeAppTheme {
 
         Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(500.dp),
             shape = RoundedCornerShape(8.dp),
             color = MaterialTheme.colorScheme.surface
         ) {

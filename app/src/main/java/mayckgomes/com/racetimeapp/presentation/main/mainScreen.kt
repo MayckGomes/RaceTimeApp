@@ -1,6 +1,7 @@
 package mayckgomes.com.racetimeapp.presentation.main
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -17,6 +18,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.CoroutineScope
@@ -24,6 +26,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import mayckgomes.com.racetimeapp.R
 import mayckgomes.com.racetimeapp.presentation.drivers.DriversScreen
+import mayckgomes.com.racetimeapp.presentation.drivers.driversViewmodel
 import mayckgomes.com.racetimeapp.presentation.favorites.FavoritesScreen
 import mayckgomes.com.racetimeapp.presentation.home.HomeScreen
 import mayckgomes.com.racetimeapp.presentation.teams.TeamsScreen
@@ -42,14 +45,15 @@ fun MainScreen() {
         val listScreens = viewmodel.listScreens
 
         Scaffold(
-
+            modifier = Modifier.fillMaxSize(1f),
             topBar = {
                 TopAppBar(
 
                     title = {
                         Text(
                             text = stringResource(R.string.topappbar),
-                            color = MaterialTheme.colorScheme.secondary
+                            color = MaterialTheme.colorScheme.secondary,
+                            fontWeight = FontWeight.Bold
                         )
                     },
                     colors = TopAppBarDefaults.topAppBarColors(
@@ -97,11 +101,15 @@ fun MainScreen() {
         ) { padding ->
 
             Column(
-                modifier = Modifier.padding(padding)
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding)
             ) {
 
                 HorizontalPager(
-                    pages
+                    modifier = Modifier.fillMaxSize(1f),
+                    state = pages,
+                    userScrollEnabled = false
                 ) {
 
                     when(pages.currentPage){

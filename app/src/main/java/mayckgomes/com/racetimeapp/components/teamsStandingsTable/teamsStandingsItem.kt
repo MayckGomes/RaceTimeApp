@@ -13,9 +13,10 @@ import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import mayckgomes.com.racetimeapp.domain.models.ConstructorStandings
 
 @Composable
-fun TeamsStandingsItem(team: Team) {
+fun TeamsStandingsItem(team: ConstructorStandings) {
     Row(
         horizontalArrangement = Arrangement.Center,
         modifier = Modifier
@@ -36,7 +37,7 @@ fun TeamsStandingsItem(team: Team) {
         Spacer(Modifier.size(5.dp))
 
         Text(
-            text = team.name,
+            text = team.Constructor.name,
             color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.weight(1.5f)
         )

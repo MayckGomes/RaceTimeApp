@@ -1,5 +1,6 @@
 package mayckgomes.com.racetimeapp.components.driversStandingsTable
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,6 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import mayckgomes.com.racetimeapp.R
+import mayckgomes.com.racetimeapp.domain.models.DriverPositionDriverStandings
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
 data class Driver(
@@ -40,10 +42,13 @@ val driverstandingslist = listOf(
 )
 
 @Composable
-fun DriversStandingsTable(list: List<Driver>) {
+fun DriversStandingsTable(list: List<DriverPositionDriverStandings>) {
     RaceTimeAppTheme {
 
         Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(500.dp),
             shape = RoundedCornerShape(8.dp),
             color = MaterialTheme.colorScheme.surface
         ) {
@@ -115,10 +120,4 @@ fun DriversStandingsTable(list: List<Driver>) {
             }
         }
     }
-}
-
-@Preview
-@Composable
-private fun DriversTablePreview() {
-    DriversStandingsTable(driverstandingslist)
 }

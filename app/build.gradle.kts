@@ -78,6 +78,13 @@ dependencies {
 
     implementation("androidx.room:room-ktx:$room_version")
 
+    val ktor_version = "3.1.3"
 
+    implementation("io.ktor:ktor-client-core:$ktor_version")
+    implementation("io.ktor:ktor-client-cio:$ktor_version")
+
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
 
 }

@@ -4,7 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.LaunchedEffect
+import androidx.lifecycle.viewmodel.compose.viewModel
 import mayckgomes.com.racetimeapp.navgation.Navgation
+import mayckgomes.com.racetimeapp.presentation.drivers.driversViewmodel
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
 class MainActivity : ComponentActivity() {

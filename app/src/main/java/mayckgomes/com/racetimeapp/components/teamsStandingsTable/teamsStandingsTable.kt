@@ -1,5 +1,6 @@
 package mayckgomes.com.racetimeapp.components.teamsStandingsTable
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,26 +24,20 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import mayckgomes.com.racetimeapp.R
+import mayckgomes.com.racetimeapp.domain.models.ConstructorStandings
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
-data class Team(
-    val name:String,
-    val position: String,
-    val points: String
-)
-
-val teamstandingslist = listOf(
-    Team("Mercedes", "1","100"),
-    Team("Ferrari", "2","90"),
-    Team("McLaren", "3","80"),
-    Team("RedBull", "5","70"),
-)
-
 @Composable
-fun TeamsStandingsTable(list: List<Team>) {
+fun TeamsStandingsTable(list: List<ConstructorStandings>) {
+
+    Log.d("teste", "TeamsStandingsTable: $list")
+
     RaceTimeAppTheme {
 
         Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(500.dp),
             shape = RoundedCornerShape(8.dp),
             color = MaterialTheme.colorScheme.surface
         ) {
@@ -102,10 +97,4 @@ fun TeamsStandingsTable(list: List<Team>) {
             }
         }
     }
-}
-
-@Preview
-@Composable
-private fun TeamsStandingsTablePreview() {
-    TeamsStandingsTable(teamstandingslist)
 }

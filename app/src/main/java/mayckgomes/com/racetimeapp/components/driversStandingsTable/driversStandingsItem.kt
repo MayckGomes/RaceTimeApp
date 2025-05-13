@@ -1,5 +1,6 @@
 package mayckgomes.com.racetimeapp.components.driversStandingsTable
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,9 +14,11 @@ import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import mayckgomes.com.racetimeapp.domain.models.DriverPositionDriverStandings
 
 @Composable
-fun DriversStandingsItem(driver: Driver) {
+fun DriversStandingsItem(driver: DriverPositionDriverStandings) {
+    Log.d("teste", "DriversStandingsItem: $driver")
     Row(
         horizontalArrangement = Arrangement.Center,
         modifier = Modifier
@@ -36,7 +39,7 @@ fun DriversStandingsItem(driver: Driver) {
         Spacer(Modifier.size(5.dp))
 
         Text(
-            text = driver.name,
+            text = driver.Driver.familyName,
             color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.weight(1.5f)
         )
@@ -48,7 +51,7 @@ fun DriversStandingsItem(driver: Driver) {
         Spacer(Modifier.size(5.dp))
 
         Text(
-            text = driver.team,
+            text = driver.Constructors.first().name,
             color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.weight(1f)
         )
