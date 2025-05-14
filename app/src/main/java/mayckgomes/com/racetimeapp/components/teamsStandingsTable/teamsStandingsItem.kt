@@ -12,6 +12,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import mayckgomes.com.racetimeapp.domain.models.ConstructorStandings
 
@@ -24,27 +26,23 @@ fun TeamsStandingsItem(team: ConstructorStandings) {
             .fillMaxWidth(1f)
             .height(35.dp)
     ) {
-        Text(
-            text = team.position,
-            color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.weight(0.5f)
-        )
 
         Spacer(Modifier.size(5.dp))
 
-        VerticalDivider(color = MaterialTheme.colorScheme.onBackground)
+        Text(
+            text = team.position,
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.weight(0.25f)
+        )
 
         Spacer(Modifier.size(5.dp))
 
         Text(
             text = team.Constructor.name,
             color = MaterialTheme.colorScheme.onBackground,
+            fontWeight = FontWeight.Bold,
             modifier = Modifier.weight(1.5f)
         )
-
-        Spacer(Modifier.size(5.dp))
-
-        VerticalDivider(color = MaterialTheme.colorScheme.onBackground)
 
         Spacer(Modifier.size(5.dp))
 

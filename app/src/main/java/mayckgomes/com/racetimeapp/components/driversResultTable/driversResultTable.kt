@@ -2,6 +2,7 @@ package mayckgomes.com.racetimeapp.components.driversResultTable
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,24 +24,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import mayckgomes.com.racetimeapp.R
+import mayckgomes.com.racetimeapp.domain.models.LastDriverPosition
+import mayckgomes.com.racetimeapp.domain.models.listResultsTest
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
-data class Driver(
-    val name:String,
-    val team: String,
-    val position: String,
-    val status: String
-)
-
-val driverresultslist = listOf(
-    Driver("Russell","Mercedes", "1", "finished"),
-    Driver("Hamilton","Ferrari", "2", "finished"),
-    Driver("Norris","McLaren", "3", "finished"),
-    Driver("Verstappen","Redbull", "4", "finished"),
-)
-
 @Composable
-fun DriversTable(list: List<Driver>) {
+fun DriversTable(list: List<LastDriverPosition>) {
     RaceTimeAppTheme {
 
         Surface(
@@ -65,7 +54,7 @@ fun DriversTable(list: List<Driver>) {
                     Text(
                         text = stringResource(R.string.position),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(0.5f)
+                        modifier = Modifier.weight(0.32f)
                     )
 
                     Spacer(Modifier.size(5.dp))
@@ -101,7 +90,7 @@ fun DriversTable(list: List<Driver>) {
                     Text(
                         text = stringResource(R.string.status),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(0.7f)
                     )
                 }
 
@@ -109,7 +98,9 @@ fun DriversTable(list: List<Driver>) {
                     color = MaterialTheme.colorScheme.onBackground
                 )
 
-                LazyColumn {
+                LazyColumn(
+                    contentPadding = PaddingValues(10.dp)
+                ) {
                     items(list) {
                         DriversResultItem(it)
                     }
@@ -123,5 +114,5 @@ fun DriversTable(list: List<Driver>) {
 @Preview
 @Composable
 private fun DriversTablePreview() {
-    DriversTable(driverresultslist)
+    DriversTable(listResultsTest)
 }

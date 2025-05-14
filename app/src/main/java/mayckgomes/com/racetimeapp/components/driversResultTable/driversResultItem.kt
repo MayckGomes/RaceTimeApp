@@ -12,10 +12,12 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import mayckgomes.com.racetimeapp.domain.models.LastDriverPosition
 
 @Composable
-fun DriversResultItem(driver: Driver) {
+fun DriversResultItem(driver: LastDriverPosition) {
     Row(
         horizontalArrangement = Arrangement.Center,
         modifier = Modifier
@@ -25,44 +27,34 @@ fun DriversResultItem(driver: Driver) {
     ) {
         Text(
             text = driver.position,
-            color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.weight(0.5f)
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.weight(0.3f)
         )
 
         Spacer(Modifier.size(5.dp))
 
-        VerticalDivider(color = MaterialTheme.colorScheme.onBackground)
-
-        Spacer(Modifier.size(5.dp))
-
         Text(
-            text = driver.name,
+            text = "${driver.Driver.givenName} ${driver.Driver.familyName}",
+            fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.weight(1.5f)
         )
 
         Spacer(Modifier.size(5.dp))
 
-        VerticalDivider(color = MaterialTheme.colorScheme.onBackground)
-
-        Spacer(Modifier.size(5.dp))
-
         Text(
-            text = driver.team,
+            text = driver.Constructor.name,
             color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.weight(1f)
         )
 
-        Spacer(Modifier.size(5.dp))
-
-        VerticalDivider(color = MaterialTheme.colorScheme.onBackground)
 
         Spacer(Modifier.size(5.dp))
 
         Text(
             text = driver.status,
             color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(0.7f)
         )
     }
 }

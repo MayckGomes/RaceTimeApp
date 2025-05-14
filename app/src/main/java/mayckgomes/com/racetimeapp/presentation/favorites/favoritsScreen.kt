@@ -49,7 +49,7 @@ fun FavoritesScreen() {
                 modifier = Modifier
                     .fillMaxSize(1f)
                     .padding(padding)
-                    .padding(25.dp)
+                    .padding(10.dp)
                     .verticalScroll(rememberScrollState())
 
             ) {
@@ -82,6 +82,8 @@ fun FavoritesScreen() {
                     fontSize = MaterialTheme.typography.titleLarge.fontSize,
                     fontWeight = MaterialTheme.typography.titleLarge.fontWeight
                 )
+
+                Spacer(Modifier.size(20.dp))
 
                 TeamsStandingsTable(teamsList)
 

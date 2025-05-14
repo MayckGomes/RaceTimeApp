@@ -10,14 +10,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import mayckgomes.com.racetimeapp.domain.models.DriverPositionDriverStandings
+import mayckgomes.com.racetimeapp.domain.models.DriverPosition
 
 @Composable
-fun DriversStandingsItem(driver: DriverPositionDriverStandings) {
+fun DriversStandingsItem(driver: DriverPosition) {
     Log.d("teste", "DriversStandingsItem: $driver")
     Row(
         horizontalArrangement = Arrangement.Center,
@@ -28,25 +28,18 @@ fun DriversStandingsItem(driver: DriverPositionDriverStandings) {
     ) {
         Text(
             text = driver.position,
-            color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.weight(0.5f)
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.weight(0.3f)
         )
-
-        Spacer(Modifier.size(5.dp))
-
-        VerticalDivider(color = MaterialTheme.colorScheme.onBackground)
 
         Spacer(Modifier.size(5.dp))
 
         Text(
-            text = driver.Driver.familyName,
+            text = "${driver.Driver.givenName} ${driver.Driver.familyName}",
             color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.weight(1.5f)
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.weight(1.3f)
         )
-
-        Spacer(Modifier.size(5.dp))
-
-        VerticalDivider(color = MaterialTheme.colorScheme.onBackground)
 
         Spacer(Modifier.size(5.dp))
 
@@ -58,14 +51,10 @@ fun DriversStandingsItem(driver: DriverPositionDriverStandings) {
 
         Spacer(Modifier.size(5.dp))
 
-        VerticalDivider(color = MaterialTheme.colorScheme.onBackground)
-
-        Spacer(Modifier.size(5.dp))
-
         Text(
             text = driver.points,
             color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(0.25f)
         )
     }
 }

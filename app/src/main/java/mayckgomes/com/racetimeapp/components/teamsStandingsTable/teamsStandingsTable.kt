@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -25,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import mayckgomes.com.racetimeapp.R
 import mayckgomes.com.racetimeapp.domain.models.ConstructorStandings
+import mayckgomes.com.racetimeapp.domain.models.listConstructorsTest
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
 @Composable
@@ -56,7 +56,7 @@ fun TeamsStandingsTable(list: List<ConstructorStandings>) {
                     Text(
                         text = stringResource(R.string.position),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(0.5f)
+                        modifier = Modifier.weight(0.25f)
                     )
 
                     Spacer(Modifier.size(5.dp))
@@ -84,9 +84,6 @@ fun TeamsStandingsTable(list: List<ConstructorStandings>) {
                     )
                 }
 
-                HorizontalDivider(
-                    color = MaterialTheme.colorScheme.onBackground
-                )
 
                 LazyColumn {
                     items(list) {
@@ -97,4 +94,10 @@ fun TeamsStandingsTable(list: List<ConstructorStandings>) {
             }
         }
     }
+}
+
+@Preview(showSystemUi = true)
+@Composable
+private fun TeamsStandingsTablePreview() {
+    TeamsStandingsTable(listConstructorsTest)
 }

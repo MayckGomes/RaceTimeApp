@@ -8,8 +8,10 @@ import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.get
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import mayckgomes.com.racetimeapp.domain.models.Circuits
 import mayckgomes.com.racetimeapp.domain.models.ConstructorStandings
-import mayckgomes.com.racetimeapp.domain.models.DriverPositionDriverStandings
+import mayckgomes.com.racetimeapp.domain.models.DriverPosition
+import mayckgomes.com.racetimeapp.domain.models.LastResultsResponse
 import mayckgomes.com.racetimeapp.domain.models.TeamsStandingsResponse
 import mayckgomes.com.racetimeapp.domain.models.driversStadingsResponse
 
@@ -25,7 +27,7 @@ class Api {
         }
     }
 
-    suspend fun getDriverStandings(): List<DriverPositionDriverStandings>{
+    suspend fun getDriverStandings(): List<DriverPosition>{
 
         return try {
 
@@ -35,7 +37,7 @@ class Api {
 
         } catch(e: Exception) {
 
-            emptyList<DriverPositionDriverStandings>()
+            emptyList<DriverPosition>()
         }
     }
 
@@ -53,5 +55,17 @@ class Api {
             emptyList<ConstructorStandings>()
         }
 
+    }
+
+    suspend fun getLastResults(): List<Circuits> {
+        return try {
+            val request: LastResultsResponse = client.get("https://api.jolpi.ca/ergast/f1/current/last/results.json").body()
+
+            request.MRData.RaceTable.Races
+
+        } catch (e: Exception){
+            Log.d("teste", "getLastResults: $e")
+            emptyList<Circuits>()
+        }
     }
 }

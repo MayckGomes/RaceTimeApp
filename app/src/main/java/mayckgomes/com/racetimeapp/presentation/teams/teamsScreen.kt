@@ -61,7 +61,7 @@ fun TeamsScreen() {
                         .fillMaxSize(1f)
                         .systemBarsPadding()
                         .padding(padding)
-                        .padding(25.dp)
+                        .padding(10.dp)
                 ) {
 
                     Text(

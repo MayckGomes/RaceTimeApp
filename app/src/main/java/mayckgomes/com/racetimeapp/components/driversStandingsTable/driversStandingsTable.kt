@@ -1,6 +1,5 @@
 package mayckgomes.com.racetimeapp.components.driversStandingsTable
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,25 +23,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import mayckgomes.com.racetimeapp.R
-import mayckgomes.com.racetimeapp.domain.models.DriverPositionDriverStandings
+import mayckgomes.com.racetimeapp.domain.models.DriverPosition
+import mayckgomes.com.racetimeapp.domain.models.listDriversTest
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
-data class Driver(
-    val name:String,
-    val team: String,
-    val position: String,
-    val points: String
-)
-
-val driverstandingslist = listOf(
-    Driver("Russell","Mercedes", "1", "100"),
-    Driver("Hamilton","Ferrari", "2", "80"),
-    Driver("Norris","McLaren", "3", "70"),
-    Driver("Verstappen","Redbull", "4", "60"),
-)
-
 @Composable
-fun DriversStandingsTable(list: List<DriverPositionDriverStandings>) {
+fun DriversStandingsTable(list: List<DriverPosition>) {
     RaceTimeAppTheme {
 
         Surface(
@@ -67,7 +53,7 @@ fun DriversStandingsTable(list: List<DriverPositionDriverStandings>) {
                     Text(
                         text = stringResource(R.string.position),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(0.5f)
+                        modifier = Modifier.weight(0.3f)
                     )
 
                     Spacer(Modifier.size(5.dp))
@@ -103,7 +89,7 @@ fun DriversStandingsTable(list: List<DriverPositionDriverStandings>) {
                     Text(
                         text = stringResource(R.string.points),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(0.5f)
                     )
                 }
 
@@ -120,4 +106,10 @@ fun DriversStandingsTable(list: List<DriverPositionDriverStandings>) {
             }
         }
     }
+}
+
+@Preview(showSystemUi = true)
+@Composable
+private fun DriverStadingsTablePreview() {
+    DriversStandingsTable(listDriversTest)
 }
