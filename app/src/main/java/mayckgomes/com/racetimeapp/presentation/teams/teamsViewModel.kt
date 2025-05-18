@@ -19,7 +19,7 @@ class teamsViewModel: ViewModel(){
     private val _teamsList = MutableStateFlow(emptyList<ConstructorStandings>())
     val teamsList = _teamsList.asStateFlow()
 
-    private fun getTeamsStandings(){
+    fun getTeamsStandings(){
 
         viewModelScope.launch {
             isLoadingTrue()

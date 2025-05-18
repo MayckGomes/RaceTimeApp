@@ -14,6 +14,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.pulltorefresh.pullToRefresh
+import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,13 +25,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import mayckgomes.com.racetimeapp.R
 import mayckgomes.com.racetimeapp.components.driversResultTable.DriversTable
+import mayckgomes.com.racetimeapp.navgation.circuitsRoute
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
 
     val viewmodel = viewModel<homeViewmodel>()
 
@@ -41,63 +46,66 @@ fun HomeScreen() {
 
     RaceTimeAppTheme {
 
-        Scaffold { padding ->
+        if (isLoading){
 
-            if (isLoading){
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+                CircularProgressIndicator()
+            }
 
-                Column(
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(padding)
-                ) {
-                    CircularProgressIndicator()
-                }
+        } else {
 
-            } else {
-
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .fillMaxSize(1f)
-                        .systemBarsPadding()
-                        .padding(padding)
-                        .padding(10.dp)
-                ) {
-
-                    Text(
-                        modifier = Modifier.align(Alignment.Start),
-                        text = stringResource(R.string.last_results),
-                        fontSize = MaterialTheme.typography.headlineMedium.fontSize,
-                        fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxSize(1f)
+                    .systemBarsPadding()
+                    .padding(10.dp)
+                    .pullToRefresh(
+                        isRefreshing = isLoading,
+                        onRefresh = {
+                            viewmodel.getLastResults()
+                        },
+                        state = rememberPullToRefreshState()
                     )
+            ) {
 
-                    Spacer(Modifier.size(20.dp))
+                Text(
+                    modifier = Modifier.align(Alignment.Start),
+                    text = stringResource(R.string.last_results),
+                    fontSize = MaterialTheme.typography.headlineMedium.fontSize,
+                    fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
+                )
 
-                    Text(
-                        text = circuitName,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = MaterialTheme.typography.titleLarge.fontSize
-                    )
+                Spacer(Modifier.size(20.dp))
+
+                Text(
+                    text = circuitName,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = MaterialTheme.typography.titleLarge.fontSize
+                )
 
 
-                    Spacer(Modifier.size(10.dp))
+                Spacer(Modifier.size(10.dp))
 
-                    TextButton (
-                        onClick = {}
-                    ){
-                        Text(
-                            text = stringResource(R.string.see_calenar),
-                            color = MaterialTheme.colorScheme.primary
-                        )
+                TextButton (
+                    onClick = {
+                        navController.navigate(circuitsRoute)
                     }
-
-                    Spacer(Modifier.size(15.dp))
-
-                    DriversTable(lastResults)
-
+                ){
+                    Text(
+                        text = stringResource(R.string.see_calenar),
+                        color = MaterialTheme.colorScheme.primary
+                    )
                 }
+
+                Spacer(Modifier.size(15.dp))
+
+                DriversTable(navController,lastResults)
 
             }
 
@@ -109,5 +117,5 @@ fun HomeScreen() {
 @Preview(showSystemUi = true)
 @Composable
 private fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreen(rememberNavController())
 }

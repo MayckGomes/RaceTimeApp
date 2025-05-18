@@ -19,17 +19,19 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import mayckgomes.com.racetimeapp.R
 import mayckgomes.com.racetimeapp.domain.models.LastDriverPosition
-import mayckgomes.com.racetimeapp.domain.models.listResultsTest
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
 @Composable
-fun DriversTable(list: List<LastDriverPosition>) {
+fun DriversTable(navController: NavController,list: List<LastDriverPosition>) {
     RaceTimeAppTheme {
 
         Surface(
@@ -94,25 +96,30 @@ fun DriversTable(list: List<LastDriverPosition>) {
                     )
                 }
 
-                HorizontalDivider(
-                    color = MaterialTheme.colorScheme.onBackground
-                )
-
-                LazyColumn(
-                    contentPadding = PaddingValues(10.dp)
-                ) {
-                    items(list) {
-                        DriversResultItem(it)
+                if (list.isNotEmpty()){
+                    LazyColumn(
+                        contentPadding = PaddingValues(10.dp)
+                    ) {
+                        items(list) {
+                            DriversResultItem(navController, it)
+                        }
                     }
+                } else {
+
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+
+                        Text(
+                            text = stringResource(R.string.conection)
+                        )
+
+                    }
+
                 }
 
             }
         }
     }
-}
-
-@Preview
-@Composable
-private fun DriversTablePreview() {
-    DriversTable(listResultsTest)
 }

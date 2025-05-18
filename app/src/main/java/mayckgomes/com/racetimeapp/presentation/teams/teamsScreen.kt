@@ -13,6 +13,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.pullToRefresh
+import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,13 +23,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import mayckgomes.com.racetimeapp.R
 import mayckgomes.com.racetimeapp.components.teamsStandingsTable.TeamsStandingsTable
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TeamsScreen() {
+fun TeamsScreen(navControler: NavHostController) {
 
     val viewModel = viewModel<teamsViewModel>()
 
@@ -37,45 +41,47 @@ fun TeamsScreen() {
 
     RaceTimeAppTheme {
 
-        Scaffold { padding ->
+        if (isLoading){
 
-            if (isLoading){
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .fillMaxSize(1f)
+            ) {
+                CircularProgressIndicator()
+            }
 
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center,
-                    modifier = Modifier
-                        .fillMaxSize(1f)
-                        .padding(padding)
-                ) {
-                    CircularProgressIndicator()
-                }
+        } else{
 
-            } else{
+            Log.d("teste", "TeamsScreen: $teamsList")
 
-                Log.d("teste", "TeamsScreen: $teamsList")
-
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .fillMaxSize(1f)
-                        .systemBarsPadding()
-                        .padding(padding)
-                        .padding(10.dp)
-                ) {
-
-                    Text(
-                        modifier = Modifier.align(Alignment.Start),
-                        text = stringResource(R.string.teamsStandings),
-                        fontSize = MaterialTheme.typography.headlineMedium.fontSize,
-                        fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxSize(1f)
+                    .systemBarsPadding()
+                    .padding(10.dp)
+                    .pullToRefresh(
+                        isRefreshing = isLoading,
+                        onRefresh = {
+                            viewModel.getTeamsStandings()
+                        },
+                        state = rememberPullToRefreshState()
                     )
+            ) {
 
-                    Spacer(Modifier.size(50.dp))
+                Text(
+                    modifier = Modifier.align(Alignment.Start),
+                    text = stringResource(R.string.teamsStandings),
+                    fontSize = MaterialTheme.typography.headlineMedium.fontSize,
+                    fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
+                )
 
-                    TeamsStandingsTable(teamsList)
+                Spacer(Modifier.size(50.dp))
 
-                }
+                TeamsStandingsTable(navControler,teamsList)
+
             }
         }
     }
@@ -85,5 +91,5 @@ fun TeamsScreen() {
 @Preview(showSystemUi = true)
 @Composable
 private fun TeamsTableScreenPreview() {
-    TeamsScreen()
+    TeamsScreen(rememberNavController())
 }

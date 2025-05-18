@@ -1,5 +1,7 @@
 package mayckgomes.com.racetimeapp.components.driversResultTable
 
+import android.util.Log
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -9,24 +11,31 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import mayckgomes.com.racetimeapp.domain.models.LastDriverPosition
+import mayckgomes.com.racetimeapp.navgation.driverRoute
 
 @Composable
-fun DriversResultItem(driver: LastDriverPosition) {
+fun DriversResultItem(navController: NavController, driverPosition: LastDriverPosition) {
+
     Row(
         horizontalArrangement = Arrangement.Center,
         modifier = Modifier
             .padding(5.dp)
             .fillMaxWidth(1f)
-            .height(35.dp)
+            .clickable {
+
+                navController.navigate(driverRoute(driverPosition.Driver.driverId))
+
+            }
+
     ) {
         Text(
-            text = driver.position,
+            text = driverPosition.position,
             color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.weight(0.3f)
         )
@@ -34,7 +43,7 @@ fun DriversResultItem(driver: LastDriverPosition) {
         Spacer(Modifier.size(5.dp))
 
         Text(
-            text = "${driver.Driver.givenName} ${driver.Driver.familyName}",
+            text = "${driverPosition.Driver.givenName} ${driverPosition.Driver.familyName}",
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.weight(1.5f)
@@ -43,7 +52,7 @@ fun DriversResultItem(driver: LastDriverPosition) {
         Spacer(Modifier.size(5.dp))
 
         Text(
-            text = driver.Constructor.name,
+            text = driverPosition.Constructor.name,
             color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.weight(1f)
         )
@@ -52,7 +61,7 @@ fun DriversResultItem(driver: LastDriverPosition) {
         Spacer(Modifier.size(5.dp))
 
         Text(
-            text = driver.status,
+            text = driverPosition.status,
             color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.weight(0.7f)
         )

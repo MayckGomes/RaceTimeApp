@@ -36,32 +36,6 @@ data class ConstructorStandings(
 @Serializable
 data class Constructors(
     val constructorId: String,
-    val name: String
-)
-
-val listConstructorsTest = listOf(
-    ConstructorStandings(
-        points = "100",
-        position = "1",
-        Constructor = Constructors(
-            name = "mercedes",
-            constructorId = "mercedes"
-        )
-    ),
-    ConstructorStandings(
-        points = "90",
-        position = "2",
-        Constructor = Constructors(
-            name = "ferrari",
-            constructorId = "ferrari"
-        )
-    ),
-    ConstructorStandings(
-        points = "80",
-        position = "3",
-        Constructor = Constructors(
-            name = "mclaren",
-            constructorId = "mclaren"
-        )
-    )
+    val name: String,
+    val nationality: String
 )

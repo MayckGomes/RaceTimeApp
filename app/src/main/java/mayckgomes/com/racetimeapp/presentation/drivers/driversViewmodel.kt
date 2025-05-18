@@ -16,7 +16,7 @@ class driversViewmodel : ViewModel(){
     private val _listDrivers = MutableStateFlow(emptyList<DriverPosition>())
     val listDrivers = _listDrivers.asStateFlow()
 
-    private fun loadListDrivers(){
+    fun loadListDrivers(){
         viewModelScope.launch(Dispatchers.IO) {
 
             isLoadingTrue()

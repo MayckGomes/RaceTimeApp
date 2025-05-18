@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">RaceTime App</string>
-    <string name="topappbar">RaceTime App</string>
+    <string name="app_name" translatable="false">RaceTime App</string>
+    <string name="topappbar" translatable="false">RaceTime App</string>
 
     <string name="last_results">Last Results:</string>
     <string name="see_calenar">See calendar</string>
@@ -19,5 +19,12 @@
     <string name="teams">Teams</string>
 
     <string name="home">Home</string>
+
+    <string name="number">Number</string>
+    <string name="nationality">Nationality</string>
+
+    <string name="conection">Verify our internet connect</string>
+    <string name="nofavdriver">Don\'t have fav drivers</string>
+    <string name="nofavteam">Don\'t have fav teams</string>
 
 </resources>

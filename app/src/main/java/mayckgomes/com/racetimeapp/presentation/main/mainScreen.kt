@@ -21,12 +21,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import mayckgomes.com.racetimeapp.R
 import mayckgomes.com.racetimeapp.presentation.drivers.DriversScreen
-import mayckgomes.com.racetimeapp.presentation.drivers.driversViewmodel
 import mayckgomes.com.racetimeapp.presentation.favorites.FavoritesScreen
 import mayckgomes.com.racetimeapp.presentation.home.HomeScreen
 import mayckgomes.com.racetimeapp.presentation.teams.TeamsScreen
@@ -34,7 +35,7 @@ import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(navControler: NavHostController) {
 
     RaceTimeAppTheme {
 
@@ -113,10 +114,10 @@ fun MainScreen() {
                 ) {
 
                     when(pages.currentPage){
-                        0 -> DriversScreen()
-                        1 -> HomeScreen()
-                        2 -> TeamsScreen()
-                        3 -> FavoritesScreen()
+                        0 -> DriversScreen(navControler)
+                        1 -> HomeScreen(navControler)
+                        2 -> TeamsScreen(navControler)
+                        3 -> FavoritesScreen(navControler)
                     }
 
                 }
@@ -131,5 +132,5 @@ fun MainScreen() {
 @Preview(showSystemUi = true)
 @Composable
 private fun MainScreenPreview() {
-    MainScreen()
+    MainScreen(rememberNavController())
 }

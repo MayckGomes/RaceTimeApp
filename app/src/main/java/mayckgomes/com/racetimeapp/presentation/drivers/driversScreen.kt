@@ -1,6 +1,5 @@
 package mayckgomes.com.racetimeapp.presentation.drivers
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,6 +12,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.pullToRefresh
+import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,13 +22,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import mayckgomes.com.racetimeapp.R
 import mayckgomes.com.racetimeapp.components.driversStandingsTable.DriversStandingsTable
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DriversScreen() {
+fun DriversScreen(navControler: NavHostController) {
     RaceTimeAppTheme {
 
         val viewmodel = viewModel<driversViewmodel>()
@@ -36,46 +39,47 @@ fun DriversScreen() {
 
         val driverList = viewmodel.listDrivers.collectAsStateWithLifecycle().value
 
-        Scaffold { padding ->
+        if (isLoading){
 
-            if (isLoading){
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxSize(1f)
+            ) {
 
-                Column(
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .fillMaxSize(1f)
-                        .padding(padding)
-                ) {
+                CircularProgressIndicator()
 
-                    CircularProgressIndicator()
+            }
 
-                }
+        } else {
 
-            } else {
-
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .fillMaxSize(1f)
-                        .systemBarsPadding()
-                        .padding(padding)
-                        .padding(10.dp)
-                ) {
-
-                    Text(
-                        modifier = Modifier.align(Alignment.Start),
-                        text = stringResource(R.string.driverStandings),
-                        fontSize = MaterialTheme.typography.headlineMedium.fontSize,
-                        fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxSize(1f)
+                    .systemBarsPadding()
+                    .padding(10.dp)
+                    .pullToRefresh(
+                        isRefreshing = isLoading,
+                        onRefresh = {
+                            viewmodel.loadListDrivers()
+                        },
+                        state = rememberPullToRefreshState()
                     )
+            ) {
 
-                    Spacer(Modifier.size(50.dp))
+                Text(
+                    modifier = Modifier.align(Alignment.Start),
+                    text = stringResource(R.string.driverStandings),
+                    fontSize = MaterialTheme.typography.headlineMedium.fontSize,
+                    fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
+                )
+
+                Spacer(Modifier.size(50.dp))
 
 
-                    DriversStandingsTable(driverList)
-
-                }
+                DriversStandingsTable(navControler,driverList)
 
             }
 
@@ -87,5 +91,5 @@ fun DriversScreen() {
 @Preview(showSystemUi = true)
 @Composable
 fun DriversScreenPreview(){
-    DriversScreen()
+    DriversScreen(rememberNavController())
 }
