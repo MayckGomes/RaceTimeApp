@@ -64,15 +64,33 @@ class Api {
 
     }
 
-    suspend fun getLastResults(): List<Circuits> {
+    suspend fun getLastResults(): Circuits? {
         return try {
-            val request: LastResultsResponse = client.get("https://api.jolpi.ca/ergast/f1/current/last/results.json").body()
 
-            request.MRData.RaceTable.Races
+            try {
+
+                Log.d("tentou", "getLastResults: tentou next")
+                val request: LastResultsResponse = client
+                    .get("https://api.jolpi.ca/ergast/f1/current/next/results.json")
+                    .body()
+
+                request.MRData.RaceTable.Races.first()
+
+            } catch(e: Exception){
+
+
+                Log.d("tentou", "getLastResults: tentou last")
+                val request: LastResultsResponse = client
+                    .get("https://api.jolpi.ca/ergast/f1/current/last/results.json")
+                    .body()
+
+                request.MRData.RaceTable.Races.first()
+
+            }
 
         } catch (e: Exception){
             Log.d("teste", "getLastResults: $e")
-            emptyList<Circuits>()
+            null
         }
     }
 
