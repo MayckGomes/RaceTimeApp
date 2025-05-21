@@ -20,3 +20,29 @@ App desenvolvido para o apendizado de boas praticas usando a arquitetura mvvm, e
 - SharedPreferences
 - Navgation
 - MaterialTheme
+
+## UI:
+
+### home
+
+![home](Images/last.png)
+
+### Classificação de Pilotos
+
+![drivers](Images/drivers.png)
+
+### Classificação de Construtores
+
+![teams](Images/teams.png)
+
+### Favoritos
+
+![fav](Images/fav.png)
+
+### Piloto
+
+![driver](Images/driver.png)
+
+### Construtor
+
+![team](Images/team.png) 
