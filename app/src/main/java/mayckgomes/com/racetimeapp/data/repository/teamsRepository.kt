@@ -7,7 +7,7 @@ class teamsRepository(context: Context) {
 
     val db = context.getSharedPreferences("teamsFavorites", Context.MODE_PRIVATE)
 
-    fun getFavTeam(): Map<String?, *>? {
+    fun getFavTeam(): Map<String, *> {
 
         return db.all
 

@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -64,7 +65,7 @@ class favoritesViewmodel: ViewModel() {
     }
 
 
-    fun getDriversFav(context:Context){
+    suspend fun getDriversFav(context:Context){
 
         clearDrivers()
 
@@ -72,28 +73,26 @@ class favoritesViewmodel: ViewModel() {
 
         val listId = mutableListOf<String>()
 
-        if (repository.getFavDriver()?.keys?.isNotEmpty() ?: false){
-            repository.getFavDriver()?.keys?.forEach {
+        if (repository.getFavDriver().keys.isNotEmpty()){
+
+            repository.getFavDriver().keys.forEach {
                 listId.add(it.toString())
             }
         }
 
-        Log.d("list", "list size = ${listId.size}")
+        Log.d("list", "list driver size = ${listId.size}")
         listId.forEach {
 
             Log.d("list", "no foreach")
-            viewModelScope.launch {
 
-                val driver = api.getDriverResults(it)
+            val driver = api.getDriverResults(it)
 
-                addDriver(driver)
-
-            }
+            addDriver(driver)
 
         }
     }
 
-    fun getTeamsFav(context:Context){
+    suspend fun getTeamsFav(context:Context){
 
         clearTeams()
 
@@ -101,23 +100,20 @@ class favoritesViewmodel: ViewModel() {
 
         val listId = mutableListOf<String>()
 
-        if (repository.getFavTeam()?.keys?.isNotEmpty() ?: false){
-            repository.getFavTeam()?.keys?.forEach {
+        if (repository.getFavTeam().keys.isNotEmpty()){
+            repository.getFavTeam().keys.forEach {
                 listId.add(it.toString())
             }
         }
 
-        Log.d("list", "list size = ${listId.size}")
+        Log.d("list", "list team size = ${listId.size}")
         listId.forEach {
 
             Log.d("list", "no foreach")
-            viewModelScope.launch {
 
-                val team = api.getTeamInfo(it)
+            val team = api.getTeamInfo(it)
 
-                addTeam(team.first())
-
-            }
+            addTeam(team.first())
 
         }
 
@@ -127,8 +123,17 @@ class favoritesViewmodel: ViewModel() {
         viewModelScope.launch {
 
             isLoadingTrue()
+
+            val drivers = async {
             getDriversFav(context)
+            }
+            val teams = async {
             getTeamsFav(context)
+            }
+
+            drivers.await()
+            teams.await()
+
             isLoadingFalse()
 
         }

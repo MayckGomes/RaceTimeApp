@@ -100,10 +100,14 @@ fun TeamsStandingsTable(navController: NavController,list: List<ConstructorStand
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center,
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .heightIn(min = 100.dp)
                     ) {
 
-                        CircularProgressIndicator()
+                        Text(
+                            text = stringResource(R.string.nofavteam)
+                        )
 
                     }
 

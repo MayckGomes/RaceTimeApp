@@ -7,7 +7,7 @@ class driversRepository(context: Context) {
 
     val db = context.getSharedPreferences("driversFavorites", Context.MODE_PRIVATE)
 
-    fun getFavDriver(): Map<String?, *>? {
+    fun getFavDriver(): Map<String, *> {
 
             return db.all
 
