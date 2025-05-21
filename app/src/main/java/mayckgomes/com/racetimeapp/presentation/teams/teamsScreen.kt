@@ -8,11 +8,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.pullToRefresh
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
@@ -54,35 +57,35 @@ fun TeamsScreen(navControler: NavHostController) {
 
         } else{
 
-            Log.d("teste", "TeamsScreen: $teamsList")
-
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .fillMaxSize(1f)
-                    .systemBarsPadding()
-                    .padding(10.dp)
-                    .pullToRefresh(
-                        isRefreshing = isLoading,
-                        onRefresh = {
-                            viewModel.getTeamsStandings()
-                        },
-                        state = rememberPullToRefreshState()
-                    )
+            PullToRefreshBox(
+                isRefreshing = isLoading,
+                onRefresh = {viewModel.getTeamsStandings()}
             ) {
 
-                Text(
-                    modifier = Modifier.align(Alignment.Start),
-                    text = stringResource(R.string.teamsStandings),
-                    fontSize = MaterialTheme.typography.headlineMedium.fontSize,
-                    fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
-                )
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier
+                        .fillMaxSize(1f)
+                        .systemBarsPadding()
+                        .padding(10.dp)
+                        .verticalScroll(rememberScrollState())
+                ) {
 
-                Spacer(Modifier.size(50.dp))
+                    Text(
+                        modifier = Modifier.align(Alignment.Start),
+                        text = stringResource(R.string.teamsStandings),
+                        fontSize = MaterialTheme.typography.headlineMedium.fontSize,
+                        fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
+                    )
 
-                TeamsStandingsTable(navControler,teamsList)
+                    Spacer(Modifier.size(50.dp))
+
+                    TeamsStandingsTable(navControler,teamsList)
+
+                }
 
             }
+
         }
     }
 

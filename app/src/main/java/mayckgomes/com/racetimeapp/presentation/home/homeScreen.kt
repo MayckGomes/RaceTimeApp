@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -14,6 +15,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
+import androidx.compose.material3.pulltorefresh.PullToRefreshDefaults.Indicator
 import androidx.compose.material3.pulltorefresh.pullToRefresh
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
@@ -59,53 +62,56 @@ fun HomeScreen(navController: NavController) {
 
         } else {
 
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .fillMaxSize(1f)
-                    .systemBarsPadding()
-                    .padding(10.dp)
-                    .pullToRefresh(
-                        isRefreshing = isLoading,
-                        onRefresh = {
-                            viewmodel.getLastResults()
-                        },
-                        state = rememberPullToRefreshState()
-                    )
+            PullToRefreshBox(
+                isRefreshing = isLoading,
+                onRefresh = {viewmodel.getLastResults()},
+                state = rememberPullToRefreshState(),
+
             ) {
 
-                Text(
-                    modifier = Modifier.align(Alignment.Start),
-                    text = stringResource(R.string.last_results),
-                    fontSize = MaterialTheme.typography.headlineMedium.fontSize,
-                    fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
-                )
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier
+                        .fillMaxSize(1f)
+                        .systemBarsPadding()
+                        .padding(10.dp)
+                        .verticalScroll(rememberScrollState())
+                ) {
 
-                Spacer(Modifier.size(20.dp))
-
-                Text(
-                    text = circuitName,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = MaterialTheme.typography.titleLarge.fontSize
-                )
-
-
-                Spacer(Modifier.size(10.dp))
-
-                TextButton (
-                    onClick = {
-                        navController.navigate(circuitsRoute)
-                    }
-                ){
                     Text(
-                        text = stringResource(R.string.see_calenar),
-                        color = MaterialTheme.colorScheme.primary
+                        modifier = Modifier.align(Alignment.Start),
+                        text = stringResource(R.string.last_results),
+                        fontSize = MaterialTheme.typography.headlineMedium.fontSize,
+                        fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
                     )
+
+                    Spacer(Modifier.size(20.dp))
+
+                    Text(
+                        text = circuitName,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = MaterialTheme.typography.titleLarge.fontSize
+                    )
+
+
+                    Spacer(Modifier.size(10.dp))
+
+                    TextButton (
+                        onClick = {
+                            navController.navigate(circuitsRoute)
+                        }
+                    ){
+                        Text(
+                            text = stringResource(R.string.see_calenar),
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+
+                    Spacer(Modifier.size(15.dp))
+
+                    DriversTable(navController,lastResults)
+
                 }
-
-                Spacer(Modifier.size(15.dp))
-
-                DriversTable(navController,lastResults)
 
             }
 
