@@ -11,7 +11,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
@@ -29,8 +28,6 @@ import androidx.navigation.compose.rememberNavController
 import mayckgomes.com.racetimeapp.R
 import mayckgomes.com.racetimeapp.components.driversStandingsTable.DriversStandingsTable
 import mayckgomes.com.racetimeapp.components.teamsStandingsTable.TeamsStandingsTable
-import mayckgomes.com.racetimeapp.presentation.drivers.driversViewmodel
-import mayckgomes.com.racetimeapp.presentation.teams.teamsViewModel
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)

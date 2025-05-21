@@ -15,7 +15,7 @@
     <string name="home">Home</string>
     <string name="number">Número</string>
     <string name="nationality">Nacionalidade</string>
-    <string name="conection">Verifique sua conexção com a internet</string>
-    <string name="nofavdriver">Não tem Pilotos Favoritos</string>
-    <string name="nofavteam">Não tem Equipes Favoritos</string>
+    <string name="conection">Verifique sua conexão com a internet</string>
+    <string name="nofavdriver">Você não tem Pilotos Favoritos</string>
+    <string name="nofavteam">Você não tem Equipes Favoritos</string>
 </resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="last_results">Derniers Résultats</string>
+    <string name="see_calenar">Voir le Calendrier</string>
+    <string name="position">Pos</string>
+    <string name="driver">Pilote</string>
+    <string name="team">Équipe</string>
+    <string name="status">Statut</string>
+    <string name="points">Points</string>
+    <string name="driverStandings">Classement des Pilotes</string>
+    <string name="teamsStandings">Classement des Équipes</string>
+    <string name="myfavorites">Mes Favoris</string>
+    <string name="drivers">Pilotes</string>
+    <string name="teams">Équipes</string>
+    <string name="home">Home</string>
+    <string name="number">Numéro</string>
+    <string name="nationality">Nationalité</string>
+    <string name="conection">Vérifiez votre connexion Internet</string>
+    <string name="nofavdriver">Vous n'avez pas de Pilotes Favoris</string>
+    <string name="nofavteam">Vous n'avez pas d'Équipes Favorites</string>
+</resources>
