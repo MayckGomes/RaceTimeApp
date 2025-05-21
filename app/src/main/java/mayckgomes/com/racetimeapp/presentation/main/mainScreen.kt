@@ -1,5 +1,6 @@
 package mayckgomes.com.racetimeapp.presentation.main
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -119,6 +120,10 @@ fun MainScreen(navControler: NavHostController) {
                         2 -> TeamsScreen(navControler)
                         3 -> FavoritesScreen(navControler)
                     }
+
+                }
+
+                BackHandler {
 
                 }
 

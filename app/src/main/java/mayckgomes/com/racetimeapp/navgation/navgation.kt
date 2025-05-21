@@ -9,6 +9,7 @@ import kotlinx.serialization.Serializable
 import mayckgomes.com.racetimeapp.presentation.circuits.CircuitsScreen
 import mayckgomes.com.racetimeapp.presentation.driver.DriverScreen
 import mayckgomes.com.racetimeapp.presentation.main.MainScreen
+import mayckgomes.com.racetimeapp.presentation.network.NetworkScreen
 import mayckgomes.com.racetimeapp.presentation.team.TeamScreen
 
 @Serializable
@@ -27,12 +28,15 @@ data class teamRoute(
 @Serializable
 object circuitsRoute
 
+@Serializable
+object network
+
 @Composable
-fun Navgation(){
+fun Navgation(haveInternet: Boolean){
 
     val navControler = rememberNavController()
 
-    NavHost(navControler, startDestination = main, builder = {
+    NavHost(navControler, startDestination = if (haveInternet) main else network, builder = {
 
         composable<main> {
             MainScreen(navControler)
@@ -50,6 +54,10 @@ fun Navgation(){
 
         composable<circuitsRoute>{
             CircuitsScreen(navControler)
+        }
+
+        composable<network>{
+            NetworkScreen(navControler)
         }
 
     })

@@ -42,6 +42,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import mayckgomes.com.racetimeapp.R
 import mayckgomes.com.racetimeapp.data.repository.driversRepository
+import mayckgomes.com.racetimeapp.navgation.main
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -76,7 +77,7 @@ fun DriverScreen(navController: NavController,id: String) {
                     navigationIcon = { Icon(
                         modifier = Modifier.clickable{
 
-                            navController.popBackStack()
+                            navController.popBackStack(main,false)
 
                         },
                         imageVector = Icons.AutoMirrored.Default.ArrowBack,
