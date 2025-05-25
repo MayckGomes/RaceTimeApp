@@ -51,8 +51,8 @@ class homeViewmodel: ViewModel(){
             val race = async{
                 val response = api.getLastResults()
 
-                _circuitName.value = response?.raceName.toString()
-                _resultsList.value = response?.Results!!
+                _circuitName.value = response.first().raceName
+                _resultsList.value = response.first().Results
             }
 
             val grid = async {

@@ -64,33 +64,20 @@ class Api {
 
     }
 
-    suspend fun getLastResults(): Circuits? {
+    suspend fun getLastResults(): List<Circuits> {
         return try {
 
-            try {
+            Log.d("tentou", "getLastResults: tentou next")
+            val request: LastResultsResponse = client
+                .get("https://api.jolpi.ca/ergast/f1/current/last/results.json")
+                .body()
 
-                Log.d("tentou", "getLastResults: tentou next")
-                val request: LastResultsResponse = client
-                    .get("https://api.jolpi.ca/ergast/f1/current/next/results.json")
-                    .body()
-
-                request.MRData.RaceTable.Races.first()
-
-            } catch(e: Exception){
-
-
-                Log.d("tentou", "getLastResults: tentou last")
-                val request: LastResultsResponse = client
-                    .get("https://api.jolpi.ca/ergast/f1/current/last/results.json")
-                    .body()
-
-                request.MRData.RaceTable.Races.first()
-
-            }
+            Log.d("tentou", "json: ${request}")
+            request.MRData.RaceTable.Races
 
         } catch (e: Exception){
             Log.d("teste", "getLastResults: $e")
-            null
+            emptyList()
         }
     }
 
@@ -153,22 +140,11 @@ class Api {
 
         return try {
 
-            try {
+            val response: QualiResultsResponse = client
+                .get("https://api.jolpi.ca/ergast/f1/current/last/qualifying.json")
+                .body()
 
-                val response: QualiResultsResponse = client
-                    .get("https://api.jolpi.ca/ergast/f1/current/next/qualifying.json")
-                    .body()
-
-                response.MRData.RaceTable.Races
-            } catch (e: Exception){
-
-                val response: QualiResultsResponse = client
-                    .get("https://api.jolpi.ca/ergast/f1/current/last/qualifying.json")
-                    .body()
-
-                response.MRData.RaceTable.Races
-
-            }
+            response.MRData.RaceTable.Races
 
         } catch (e: Exception){
 
