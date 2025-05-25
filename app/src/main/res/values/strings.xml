@@ -27,4 +27,7 @@
     <string name="nofavdriver">Don\'t have fav drivers</string>
     <string name="nofavteam">Don\'t have fav teams</string>
 
+    <string name="race">Race</string>
+    <string name="Quali">Quali</string>
+
 </resources>

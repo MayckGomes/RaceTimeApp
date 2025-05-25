@@ -18,4 +18,8 @@
     <string name="conection">Controlla la tua connessione Internet</string>
     <string name="nofavdriver">Non hai Piloti Preferiti</string>
     <string name="nofavteam">Non hai Squadre Preferite</string>
+
+    <string name="race">Gara</string>
+    <string name="Quali">Qualifiche</string>
+
 </resources>

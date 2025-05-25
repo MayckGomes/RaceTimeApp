@@ -104,7 +104,7 @@ fun HomeScreen(navController: NavController) {
 
                     Text(
                         modifier = Modifier.align(Alignment.Start),
-                        text = "Race",
+                        text = stringResource(R.string.race),
                         fontSize = MaterialTheme.typography.headlineMedium.fontSize,
                         fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
                     )
@@ -125,7 +125,7 @@ fun HomeScreen(navController: NavController) {
 
                     Text(
                         modifier = Modifier.align(Alignment.Start),
-                        text = "Quali",
+                        text = stringResource(R.string.Quali),
                         fontSize = MaterialTheme.typography.headlineMedium.fontSize,
                         fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
                     )
