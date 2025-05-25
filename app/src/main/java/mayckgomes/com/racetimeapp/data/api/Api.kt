@@ -17,6 +17,9 @@ import mayckgomes.com.racetimeapp.domain.models.DriverPosition
 import mayckgomes.com.racetimeapp.domain.models.DriverPositionResponse
 import mayckgomes.com.racetimeapp.domain.models.LastDriverPosition
 import mayckgomes.com.racetimeapp.domain.models.LastResultsResponse
+import mayckgomes.com.racetimeapp.domain.models.QualiCircuits
+import mayckgomes.com.racetimeapp.domain.models.QualiDriverPosition
+import mayckgomes.com.racetimeapp.domain.models.QualiResultsResponse
 import mayckgomes.com.racetimeapp.domain.models.RacesCalendar
 import mayckgomes.com.racetimeapp.domain.models.SeasonCalendarResponse
 import mayckgomes.com.racetimeapp.domain.models.TeamsStandingsResponse
@@ -144,8 +147,35 @@ class Api {
 
             emptyList<RacesCalendar>()
         }
+    }
 
 
+    suspend fun getQualiResults(): List<QualiCircuits>{
+
+        return try {
+
+            try {
+
+                val response: QualiResultsResponse = client
+                    .get("https://api.jolpi.ca/ergast/f1/current/next/qualifying.json")
+                    .body()
+
+                response.MRData.RaceTable.Races
+            } catch (e: Exception){
+
+                val response: QualiResultsResponse = client
+                    .get("https://api.jolpi.ca/ergast/f1/current/last/qualifying.json")
+                    .body()
+
+                response.MRData.RaceTable.Races
+
+            }
+
+        } catch (e: Exception){
+
+            emptyList()
+
+        }
 
     }
 }

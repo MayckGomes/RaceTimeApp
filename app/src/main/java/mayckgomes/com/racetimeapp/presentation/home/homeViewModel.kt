@@ -2,6 +2,7 @@ package mayckgomes.com.racetimeapp.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -9,6 +10,8 @@ import mayckgomes.com.racetimeapp.data.api.Api
 import mayckgomes.com.racetimeapp.domain.models.Circuits
 import mayckgomes.com.racetimeapp.domain.models.DriverPosition
 import mayckgomes.com.racetimeapp.domain.models.LastDriverPosition
+import mayckgomes.com.racetimeapp.domain.models.QualiCircuits
+import mayckgomes.com.racetimeapp.domain.models.QualiDriverPosition
 
 class homeViewmodel: ViewModel(){
 
@@ -32,16 +35,37 @@ class homeViewmodel: ViewModel(){
     val resultsList = _resultsList.asStateFlow()
 
 
+    private val _circuitQualiName = MutableStateFlow("")
+    val circuitQualiName = _circuitQualiName.asStateFlow()
+
+    private val _resultsQualiList = MutableStateFlow(emptyList<QualiDriverPosition>())
+    val resultsQualiList = _resultsQualiList.asStateFlow()
+
+
 
     fun getLastResults(){
 
         viewModelScope.launch {
             isLoadingTrue()
 
-            val response = api.getLastResults()
+            val race = async{
+                val response = api.getLastResults()
 
-            _circuitName.value = response?.raceName.toString()
-            _resultsList.value = response?.Results!!
+                _circuitName.value = response?.raceName.toString()
+                _resultsList.value = response?.Results!!
+            }
+
+            val grid = async {
+
+                val response = api.getQualiResults()
+
+                _circuitQualiName.value = response.first().raceName
+                _resultsQualiList.value = response.first().QualifyingResults
+
+            }
+
+            race.await()
+            grid.await()
 
             isLoadingFalse()
         }

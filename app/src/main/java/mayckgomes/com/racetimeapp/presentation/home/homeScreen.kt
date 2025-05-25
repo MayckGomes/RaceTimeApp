@@ -12,12 +12,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
-import androidx.compose.material3.pulltorefresh.PullToRefreshDefaults.Indicator
-import androidx.compose.material3.pulltorefresh.pullToRefresh
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -31,6 +28,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import mayckgomes.com.racetimeapp.R
+import mayckgomes.com.racetimeapp.components.driversQualiResultTable.DriversQualiTable
 import mayckgomes.com.racetimeapp.components.driversResultTable.DriversTable
 import mayckgomes.com.racetimeapp.navgation.circuitsRoute
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
@@ -43,9 +41,13 @@ fun HomeScreen(navController: NavController) {
 
     val isLoading = viewmodel.isLoading.collectAsStateWithLifecycle().value
 
-    val circuitName = viewmodel.circuitName.collectAsStateWithLifecycle().value
+    val circuitRaceName = viewmodel.circuitName.collectAsStateWithLifecycle().value
 
-    val lastResults = viewmodel.resultsList.collectAsStateWithLifecycle().value
+    val lastRaceResults = viewmodel.resultsList.collectAsStateWithLifecycle().value
+
+    val circuitQualiRaceName = viewmodel.circuitQualiName.collectAsStateWithLifecycle().value
+
+    val lastQualiResults = viewmodel.resultsQualiList.collectAsStateWithLifecycle().value
 
     RaceTimeAppTheme {
 
@@ -85,15 +87,6 @@ fun HomeScreen(navController: NavController) {
                         fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
                     )
 
-                    Spacer(Modifier.size(20.dp))
-
-                    Text(
-                        text = circuitName,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = MaterialTheme.typography.titleLarge.fontSize
-                    )
-
-
                     Spacer(Modifier.size(10.dp))
 
                     TextButton (
@@ -107,10 +100,47 @@ fun HomeScreen(navController: NavController) {
                         )
                     }
 
+                    Spacer(Modifier.size(10.dp))
+
+                    Text(
+                        modifier = Modifier.align(Alignment.Start),
+                        text = "Race",
+                        fontSize = MaterialTheme.typography.headlineMedium.fontSize,
+                        fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
+                    )
+
+                    Spacer(Modifier.size(20.dp))
+
+                    Text(
+                        text = circuitRaceName,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = MaterialTheme.typography.titleLarge.fontSize
+                    )
+
+                    Spacer(Modifier.size(20.dp))
+
+                    DriversTable(navController,lastRaceResults)
+
+                    Spacer(Modifier.size(20.dp))
+
+                    Text(
+                        modifier = Modifier.align(Alignment.Start),
+                        text = "Quali",
+                        fontSize = MaterialTheme.typography.headlineMedium.fontSize,
+                        fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
+                    )
+
+                    Spacer(Modifier.size(10.dp))
+
+                    Text(
+                        text = circuitQualiRaceName,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = MaterialTheme.typography.titleLarge.fontSize
+                    )
+
                     Spacer(Modifier.size(15.dp))
 
-                    DriversTable(navController,lastResults)
-
+                    DriversQualiTable(navController,lastQualiResults)
                 }
 
             }
