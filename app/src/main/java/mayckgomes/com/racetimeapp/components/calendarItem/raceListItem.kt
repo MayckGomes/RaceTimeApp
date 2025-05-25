@@ -1,6 +1,7 @@
 package mayckgomes.com.racetimeapp.components.calendarItem
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -24,18 +25,32 @@ import androidx.compose.ui.unit.sp
 import mayckgomes.com.racetimeapp.domain.models.RacesCalendar
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.Date
 
 @SuppressLint("SimpleDateFormat")
 @Composable
 fun RaceItem(race: RacesCalendar) {
 
+
     RaceTimeAppTheme {
+
+        val formater = SimpleDateFormat("yyyy-MM-dd")
+
+        val dateRace = formater.parse(race.date)!!
+
+        val localDate = formater.parse(LocalDate.now().toString())!!
+
+        val borderColor = if (localDate == dateRace) MaterialTheme.colorScheme.primary else Color.Transparent
+
+        Log.d("cor", "racedate = ${race.date}, LocalDate = ${LocalDate.now()}")
 
         Surface(
             shape = RoundedCornerShape(12.dp),
             modifier = Modifier
                 .fillMaxWidth(),
-            color = MaterialTheme.colorScheme.background
+            color = MaterialTheme.colorScheme.background,
+            border = BorderStroke(2.dp, color = borderColor)
         ) {
 
             Column(
