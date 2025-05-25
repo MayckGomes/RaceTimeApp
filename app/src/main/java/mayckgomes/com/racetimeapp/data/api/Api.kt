@@ -44,7 +44,7 @@ class Api {
 
         } catch(e: Exception) {
 
-            emptyList<DriverPosition>()
+            emptyList()
         }
     }
 
@@ -59,7 +59,7 @@ class Api {
 
         } catch (e: Exception){
             Log.d("teste", "erro api: $e")
-            emptyList<ConstructorStandings>()
+            emptyList()
         }
 
     }
@@ -99,9 +99,11 @@ class Api {
         return try {
 
 
-            Log.d("teste", "começou api")
-            val response: DriverInfoResponse = client.get("https://api.jolpi.ca/ergast/f1/drivers/${driverId}.json").body()
-            Log.d("teste", "response: $response ")
+            val response: DriverInfoResponse = client
+                .get("https://api.jolpi.ca/ergast/f1/drivers/${driverId}.json")
+                .body()
+
+
             response.MRData.DriverTable.Drivers
 
         } catch (e: Exception){
