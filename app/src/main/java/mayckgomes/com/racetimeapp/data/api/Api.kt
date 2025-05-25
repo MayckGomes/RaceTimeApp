@@ -6,7 +6,6 @@ import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.get
-import io.ktor.client.statement.bodyAsText
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import mayckgomes.com.racetimeapp.domain.models.Circuits
@@ -15,10 +14,8 @@ import mayckgomes.com.racetimeapp.domain.models.DriverInfo
 import mayckgomes.com.racetimeapp.domain.models.DriverInfoResponse
 import mayckgomes.com.racetimeapp.domain.models.DriverPosition
 import mayckgomes.com.racetimeapp.domain.models.DriverPositionResponse
-import mayckgomes.com.racetimeapp.domain.models.LastDriverPosition
 import mayckgomes.com.racetimeapp.domain.models.LastResultsResponse
 import mayckgomes.com.racetimeapp.domain.models.QualiCircuits
-import mayckgomes.com.racetimeapp.domain.models.QualiDriverPosition
 import mayckgomes.com.racetimeapp.domain.models.QualiResultsResponse
 import mayckgomes.com.racetimeapp.domain.models.RacesCalendar
 import mayckgomes.com.racetimeapp.domain.models.SeasonCalendarResponse
@@ -145,7 +142,7 @@ class Api {
             request.MRData.RaceTable.Races
         } catch (e: Exception){
 
-            emptyList<RacesCalendar>()
+            emptyList()
         }
     }
 
