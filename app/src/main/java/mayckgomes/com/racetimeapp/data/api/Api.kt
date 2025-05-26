@@ -1,6 +1,5 @@
 package mayckgomes.com.racetimeapp.data.api
 
-import android.util.Log
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
@@ -13,7 +12,6 @@ import mayckgomes.com.racetimeapp.domain.models.ConstructorStandings
 import mayckgomes.com.racetimeapp.domain.models.DriverInfo
 import mayckgomes.com.racetimeapp.domain.models.DriverInfoResponse
 import mayckgomes.com.racetimeapp.domain.models.DriverPosition
-import mayckgomes.com.racetimeapp.domain.models.DriverPositionResponse
 import mayckgomes.com.racetimeapp.domain.models.LastResultsResponse
 import mayckgomes.com.racetimeapp.domain.models.QualiCircuits
 import mayckgomes.com.racetimeapp.domain.models.QualiResultsResponse
@@ -43,7 +41,6 @@ class Api {
             request.MRData.StandingsTable.StandingsLists.first().DriverStandings
 
         } catch(e: Exception) {
-
             emptyList()
         }
     }
@@ -58,7 +55,6 @@ class Api {
             request.MRData.StandingsTable.StandingsLists.first().ConstructorStandings
 
         } catch (e: Exception){
-            Log.d("teste", "erro api: $e")
             emptyList()
         }
 
@@ -67,16 +63,13 @@ class Api {
     suspend fun getLastResults(): List<Circuits> {
         return try {
 
-            Log.d("tentou", "getLastResults: tentou next")
             val request: LastResultsResponse = client
                 .get("https://api.jolpi.ca/ergast/f1/current/last/results.json")
                 .body()
 
-            Log.d("tentou", "json: ${request}")
             request.MRData.RaceTable.Races
 
         } catch (e: Exception){
-            Log.d("teste", "getLastResults: $e")
             emptyList()
         }
     }
@@ -94,19 +87,8 @@ class Api {
             response.MRData.DriverTable.Drivers
 
         } catch (e: Exception){
-
-            Log.d("teste", "getDriverInfo: $e")
-            emptyList<DriverInfo>()
-
+            emptyList()
         }
-
-    }
-
-    suspend fun getDriverResults(driverId: String): DriverPosition {
-
-        val request: DriverPositionResponse = client.get("https://api.jolpi.ca/ergast/f1/current/drivers/$driverId/driverstandings.json").body()
-
-        return request.MRData.StandingsTable.StandingsLists.first().DriverStandings.first()
 
     }
 
@@ -118,8 +100,7 @@ class Api {
             request.MRData.StandingsTable.StandingsLists.first().ConstructorStandings
 
         } catch (e: Exception){
-            Log.d("teste", "erro api: $e")
-            emptyList<ConstructorStandings>()
+            emptyList()
         }
     }
 
@@ -130,7 +111,6 @@ class Api {
 
             request.MRData.RaceTable.Races
         } catch (e: Exception){
-
             emptyList()
         }
     }
@@ -147,9 +127,7 @@ class Api {
             response.MRData.RaceTable.Races
 
         } catch (e: Exception){
-
             emptyList()
-
         }
 
     }

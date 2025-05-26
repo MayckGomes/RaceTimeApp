@@ -7,10 +7,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import mayckgomes.com.racetimeapp.data.api.Api
-import mayckgomes.com.racetimeapp.data.repository.driversRepository
 import mayckgomes.com.racetimeapp.data.repository.teamsRepository
 import mayckgomes.com.racetimeapp.domain.models.ConstructorStandings
-import mayckgomes.com.racetimeapp.domain.models.DriverInfo
 
 class teamViewModel: ViewModel() {
 

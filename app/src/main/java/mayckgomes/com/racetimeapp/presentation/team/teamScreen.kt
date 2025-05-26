@@ -40,7 +40,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import mayckgomes.com.racetimeapp.R
 import mayckgomes.com.racetimeapp.navgation.main
-import mayckgomes.com.racetimeapp.presentation.driver.driverViewmodel
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)

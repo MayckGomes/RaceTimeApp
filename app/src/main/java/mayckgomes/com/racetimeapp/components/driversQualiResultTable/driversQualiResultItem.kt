@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import mayckgomes.com.racetimeapp.domain.models.LastDriverPosition
 import mayckgomes.com.racetimeapp.domain.models.QualiDriverPosition
 import mayckgomes.com.racetimeapp.navgation.driverRoute
 

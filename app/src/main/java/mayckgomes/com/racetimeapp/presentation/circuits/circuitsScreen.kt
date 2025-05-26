@@ -23,15 +23,12 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.node.ModifierNodeElement
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import mayckgomes.com.racetimeapp.R
 import mayckgomes.com.racetimeapp.components.calendarItem.RaceItem
 import mayckgomes.com.racetimeapp.navgation.main
@@ -108,34 +105,41 @@ fun CircuitsScreen(navController: NavController) {
 
             } else {
 
-                LazyColumn(
-                    Modifier
-                        .fillMaxSize()
-                        .padding(it)
-                        .padding(10.dp)
+                if (circuitsList.isNotEmpty()){
 
-                ) {
-                    items(circuitsList) {
+                    LazyColumn(
+                        Modifier
+                            .fillMaxSize()
+                            .padding(it)
+                            .padding(10.dp)
 
-                        RaceItem(
-                            race = it
+                    ) {
+                        items(circuitsList) {
+
+                            RaceItem(
+                                race = it
+                            )
+                            HorizontalDivider()
+                            Spacer( modifier = Modifier.size(10.dp))
+
+                        }
+                    }
+
+                } else {
+
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+
+                        Text(
+                            text = stringResource(R.string.conection)
                         )
-                        HorizontalDivider()
-                        Spacer( modifier = Modifier.size(10.dp))
 
                     }
                 }
-
             }
-
         }
-
     }
-
-}
-
-@Preview(showSystemUi = true)
-@Composable
-private fun CircuitsScreenPreview() {
-    CircuitsScreen(rememberNavController())
 }

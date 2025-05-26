@@ -1,20 +1,14 @@
 package mayckgomes.com.racetimeapp.presentation.driver
 
 import android.content.Context
-import android.util.Log
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Favorite
-import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import mayckgomes.com.racetimeapp.data.api.Api
 import mayckgomes.com.racetimeapp.data.repository.driversRepository
 import mayckgomes.com.racetimeapp.domain.models.DriverInfo
-import mayckgomes.com.racetimeapp.domain.models.driverInfoTest
 
 class driverViewmodel(): ViewModel() {
 

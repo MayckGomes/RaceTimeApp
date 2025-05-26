@@ -1,7 +1,6 @@
 package mayckgomes.com.racetimeapp.presentation.favorites
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.async
@@ -13,11 +12,8 @@ import mayckgomes.com.racetimeapp.data.repository.driversRepository
 import mayckgomes.com.racetimeapp.data.repository.teamsRepository
 import mayckgomes.com.racetimeapp.domain.models.ConstructorStandings
 import mayckgomes.com.racetimeapp.domain.models.DriverPosition
-import mayckgomes.com.racetimeapp.domain.models.LastDriverPosition
 import mayckgomes.com.racetimeapp.presentation.drivers.driversViewmodel
 import mayckgomes.com.racetimeapp.presentation.teams.teamsViewModel
-import kotlin.collections.minus
-import kotlin.collections.plus
 
 class favoritesViewmodel: ViewModel() {
 
@@ -103,6 +99,12 @@ class favoritesViewmodel: ViewModel() {
 
             val drivers = api.getDriverStandings()
 
+            viewModelScope.launch {
+
+                driversVM.loadListDrivers()
+
+            }
+
             drivers.forEach {
 
                 if (it.Driver.driverId in listId){
@@ -149,6 +151,12 @@ class favoritesViewmodel: ViewModel() {
 
             val teams = api.getTeamsStandings()
 
+            viewModelScope.launch {
+
+                teamsVM.getTeamsStandings()
+
+            }
+
             teams.forEach {
 
                 if (it.Constructor.constructorId in listId){
@@ -181,7 +189,5 @@ class favoritesViewmodel: ViewModel() {
             isLoadingFalse()
 
         }
-
     }
-
 }

@@ -4,7 +4,6 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.compose.runtime.Composable
-import androidx.core.content.ContextCompat.getSystemService
 
 class TestNetwork {
 

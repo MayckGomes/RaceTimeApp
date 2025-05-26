@@ -9,9 +9,6 @@ import kotlinx.coroutines.launch
 import mayckgomes.com.racetimeapp.data.api.Api
 import mayckgomes.com.racetimeapp.domain.models.ConstructorStandings
 
-
-
-
 class teamsViewModel: ViewModel(){
 
     private val api = Api()
@@ -24,7 +21,6 @@ class teamsViewModel: ViewModel(){
         viewModelScope.launch {
             isLoadingTrue()
             _teamsList.value = api.getTeamsStandings()
-            Log.d("teste", "getTeamsStandings: ${_teamsList.value}")
             isLoadingFalse()
         }
 

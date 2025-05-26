@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -36,7 +37,7 @@ fun DriversQualiTable(navController: NavController,list: List<QualiDriverPositio
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(500.dp),
+                .heightIn(min = 200.dp, max = 500.dp),
             shape = RoundedCornerShape(8.dp),
             color = MaterialTheme.colorScheme.surface
         ) {
@@ -97,7 +98,8 @@ fun DriversQualiTable(navController: NavController,list: List<QualiDriverPositio
 
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
+                        verticalArrangement = Arrangement.Center,
+                        modifier = Modifier.fillMaxSize()
                     ) {
 
                         Text(

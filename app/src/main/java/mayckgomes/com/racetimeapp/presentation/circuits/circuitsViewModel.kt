@@ -1,6 +1,5 @@
 package mayckgomes.com.racetimeapp.presentation.circuits
 
-import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
