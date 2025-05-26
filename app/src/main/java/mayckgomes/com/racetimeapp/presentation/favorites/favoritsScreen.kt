@@ -64,54 +64,47 @@ fun FavoritesScreen(navControler: NavHostController) {
 
         } else {
 
-            PullToRefreshBox(
-                isRefreshing = isLoading,
-                onRefresh = {viewmodel.loadAllData(context)}
-            ){
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxSize(1f)
+                    .padding(10.dp)
+                    .verticalScroll(rememberScrollState())
 
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .fillMaxSize(1f)
-                        .padding(10.dp)
-                        .verticalScroll(rememberScrollState())
+            ) {
 
-                ) {
+                Text(
+                    modifier = Modifier.align(Alignment.Start),
+                    text = stringResource(R.string.myfavorites),
+                    fontSize = MaterialTheme.typography.headlineMedium.fontSize,
+                    fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
+                )
 
-                    Text(
-                        modifier = Modifier.align(Alignment.Start),
-                        text = stringResource(R.string.myfavorites),
-                        fontSize = MaterialTheme.typography.headlineMedium.fontSize,
-                        fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
-                    )
+                Spacer(Modifier.size(40.dp))
 
-                    Spacer(Modifier.size(40.dp))
+                Text(
+                    modifier = Modifier.align(Alignment.Start),
+                    text = stringResource(R.string.drivers),
+                    fontSize = MaterialTheme.typography.titleLarge.fontSize,
+                    fontWeight = MaterialTheme.typography.titleLarge.fontWeight
+                )
 
-                    Text(
-                        modifier = Modifier.align(Alignment.Start),
-                        text = stringResource(R.string.drivers),
-                        fontSize = MaterialTheme.typography.titleLarge.fontSize,
-                        fontWeight = MaterialTheme.typography.titleLarge.fontWeight
-                    )
+                Spacer(Modifier.size(20.dp))
 
-                    Spacer(Modifier.size(20.dp))
+                DriversStandingsTable(navControler, driverList)
 
-                    DriversStandingsTable(navControler, driverList)
+                Spacer(Modifier.size(30.dp))
 
-                    Spacer(Modifier.size(30.dp))
+                Text(
+                    modifier = Modifier.align(Alignment.Start),
+                    text = stringResource(R.string.teams),
+                    fontSize = MaterialTheme.typography.titleLarge.fontSize,
+                    fontWeight = MaterialTheme.typography.titleLarge.fontWeight
+                )
 
-                    Text(
-                        modifier = Modifier.align(Alignment.Start),
-                        text = stringResource(R.string.teams),
-                        fontSize = MaterialTheme.typography.titleLarge.fontSize,
-                        fontWeight = MaterialTheme.typography.titleLarge.fontWeight
-                    )
+                Spacer(Modifier.size(20.dp))
 
-                    Spacer(Modifier.size(20.dp))
-
-                    TeamsStandingsTable(navControler, teamList)
-
-                }
+                TeamsStandingsTable(navControler, teamList)
 
             }
 
