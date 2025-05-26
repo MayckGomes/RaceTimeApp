@@ -14,12 +14,17 @@ import mayckgomes.com.racetimeapp.data.repository.teamsRepository
 import mayckgomes.com.racetimeapp.domain.models.ConstructorStandings
 import mayckgomes.com.racetimeapp.domain.models.DriverPosition
 import mayckgomes.com.racetimeapp.domain.models.LastDriverPosition
+import mayckgomes.com.racetimeapp.presentation.drivers.driversViewmodel
+import mayckgomes.com.racetimeapp.presentation.teams.teamsViewModel
 import kotlin.collections.minus
 import kotlin.collections.plus
 
 class favoritesViewmodel: ViewModel() {
 
     private val api = Api()
+    private val driversVM = driversViewmodel()
+    private val teamsVM = teamsViewModel()
+
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
@@ -43,7 +48,7 @@ class favoritesViewmodel: ViewModel() {
 
     fun clearDrivers(){
 
-        _listDrivers.value = emptyList<DriverPosition>()
+        _listDrivers.value = emptyList()
 
     }
 
@@ -76,20 +81,40 @@ class favoritesViewmodel: ViewModel() {
         if (repository.getFavDriver().keys.isNotEmpty()){
 
             repository.getFavDriver().keys.forEach {
-                listId.add(it.toString())
+                listId.add(it)
             }
         }
 
-        Log.d("list", "list driver size = ${listId.size}")
-        listId.forEach {
+        if (driversVM.listDrivers.value.isNotEmpty()){
 
-            Log.d("list", "no foreach")
+            val drivers = driversVM.listDrivers.value
 
-            val driver = api.getDriverResults(it)
+            drivers.forEach {
 
-            addDriver(driver)
+                if (it.Driver.driverId in listId){
+
+                    addDriver(it)
+
+                }
+
+            }
+
+        } else {
+
+            val drivers = api.getDriverStandings()
+
+            drivers.forEach {
+
+                if (it.Driver.driverId in listId){
+
+                    addDriver(it)
+
+                }
+
+            }
 
         }
+
     }
 
     suspend fun getTeamsFav(context:Context){
@@ -102,18 +127,37 @@ class favoritesViewmodel: ViewModel() {
 
         if (repository.getFavTeam().keys.isNotEmpty()){
             repository.getFavTeam().keys.forEach {
-                listId.add(it.toString())
+                listId.add(it)
             }
         }
 
-        Log.d("list", "list team size = ${listId.size}")
-        listId.forEach {
+        if (teamsVM.teamsList.value.isNotEmpty()){
 
-            Log.d("list", "no foreach")
+            val teams = teamsVM.teamsList.value
 
-            val team = api.getTeamInfo(it)
+            teams.forEach {
 
-            addTeam(team.first())
+                if (it.Constructor.constructorId in listId){
+
+                    addTeam(it)
+
+                }
+
+            }
+
+        } else {
+
+            val teams = api.getTeamsStandings()
+
+            teams.forEach {
+
+                if (it.Constructor.constructorId in listId){
+
+                    addTeam(it)
+
+                }
+
+            }
 
         }
 
