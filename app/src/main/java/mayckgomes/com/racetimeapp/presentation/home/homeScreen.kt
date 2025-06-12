@@ -1,22 +1,30 @@
 package mayckgomes.com.racetimeapp.presentation.home
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -27,6 +35,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.launch
 import mayckgomes.com.racetimeapp.R
 import mayckgomes.com.racetimeapp.components.driversQualiResultTable.DriversQualiTable
 import mayckgomes.com.racetimeapp.components.driversResultTable.DriversTable
@@ -36,6 +45,8 @@ import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavController) {
+
+    val scope = rememberCoroutineScope()
 
     val viewmodel = viewModel<homeViewmodel>()
 
@@ -48,6 +59,8 @@ fun HomeScreen(navController: NavController) {
     val circuitQualiRaceName = viewmodel.circuitQualiName.collectAsStateWithLifecycle().value
 
     val lastQualiResults = viewmodel.resultsQualiList.collectAsStateWithLifecycle().value
+
+    val pagerState = rememberPagerState(pageCount = {2})
 
     RaceTimeAppTheme {
 
@@ -102,45 +115,84 @@ fun HomeScreen(navController: NavController) {
 
                     Spacer(Modifier.size(10.dp))
 
-                    Text(
-                        modifier = Modifier.align(Alignment.Start),
-                        text = stringResource(R.string.race),
-                        fontSize = MaterialTheme.typography.headlineMedium.fontSize,
-                        fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
-                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth(1f)
+                    ) {
 
-                    Spacer(Modifier.size(20.dp))
+                        OutlinedButton(
+                            modifier = Modifier
+                                .fillMaxWidth(0.5f),
+                            colors = ButtonDefaults.outlinedButtonColors(
+                                containerColor = if(pagerState.currentPage == 0) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.background
+                            ),
+                            onClick = {
 
-                    Text(
-                        text = circuitRaceName,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = MaterialTheme.typography.titleLarge.fontSize
-                    )
+                                if (pagerState.currentPage != 0){
+                                    scope.launch { pagerState.scrollToPage(0) }
+                                }
 
-                    Spacer(Modifier.size(20.dp))
+                            }
+                        ) {
+                            Text(
+                                text = stringResource(R.string.Quali),
+                                color = if(pagerState.currentPage == 0) MaterialTheme.colorScheme.background else MaterialTheme.colorScheme.primary
+                            )
+                        }
 
-                    DriversTable(navController,lastRaceResults)
+                        Spacer(Modifier.size(10.dp))
 
-                    Spacer(Modifier.size(20.dp))
+                        OutlinedButton(
+                            modifier = Modifier
+                                .fillMaxWidth(1f),
+                            colors = ButtonDefaults.outlinedButtonColors(
+                                containerColor = if(pagerState.currentPage == 1) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.background
+                            ),
+                            onClick = {
 
-                    Text(
-                        modifier = Modifier.align(Alignment.Start),
-                        text = stringResource(R.string.Quali),
-                        fontSize = MaterialTheme.typography.headlineMedium.fontSize,
-                        fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
-                    )
+                                if (pagerState.currentPage != 1){
+                                    scope.launch { pagerState.scrollToPage(1) }
+                                }
+
+                            }
+                        ) {
+                            Text(
+                                text = stringResource(R.string.race),
+                                color = if(pagerState.currentPage == 1) MaterialTheme.colorScheme.background else MaterialTheme.colorScheme.primary
+                            )
+                        }
+                    }
 
                     Spacer(Modifier.size(10.dp))
 
-                    Text(
-                        text = circuitQualiRaceName,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = MaterialTheme.typography.titleLarge.fontSize
-                    )
+                    HorizontalPager(
+                        modifier = Modifier.fillMaxSize(),
+                        state = pagerState
+                    ) {
 
-                    Spacer(Modifier.size(15.dp))
+                        when{
 
-                    DriversQualiTable(navController,lastQualiResults)
+                            pagerState.currentPage == 0 -> HomeScreenContent(
+                                isQuali = true,
+                                navController = navController,
+                                circuitRaceName = circuitRaceName,
+                                circuitQualiRaceName = circuitQualiRaceName,
+                                lastRaceResults = lastRaceResults,
+                                lastQualiResults = lastQualiResults
+                            )
+                            pagerState.currentPage == 1 -> HomeScreenContent(
+                                isQuali = false,
+                                navController = navController,
+                                circuitRaceName = circuitRaceName,
+                                circuitQualiRaceName = circuitQualiRaceName,
+                                lastRaceResults = lastRaceResults,
+                                lastQualiResults = lastQualiResults
+                            )
+
+                        }
+
+                    }
+
                 }
 
             }
