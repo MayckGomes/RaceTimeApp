@@ -63,11 +63,18 @@ class Api {
     suspend fun getLastResults(): List<Circuits> {
         return try {
 
-            val request: LastResultsResponse = client
-                .get("https://api.jolpi.ca/ergast/f1/current/last/results.json")
+            val requestNext: LastResultsResponse = client
+                .get("https://api.jolpi.ca/ergast/f1/current/next/results.json")
                 .body()
 
-            request.MRData.RaceTable.Races
+            requestNext.MRData.RaceTable.Races.ifEmpty {
+
+                val requestLast: LastResultsResponse = client
+                    .get("https://api.jolpi.ca/ergast/f1/current/last/results.json")
+                    .body()
+
+                requestLast.MRData.RaceTable.Races
+            }
 
         } catch (e: Exception){
             emptyList()
@@ -120,11 +127,19 @@ class Api {
 
         return try {
 
-            val response: QualiResultsResponse = client
-                .get("https://api.jolpi.ca/ergast/f1/current/last/qualifying.json")
+            val responseNext: QualiResultsResponse = client
+                .get("https://api.jolpi.ca/ergast/f1/current/next/qualifying.json")
                 .body()
 
-            response.MRData.RaceTable.Races
+            responseNext.MRData.RaceTable.Races.ifEmpty {
+
+                val responseLast: QualiResultsResponse = client
+                    .get("https://api.jolpi.ca/ergast/f1/current/last/qualifying.json")
+                    .body()
+
+                responseLast.MRData.RaceTable.Races
+
+            }
 
         } catch (e: Exception){
             emptyList()
