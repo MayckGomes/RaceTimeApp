@@ -7,6 +7,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import mayckgomes.com.racetimeapp.data.api.Api
 import mayckgomes.com.racetimeapp.domain.models.RacesCalendar
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.Date
 
 class circuitsViewModel : ViewModel(){
 
@@ -30,7 +33,7 @@ class circuitsViewModel : ViewModel(){
 
         viewModelScope.launch{
 
-            _circuitsList.value = emptyList<RacesCalendar>()
+            _circuitsList.value = emptyList()
 
             isLoadingTrue()
 
@@ -42,8 +45,36 @@ class circuitsViewModel : ViewModel(){
 
     }
 
+    private val _actualWeekend = MutableStateFlow("")
+    val actualWeekend = _actualWeekend.asStateFlow()
+
+    fun getActualWeekend(){
+
+        viewModelScope.launch {
+
+            val response = api.getCalendar()
+
+            val formater = SimpleDateFormat("yyyy-MM-dd")
+
+            val localDate = formater.parse(LocalDate.now().toString())!!
+
+            for (date in response){
+
+                val circuitDate = formater.parse(date.date)!!
+
+                if (circuitDate >= localDate){
+
+                    _actualWeekend.value = date.date
+                    break
+                }
+
+            }
+        }
+    }
+
     init {
         getCircuits()
+        getActualWeekend()
     }
 
 }

@@ -37,7 +37,7 @@ fun DriversQualiTable(navController: NavController,list: List<QualiDriverPositio
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(min = 200.dp, max = 500.dp),
+                .heightIn(min = 200.dp, max = 700.dp),
             shape = RoundedCornerShape(8.dp),
             color = MaterialTheme.colorScheme.surface
         ) {

@@ -26,20 +26,12 @@ import java.time.LocalDate
 
 @SuppressLint("SimpleDateFormat")
 @Composable
-fun RaceItem(race: RacesCalendar) {
+fun RaceItem(race: RacesCalendar, actualWeekend: String) {
 
 
     RaceTimeAppTheme {
 
-        val formater = SimpleDateFormat("yyyy-MM-dd")
-
-        val dateRace = formater.parse(race.date)!!
-
-        val localDate = formater.parse(LocalDate.now().toString())!!
-
-        val borderColor = if (localDate == dateRace) MaterialTheme.colorScheme.primary else Color.Transparent
-
-        Log.d("cor", "racedate = ${race.date}, LocalDate = ${LocalDate.now()}")
+        val borderColor = if (actualWeekend == race.date) MaterialTheme.colorScheme.primary else Color.Transparent
 
         Surface(
             shape = RoundedCornerShape(12.dp),
@@ -83,16 +75,4 @@ fun RaceItem(race: RacesCalendar) {
 
     }
 
-}
-
-@Preview
-@Composable
-private fun RaceItemPreview() {
-    RaceItem(
-        RacesCalendar(
-            round = "0",
-            raceName = "são paulo gran prix",
-            date = "2025-03-16"
-        )
-    )
 }

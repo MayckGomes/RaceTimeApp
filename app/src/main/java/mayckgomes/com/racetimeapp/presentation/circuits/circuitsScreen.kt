@@ -21,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -45,6 +46,8 @@ fun CircuitsScreen(navController: NavController) {
     val circuitsList = viewModel.circuitsList.collectAsStateWithLifecycle().value
 
     RaceTimeAppTheme{
+
+        val actualWeekend by viewModel.actualWeekend.collectAsStateWithLifecycle()
 
         Scaffold(
             modifier = Modifier
@@ -117,6 +120,7 @@ fun CircuitsScreen(navController: NavController) {
                         items(circuitsList) {
 
                             RaceItem(
+                                actualWeekend = actualWeekend,
                                 race = it
                             )
                             HorizontalDivider()
