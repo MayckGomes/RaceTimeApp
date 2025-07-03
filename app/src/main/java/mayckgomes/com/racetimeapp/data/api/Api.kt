@@ -5,7 +5,11 @@ import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.get
+import io.ktor.client.request.request
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import mayckgomes.com.racetimeapp.domain.models.Circuits
 import mayckgomes.com.racetimeapp.domain.models.ConstructorStandings
@@ -61,21 +65,33 @@ class Api {
     }
 
     suspend fun getLastResults(): List<Circuits> {
-        return try {
+        return try{
+            withContext(Dispatchers.IO) {
 
-            val requestNext: LastResultsResponse = client
-                .get("https://api.jolpi.ca/ergast/f1/current/next/results.json")
-                .body()
 
-            requestNext.MRData.RaceTable.Races.ifEmpty {
+                val next = async {
+                    val requestNext: LastResultsResponse = client
+                        .get("https://api.jolpi.ca/ergast/f1/current/next/results.json")
+                        .body()
 
-                val requestLast: LastResultsResponse = client
-                    .get("https://api.jolpi.ca/ergast/f1/current/last/results.json")
-                    .body()
+                    requestNext.MRData.RaceTable.Races
+                }
 
-                requestLast.MRData.RaceTable.Races
+                val last = async {
+                    val requestLast: LastResultsResponse = client
+                        .get("https://api.jolpi.ca/ergast/f1/current/last/results.json")
+                        .body()
+
+                    requestLast.MRData.RaceTable.Races
+                }
+
+
+                val nextResults = next.await()
+                val lastResults = last.await()
+
+                nextResults.ifEmpty { lastResults }
+
             }
-
         } catch (e: Exception){
             emptyList()
         }
@@ -124,23 +140,31 @@ class Api {
 
 
     suspend fun getQualiResults(): List<QualiCircuits>{
-
         return try {
+            withContext(Dispatchers.IO) {
 
-            val responseNext: QualiResultsResponse = client
-                .get("https://api.jolpi.ca/ergast/f1/current/next/qualifying.json")
-                .body()
+                val next = async {
+                    val responseNext: QualiResultsResponse = client
+                        .get("https://api.jolpi.ca/ergast/f1/current/next/qualifying.json")
+                        .body()
 
-            responseNext.MRData.RaceTable.Races.ifEmpty {
+                    responseNext.MRData.RaceTable.Races
+                }
 
-                val responseLast: QualiResultsResponse = client
-                    .get("https://api.jolpi.ca/ergast/f1/current/last/qualifying.json")
-                    .body()
+                val last = async {
+                    val responseLast: QualiResultsResponse = client
+                        .get("https://api.jolpi.ca/ergast/f1/current/last/qualifying.json")
+                        .body()
 
-                responseLast.MRData.RaceTable.Races
+                    responseLast.MRData.RaceTable.Races
+                }
 
+
+                val nextResults = next.await()
+                val lastResults = last.await()
+
+                nextResults.ifEmpty { lastResults }
             }
-
         } catch (e: Exception){
             emptyList()
         }
