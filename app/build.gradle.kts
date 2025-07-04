@@ -22,7 +22,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -87,5 +87,7 @@ dependencies {
     implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
 
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+
+    implementation("com.google.android.gms:play-services-ads:24.4.0")
 
 }

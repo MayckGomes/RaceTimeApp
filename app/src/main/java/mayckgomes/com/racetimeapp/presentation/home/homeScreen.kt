@@ -28,6 +28,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import mayckgomes.com.racetimeapp.R
+import mayckgomes.com.racetimeapp.components.ads.BannerAdView
 import mayckgomes.com.racetimeapp.navgation.circuitsRoute
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
@@ -44,10 +45,15 @@ fun HomeScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxSize(1f)
-                .systemBarsPadding()
-                .padding(10.dp)
+                .padding(horizontal = 10.dp)
                 .verticalScroll(rememberScrollState())
         ) {
+
+            Spacer(Modifier.size(10.dp))
+
+            BannerAdView("ca-app-pub-3940256099942544/6300978111")
+
+            Spacer(Modifier.size(5.dp))
 
             Text(
                 modifier = Modifier.align(Alignment.Start),
@@ -56,7 +62,7 @@ fun HomeScreen(navController: NavController) {
                 fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
             )
 
-            Spacer(Modifier.size(10.dp))
+            Spacer(Modifier.size(5.dp))
 
             TextButton (
                 onClick = {
@@ -138,6 +144,10 @@ fun HomeScreen(navController: NavController) {
                 }
 
             }
+
+            Spacer(Modifier.size(10.dp))
+
+            BannerAdView("ca-app-pub-3940256099942544/6300978111")
 
         }
     }

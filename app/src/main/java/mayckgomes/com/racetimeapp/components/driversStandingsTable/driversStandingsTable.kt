@@ -37,7 +37,7 @@ fun DriversStandingsTable(
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(0.dp, 500.dp),
+                .heightIn(0.dp, 1000.dp),
             shape = RoundedCornerShape(8.dp),
             color = MaterialTheme.colorScheme.surface
         ) {

@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.google.android.gms.ads.MobileAds
 import mayckgomes.com.racetimeapp.data.repository.TestNetwork
 import mayckgomes.com.racetimeapp.navgation.Navgation
 import mayckgomes.com.racetimeapp.presentation.drivers.driversViewmodel
@@ -19,6 +20,8 @@ class MainActivity : ComponentActivity() {
             RaceTimeAppTheme {
 
                 val repository = TestNetwork()
+
+                MobileAds.initialize(this) {}
 
                 Navgation(repository.verifyNetwork(this))
             }

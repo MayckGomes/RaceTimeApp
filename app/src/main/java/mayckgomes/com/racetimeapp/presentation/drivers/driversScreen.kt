@@ -25,6 +25,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import mayckgomes.com.racetimeapp.R
+import mayckgomes.com.racetimeapp.components.ads.BannerAdView
 import mayckgomes.com.racetimeapp.components.driversStandingsTable.DriversStandingsTable
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
@@ -65,10 +66,15 @@ fun DriversScreen(navControler: NavHostController) {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
                         .fillMaxSize(1f)
-                        .systemBarsPadding()
                         .padding(10.dp)
                         .verticalScroll(rememberScrollState())
                 ) {
+
+                    Spacer(Modifier.size(5.dp))
+
+                    BannerAdView("ca-app-pub-3940256099942544/6300978111")
+
+                    Spacer(Modifier.size(5.dp))
 
                     Text(
                         modifier = Modifier.align(Alignment.Start),
@@ -77,14 +83,19 @@ fun DriversScreen(navControler: NavHostController) {
                         fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
                     )
 
-                    Spacer(Modifier.size(50.dp))
-
+                    Spacer(Modifier.size(40.dp))
 
                     DriversStandingsTable(
                         navControler,
                         list = driverList,
                         errorMsg = R.string.conection
                     )
+
+                    Spacer(Modifier.size(5.dp))
+
+                    BannerAdView("ca-app-pub-3940256099942544/6300978111")
+
+                    Spacer(Modifier.size(5.dp))
 
                 }
 
