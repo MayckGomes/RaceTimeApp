@@ -23,6 +23,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -87,6 +88,10 @@ dependencies {
     implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
 
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+
+    implementation("io.insert-koin:koin-android:4.1.0")
+    implementation("io.insert-koin:koin-compose:4.1.0")
+    implementation("io.insert-koin:koin-androidx-compose:4.1.0")
 
     implementation("com.google.android.gms:play-services-ads:24.4.0")
 
