@@ -26,7 +26,7 @@ fun HomeOverview() {
     }
 
     Column(modifier = Modifier
-        .fillMaxWidth()
+        .fillMaxSize()
         .verticalScroll(rememberScrollState())
         .padding(8.dp)) {
 

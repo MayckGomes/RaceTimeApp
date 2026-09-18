@@ -46,7 +46,6 @@ fun HomeScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxSize(1f)
                 .padding(horizontal = 10.dp)
-                .verticalScroll(rememberScrollState())
         ) {
 
             Spacer(Modifier.size(10.dp))
