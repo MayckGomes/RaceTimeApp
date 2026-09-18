@@ -28,50 +28,63 @@ fun HomeOverview() {
     Column(modifier = Modifier
         .fillMaxSize()
         .verticalScroll(rememberScrollState())
-        .padding(8.dp)) {
+        .padding(12.dp)) {
 
         // Header
-        Text(text = "Season", style = MaterialTheme.typography.displayLarge)
+        Text(text = "RACE TIME", style = MaterialTheme.typography.displayLarge)
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(12.dp))
 
         // Next Race block
         when (val s = vm.nextRace.collectAsState().value) {
-            is BlockState.Loading -> Text("Loading next race...")
+            is BlockState.Loading -> Box(modifier = Modifier.fillMaxWidth().height(180.dp)) { Text("Loading next race...") }
             is BlockState.Error -> Text("Error: ${s.message}")
-            is BlockState.Success -> NextRaceCard(s.data, s.isStale, vm.countdownSeconds.collectAsState().value)
+            is BlockState.Success -> {
+                NextRaceCard(
+                    raceName = s.data.raceName,
+                    circuitName = s.data.Circuit.circuitName,
+                    round = s.data.round,
+                    length = null,
+                    laps = null,
+                    lapRecord = null,
+                    countdown = vm.countdownSeconds.collectAsState().value,
+                    isStale = s.isStale
+                )
+            }
         }
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(12.dp))
 
         // Last Race
         when (val s = vm.lastRace.collectAsState().value) {
-            is BlockState.Loading -> Text("Loading last race...")
+            is BlockState.Loading -> Box(modifier = Modifier.fillMaxWidth().height(160.dp)) { Text("Loading last race...") }
             is BlockState.Error -> Text("Error: ${s.message}")
             is BlockState.Success -> LastRaceCard(s.data, s.isStale)
         }
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(12.dp))
 
-        // Drivers
-        when (val s = vm.driversTop.collectAsState().value) {
-            is BlockState.Loading -> Text("Loading drivers...")
-            is BlockState.Error -> Text("Error: ${s.message}")
-            is BlockState.Success -> StandingsPreviewCard("Drivers", s.data.map { it.Driver.givenName + " " + it.Driver.familyName })
+        // Standings
+        val drivers = when (val s = vm.driversTop.collectAsState().value) {
+            is BlockState.Success -> s.data.map { it.Driver.givenName + " " + it.Driver.familyName }
+            else -> listOf("—","—","—")
+        }
+        val constructors = when (val s = vm.constructorsTop.collectAsState().value) {
+            is BlockState.Success -> s.data.map { it.Constructor.name }
+            else -> listOf("—","—","—")
         }
 
-        Spacer(modifier = Modifier.height(8.dp))
+        StandingsCards(drivers = drivers, constructors = constructors)
 
-        // Constructors
-        when (val s = vm.constructorsTop.collectAsState().value) {
-            is BlockState.Loading -> Text("Loading constructors...")
-            is BlockState.Error -> Text("Error: ${s.message}")
-            is BlockState.Success -> StandingsPreviewCard("Constructors", s.data.map { it.Constructor.name })
-        }
+        Spacer(modifier = Modifier.height(12.dp))
 
-        Spacer(modifier = Modifier.height(16.dp))
+        // Current session (placeholder)
+        CurrentSessionBar(sessionName = "FREE PRACTICE 3", circuitName = "MONZA", elapsed = "32:17")
 
-        Button(onClick = { vm.refreshAll(isOnline = true) }) {
+        Spacer(modifier = Modifier.height(24.dp))
+
+        // Refresh action
+        Button(onClick = { vm.refreshAll(isOnline = true) }, modifier = Modifier.align(Alignment.CenterHorizontally)) {
             Text("Refresh")
         }
     }
