@@ -40,9 +40,20 @@ val networkModule = module {
     single { JolpicaApiClient(get()) }
 }
 
+import androidx.room.Room
+
 val databaseModule = module {
     single { androidContext().getSharedPreferences("racetime_app_cache", Context.MODE_PRIVATE) }
     single { LocalCache(get()) }
+
+    single {
+        Room.databaseBuilder(androidContext(), mayckgomes.com.racetimeapp.data.local.db.AppDatabase::class.java, "racetime_db")
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    single { get<mayckgomes.com.racetimeapp.data.local.db.AppDatabase>().calendarDao() }
+    single { get<mayckgomes.com.racetimeapp.data.local.db.AppDatabase>().standingsDao() }
 }
 
 val repositoryModule = module {
