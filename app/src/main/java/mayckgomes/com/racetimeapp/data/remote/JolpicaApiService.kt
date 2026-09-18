@@ -2,6 +2,7 @@ package mayckgomes.com.racetimeapp.data.remote
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
+import io.ktor.client.request.get
 import mayckgomes.com.racetimeapp.data.network.ApiResult
 import mayckgomes.com.racetimeapp.data.network.safeRequest
 import mayckgomes.com.racetimeapp.domain.models.*
