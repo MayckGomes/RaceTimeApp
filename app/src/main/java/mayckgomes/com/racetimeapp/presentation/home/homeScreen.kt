@@ -132,15 +132,10 @@ fun HomeScreen(navController: NavController) {
                 state = pagerState
             ) {
 
-                when{
-
-                    pagerState.currentPage == 0 -> HomeQualiScreenContent(
-                        navController = navController
-                    )
-                    pagerState.currentPage == 1 -> HomeRaceScreenContent(
-                        navController = navController
-                    )
-
+                when (pagerState.currentPage) {
+                    0 -> HomeOverview()
+                    1 -> HomeOverview()
+                    else -> HomeOverview()
                 }
 
             }
