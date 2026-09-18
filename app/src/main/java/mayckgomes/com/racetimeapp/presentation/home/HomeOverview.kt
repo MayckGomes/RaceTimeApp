@@ -94,10 +94,10 @@ private fun NextRaceCard(race: mayckgomes.com.racetimeapp.domain.models.RacesCal
 }
 
 @Composable
-private fun LastRaceCard(race: mayckgomes.com.racetimeapp.domain.models.RacesCalendar, isStale: Boolean) {
+private fun LastRaceCard(race: mayckgomes.com.racetimeapp.domain.models.Circuits, isStale: Boolean) {
     Column(Modifier.fillMaxWidth().padding(8.dp)) {
         Text(text = "Last: ${race.raceName}", style = MaterialTheme.typography.headlineMedium)
-        Text(text = "Date: ${race.date}")
+        Text(text = "Circuit: ${race.Circuit.circuitName}")
         if (isStale) Text("Data desatualizada", style = MaterialTheme.typography.bodySmall)
     }
 }

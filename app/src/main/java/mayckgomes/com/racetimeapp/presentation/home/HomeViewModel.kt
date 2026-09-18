@@ -3,7 +3,6 @@ package mayckgomes.com.racetimeapp.presentation.home
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.ktor.client.call.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -37,8 +36,8 @@ class HomeViewModel(
     private val _nextRace = MutableStateFlow<BlockState<RacesCalendar>>(BlockState.Loading)
     val nextRace: StateFlow<BlockState<RacesCalendar>> = _nextRace
 
-    private val _lastRace = MutableStateFlow<BlockState<RacesCalendar>>(BlockState.Loading)
-    val lastRace: StateFlow<BlockState<RacesCalendar>> = _lastRace
+    private val _lastRace = MutableStateFlow<BlockState<mayckgomes.com.racetimeapp.domain.models.Circuits>>(BlockState.Loading)
+        val lastRace: StateFlow<BlockState<mayckgomes.com.racetimeapp.domain.models.Circuits>> = _lastRace
 
     private val _driversTop = MutableStateFlow<BlockState<List<DriverPosition>>>(BlockState.Loading)
     val driversTop: StateFlow<BlockState<List<DriverPosition>>> = _driversTop
@@ -110,7 +109,7 @@ class HomeViewModel(
                     val races = res.data.MRData.RaceTable.Races
                     val last = races.firstOrNull()
                     if (last != null) {
-                        prefs.edit().putString("last_json", json.encodeToString(ListSerializer(RacesCalendar.serializer()), races)).putLong("last_fetchedAt", System.currentTimeMillis()).apply()
+                                            prefs.edit().putString("last_json", json.encodeToString(ListSerializer(mayckgomes.com.racetimeapp.domain.models.Circuits.serializer()), races)).putLong("last_fetchedAt", System.currentTimeMillis()).apply()
                         _lastRace.value = BlockState.Success(last, false)
                         return
                     }
@@ -120,7 +119,7 @@ class HomeViewModel(
                     val cached = prefs.getString("last_json", null)
                     val fetchedAt = prefs.getLong("last_fetchedAt", 0L)
                     if (cached != null) {
-                        val races = json.decodeFromString(ListSerializer(RacesCalendar.serializer()), cached)
+                        val races = json.decodeFromString(ListSerializer(mayckgomes.com.racetimeapp.domain.models.Circuits.serializer()), cached)
                         val last = races.firstOrNull()
                         val isStale = System.currentTimeMillis() - fetchedAt > CACHE_VALIDITY_MS
                         if (last != null) {

@@ -11,6 +11,7 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import mayckgomes.com.racetimeapp.data.local.LocalCache
 import mayckgomes.com.racetimeapp.data.remote.JolpicaApiClient
+import mayckgomes.com.racetimeapp.data.remote.JolpicaApiService
 import mayckgomes.com.racetimeapp.data.repository.SeasonRepository
 import mayckgomes.com.racetimeapp.ui.screen.TestViewModel
 import org.koin.android.ext.koin.androidContext
@@ -38,15 +39,9 @@ val networkModule = module {
     }
 
     single { JolpicaApiClient(get()) }
-    single { mayckgomes.com.racetimeapp.data.remote.JolpicaApiService(get()) }
+    single { JolpicaApiService(get()) }
 }
 
-val viewModelModule = module {
-    viewModel { TestViewModel(get()) }
-    viewModel { mayckgomes.com.racetimeapp.presentation.home.HomeViewModel(get(), get()) }
-}
-
-val appModule = listOf(networkModule, databaseModule, repositoryModule, viewModelModule)
 val databaseModule = module {
     single { androidContext().getSharedPreferences("racetime_app_cache", Context.MODE_PRIVATE) }
     single { LocalCache(get()) }
@@ -58,6 +53,7 @@ val repositoryModule = module {
 
 val viewModelModule = module {
     viewModel { TestViewModel(get()) }
+    viewModel { mayckgomes.com.racetimeapp.presentation.home.HomeViewModel(get(), get()) }
 }
 
 val appModule = listOf(networkModule, databaseModule, repositoryModule, viewModelModule)
