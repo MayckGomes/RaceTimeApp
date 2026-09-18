@@ -1,7 +1,6 @@
 package mayckgomes.com.racetimeapp.components.home
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -107,8 +106,8 @@ fun LastRaceCard(circuit: Circuits, isStale: Boolean) {
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline)
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
-            // background image placeholder
-            Image(painter = painterResource(id = R.drawable.ic_race_placeholder), contentDescription = null, modifier = Modifier.fillMaxSize(), contentScale = ContentScale.Crop)
+            // background gradient placeholder
+            Box(modifier = Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(Color.Black, Color.DarkGray))))
             Column(modifier = Modifier.fillMaxSize().padding(12.dp)) {
                 Text("LAST RACE", color = MaterialTheme.colorScheme.primary, fontSize = 12.sp)
                 Text(circuit.raceName, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)

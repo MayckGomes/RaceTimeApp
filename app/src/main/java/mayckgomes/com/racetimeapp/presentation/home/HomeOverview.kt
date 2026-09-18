@@ -12,8 +12,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.koinViewModel
+import mayckgomes.com.racetimeapp.components.home.*
 
 @Composable
 fun HomeOverview() {
@@ -42,7 +44,7 @@ fun HomeOverview() {
             is BlockState.Success -> {
                 NextRaceCard(
                     raceName = s.data.raceName,
-                    circuitName = s.data.Circuit.circuitName,
+                                circuitName = s.data.raceName,
                     round = s.data.round,
                     length = null,
                     laps = null,
@@ -90,35 +92,3 @@ fun HomeOverview() {
     }
 }
 
-@Composable
-private fun NextRaceCard(race: mayckgomes.com.racetimeapp.domain.models.RacesCalendar, isStale: Boolean, countdownSeconds: Long?) {
-    Column(Modifier.fillMaxWidth().padding(8.dp)) {
-        Text(text = "Next: ${race.raceName}", style = MaterialTheme.typography.headlineMedium)
-        Text(text = "Round ${race.round}")
-        if (countdownSeconds != null) {
-            val days = countdownSeconds / 86400
-            val hours = (countdownSeconds % 86400) / 3600
-            val mins = (countdownSeconds % 3600) / 60
-            val secs = countdownSeconds % 60
-            Text(text = "Starts in: ${days}d ${hours}h ${mins}m ${secs}s")
-        }
-        if (isStale) Text("Data desatualizada", style = MaterialTheme.typography.bodySmall)
-    }
-}
-
-@Composable
-private fun LastRaceCard(race: mayckgomes.com.racetimeapp.domain.models.Circuits, isStale: Boolean) {
-    Column(Modifier.fillMaxWidth().padding(8.dp)) {
-        Text(text = "Last: ${race.raceName}", style = MaterialTheme.typography.headlineMedium)
-        Text(text = "Circuit: ${race.Circuit.circuitName}")
-        if (isStale) Text("Data desatualizada", style = MaterialTheme.typography.bodySmall)
-    }
-}
-
-@Composable
-private fun StandingsPreviewCard(title: String, entries: List<String>) {
-    Column(Modifier.fillMaxWidth().padding(8.dp)) {
-        Text(text = title, style = MaterialTheme.typography.headlineMedium)
-        entries.forEach { Text(it) }
-    }
-}
