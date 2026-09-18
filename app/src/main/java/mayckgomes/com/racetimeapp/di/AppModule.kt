@@ -38,8 +38,15 @@ val networkModule = module {
     }
 
     single { JolpicaApiClient(get()) }
+    single { mayckgomes.com.racetimeapp.data.remote.JolpicaApiService(get()) }
 }
 
+val viewModelModule = module {
+    viewModel { TestViewModel(get()) }
+    viewModel { mayckgomes.com.racetimeapp.presentation.home.HomeViewModel(get(), get()) }
+}
+
+val appModule = listOf(networkModule, databaseModule, repositoryModule, viewModelModule)
 val databaseModule = module {
     single { androidContext().getSharedPreferences("racetime_app_cache", Context.MODE_PRIVATE) }
     single { LocalCache(get()) }
