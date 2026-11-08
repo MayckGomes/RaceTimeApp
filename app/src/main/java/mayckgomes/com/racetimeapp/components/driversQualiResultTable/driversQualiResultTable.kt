@@ -25,38 +25,27 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import mayckgomes.com.racetimeapp.R
-import mayckgomes.com.racetimeapp.components.driversQualiResultTable.DriversQualiResultItem
-import mayckgomes.com.racetimeapp.domain.models.LastDriverPosition
 import mayckgomes.com.racetimeapp.domain.models.QualiDriverPosition
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
 @Composable
-fun DriversQualiTable(navController: NavController,list: List<QualiDriverPosition>) {
+fun DriversQualiTable(navController: NavController, list: List<QualiDriverPosition>) {
     RaceTimeAppTheme {
-
         Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .heightIn(min = 200.dp, max = 700.dp),
+            modifier = Modifier.fillMaxWidth().heightIn(min = 200.dp, max = 700.dp),
             shape = RoundedCornerShape(8.dp),
-            color = MaterialTheme.colorScheme.surface
+            color = MaterialTheme.colorScheme.surface,
         ) {
-
-            Column(
-                Modifier.fillMaxSize(1f)
-            ) {
+            Column(Modifier.fillMaxSize(1f)) {
                 // cabeçario
                 Row(
                     horizontalArrangement = Arrangement.Center,
-                    modifier = Modifier
-                        .padding(5.dp)
-                        .fillMaxWidth(1f)
-                        .height(35.dp)
+                    modifier = Modifier.padding(5.dp).fillMaxWidth(1f).height(35.dp),
                 ) {
                     Text(
                         text = stringResource(R.string.position),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(0.32f)
+                        modifier = Modifier.weight(0.32f),
                     )
 
                     Spacer(Modifier.size(5.dp))
@@ -68,7 +57,7 @@ fun DriversQualiTable(navController: NavController,list: List<QualiDriverPositio
                     Text(
                         text = stringResource(R.string.driver),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(1.5f)
+                        modifier = Modifier.weight(1.5f),
                     )
 
                     Spacer(Modifier.size(5.dp))
@@ -80,36 +69,26 @@ fun DriversQualiTable(navController: NavController,list: List<QualiDriverPositio
                     Text(
                         text = stringResource(R.string.team),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(1f),
                     )
 
                     Spacer(Modifier.size(5.dp))
                 }
 
-                if (list.isNotEmpty()){
-                    LazyColumn(
-                        contentPadding = PaddingValues(10.dp)
-                    ) {
-                        items(list) {
-                            DriversQualiResultItem(navController, it)
-                        }
+                if (list.isNotEmpty()) {
+                    LazyColumn(contentPadding = PaddingValues(10.dp)) {
+                        items(list) { DriversQualiResultItem(navController, it) }
                     }
                 } else {
 
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center,
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier.fillMaxSize(),
                     ) {
-
-                        Text(
-                            text = stringResource(R.string.conection)
-                        )
-
+                        Text(text = stringResource(R.string.conection))
                     }
-
                 }
-
             }
         }
     }

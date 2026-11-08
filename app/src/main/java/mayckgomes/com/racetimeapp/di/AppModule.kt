@@ -56,5 +56,7 @@ val viewModelModule = module {
     viewModel {
         mayckgomes.com.racetimeapp.presentation.championship.ChampionshipViewModel(get(), get())
     }
+    viewModel { mayckgomes.com.racetimeapp.presentation.gp.GrandPrixViewModel(get(), get(), get()) }
+    viewModel { mayckgomes.com.racetimeapp.presentation.circuits.CalendarViewModel(get(), get()) }
 }
 val appModule = listOf(networkModule, databaseModule, repositoryModule, viewModelModule)

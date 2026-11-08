@@ -22,20 +22,15 @@ fun DriversQualiResultItem(navController: NavController, driverPosition: QualiDr
 
     Row(
         horizontalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .padding(5.dp)
-            .fillMaxWidth(1f)
-            .clickable {
-
+        modifier =
+            Modifier.padding(5.dp).fillMaxWidth(1f).clickable {
                 navController.navigate(driverRoute(driverPosition.Driver.driverId))
-
-            }
-
+            },
     ) {
         Text(
             text = driverPosition.position,
             color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.weight(0.3f)
+            modifier = Modifier.weight(0.3f),
         )
 
         Spacer(Modifier.size(5.dp))
@@ -44,7 +39,7 @@ fun DriversQualiResultItem(navController: NavController, driverPosition: QualiDr
             text = "${driverPosition.Driver.givenName} ${driverPosition.Driver.familyName}",
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.weight(1.5f)
+            modifier = Modifier.weight(1.5f),
         )
 
         Spacer(Modifier.size(5.dp))
@@ -52,7 +47,7 @@ fun DriversQualiResultItem(navController: NavController, driverPosition: QualiDr
         Text(
             text = driverPosition.Constructor.name,
             color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
     }
 }

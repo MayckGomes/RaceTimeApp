@@ -23,26 +23,21 @@ fun DriversResultItem(navController: NavController, driverPosition: LastDriverPo
 
     Row(
         horizontalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .padding(5.dp)
-            .fillMaxWidth(1f)
-            .clickable {
-
+        modifier =
+            Modifier.padding(5.dp).fillMaxWidth(1f).clickable {
                 navController.navigate(driverRoute(driverPosition.Driver.driverId))
-
-            }
-
+            },
     ) {
         Text(
             text = driverPosition.position,
             color =
-                when(driverPosition.position){
+                when (driverPosition.position) {
                     "1" -> Color.Yellow
                     "2" -> Color.Gray
                     "3" -> Color(0xFFCE8946)
                     else -> MaterialTheme.colorScheme.primary
                 },
-            modifier = Modifier.weight(0.3f)
+            modifier = Modifier.weight(0.3f),
         )
 
         Spacer(Modifier.size(5.dp))
@@ -51,7 +46,7 @@ fun DriversResultItem(navController: NavController, driverPosition: LastDriverPo
             text = "${driverPosition.Driver.givenName} ${driverPosition.Driver.familyName}",
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.weight(1.5f)
+            modifier = Modifier.weight(1.5f),
         )
 
         Spacer(Modifier.size(5.dp))
@@ -59,16 +54,15 @@ fun DriversResultItem(navController: NavController, driverPosition: LastDriverPo
         Text(
             text = driverPosition.Constructor.name,
             color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
-
 
         Spacer(Modifier.size(5.dp))
 
         Text(
             text = driverPosition.status,
             color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.weight(0.7f)
+            modifier = Modifier.weight(0.7f),
         )
     }
 }

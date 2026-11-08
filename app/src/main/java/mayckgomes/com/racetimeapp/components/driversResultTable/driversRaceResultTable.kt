@@ -29,33 +29,23 @@ import mayckgomes.com.racetimeapp.domain.models.LastDriverPosition
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
 @Composable
-fun DriversTable(navController: NavController,list: List<LastDriverPosition>) {
+fun DriversTable(navController: NavController, list: List<LastDriverPosition>) {
     RaceTimeAppTheme {
-
         Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .heightIn(min = 200.dp, max = 700.dp)
-            ,
+            modifier = Modifier.fillMaxWidth().heightIn(min = 200.dp, max = 700.dp),
             shape = RoundedCornerShape(8.dp),
-            color = MaterialTheme.colorScheme.surface
+            color = MaterialTheme.colorScheme.surface,
         ) {
-
-            Column(
-                Modifier.fillMaxSize(1f)
-            ) {
+            Column(Modifier.fillMaxSize(1f)) {
                 // cabeçario
                 Row(
                     horizontalArrangement = Arrangement.Center,
-                    modifier = Modifier
-                        .padding(5.dp)
-                        .fillMaxWidth(1f)
-                        .height(35.dp)
+                    modifier = Modifier.padding(5.dp).fillMaxWidth(1f).height(35.dp),
                 ) {
                     Text(
                         text = stringResource(R.string.position),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(0.32f)
+                        modifier = Modifier.weight(0.32f),
                     )
 
                     Spacer(Modifier.size(5.dp))
@@ -67,7 +57,7 @@ fun DriversTable(navController: NavController,list: List<LastDriverPosition>) {
                     Text(
                         text = stringResource(R.string.driver),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(1.5f)
+                        modifier = Modifier.weight(1.5f),
                     )
 
                     Spacer(Modifier.size(5.dp))
@@ -79,7 +69,7 @@ fun DriversTable(navController: NavController,list: List<LastDriverPosition>) {
                     Text(
                         text = stringResource(R.string.team),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(1f),
                     )
 
                     Spacer(Modifier.size(5.dp))
@@ -91,32 +81,23 @@ fun DriversTable(navController: NavController,list: List<LastDriverPosition>) {
                     Text(
                         text = stringResource(R.string.status),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(0.7f)
+                        modifier = Modifier.weight(0.7f),
                     )
                 }
 
-                if (list.isNotEmpty()){
+                if (list.isNotEmpty()) {
 
-                    LazyColumn(
-                        contentPadding = PaddingValues(10.dp)
-                    ) {
-                        items(list) {
-                            DriversResultItem(navController, it)
-                        }
+                    LazyColumn(contentPadding = PaddingValues(10.dp)) {
+                        items(list) { DriversResultItem(navController, it) }
                     }
-
                 } else {
 
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center,
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier.fillMaxSize(),
                     ) {
-
-                        Text(
-                            text = stringResource(R.string.conection)
-                        )
-
+                        Text(text = stringResource(R.string.conection))
                     }
                 }
             }

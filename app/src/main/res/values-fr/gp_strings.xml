@@ -1,0 +1,17 @@
+<resources>
+    <string name="gp_no_seasons">Aucune saison chargée. Réessayez.</string>
+    <string name="gp_next_in_season">Prochaine course de ce calendrier</string>
+    <string name="gp_not_found">Ce GP est absent du calendrier chargé.</string>
+    <string name="gp_schedule_missing">Programme indisponible. Les résultats chargés restent accessibles.</string>
+    <string name="gp_loading_results">Chargement des résultats…</string>
+    <string name="gp_not_scheduled">Cette séance est absente du programme du GP.</string>
+    <string name="gp_future_session">Séance prévue dans le futur. Aucun résultat attendu pour le moment.</string>
+    <string name="gp_not_checked">Actualisez pour consulter les résultats publiés de cette séance.</string>
+    <string name="gp_coordinates">Coordonnées : %1$s, %2$s</string>
+    <string name="gp_dates">Dates du programme (UTC) : %1$s – %2$s</string>
+    <string name="gp_date_utc">Date du calendrier (UTC) : %1$s</string>
+    <string name="gp_circuit_link">Circuit sur Wikipédia</string>
+    <string name="gp_event_link">Grand Prix sur Wikipédia</string>
+    <string name="gp_no_browser">Aucune application disponible pour ouvrir ce lien.</string>
+    <string name="gp_current_year">Calendrier de cette année (%1$d)</string>
+</resources>
