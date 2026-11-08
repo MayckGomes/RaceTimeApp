@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="stat_title">Estadísticas</string>
+    <string name="stat_highlights">Destacados del GP</string>
+    <string name="stat_winner">Ganador</string>
+    <string name="stat_podium">Podio</string>
+    <string name="stat_fastest">Vuelta rápida informada</string>
+    <string name="stat_lap">Vuelta %1$d</string>
+    <string name="stat_most_gained">Mayor ganancia entre llegadas válidas</string>
+    <string name="stat_gain_driver">%1$s · +%2$d posiciones</string>
+    <string name="stat_calculation_note">La variación requiere una llegada confirmada y posiciones de parrilla y resultado válidas, sin ambigüedad. Se excluyen salidas sin posición numérica, abandonos y registros incompletos.</string>
+    <string name="stat_finished">Finalizó</string>
+    <string name="stat_retired">Abandonó</string>
+    <string name="stat_disqualified">Descalificado / excluido</string>
+    <string name="stat_not_started">No salió / no se clasificó</string>
+    <string name="stat_other">Otro estado / desconocido</string>
+    <string name="stat_grid_final">Parrilla: %1$s · Posición en el resultado: %2$s</string>
+    <string name="stat_laps_completed">Vueltas completadas: %1$d</string>
+    <string name="stat_gained">%1$d posiciones ganadas</string>
+    <string name="stat_lost">%1$d posiciones perdidas</string>
+    <string name="stat_unchanged">Posición mantenida</string>
+    <string name="stat_personal_fastest">Mejor vuelta informada del piloto: %1$s</string>
+    <string name="stat_summary">Resumen</string>
+    <string name="stat_pit_stops">Pit stops</string>
+    <string name="stat_laps">Vueltas</string>
+    <string name="stat_wait_result">Las estadísticas requieren un resultado publicado de Carrera o Sprint.</string>
+    <string name="stat_group_count">%1$s: %2$d</string>
+    <string name="stat_status_note">Se muestra el estado original de la API por piloto. Los estados desconocidos no se interpretan automáticamente como abandono.</string>
+    <string name="stat_race_only">Las paradas y los tiempos de vuelta requieren el resultado publicado de la carrera principal.</string>
+    <string name="stat_pit_note">La duración incluye entrada y salida de boxes y puede incluir tiempo de bandera roja. No es el tiempo de cambio de neumáticos.</string>
+    <string name="stat_pit_coverage">La cobertura de paradas comienza en 2011.</string>
+    <string name="stat_load_pits">Cargar paradas</string>
+    <string name="stat_stop_lap">Parada %1$s · Vuelta %2$s</string>
+    <string name="stat_duration">Duración informada: %1$s</string>
+    <string name="stat_lap_note">Carga los tiempos de vuelta publicados de un piloto. Son registros históricos, no cronometraje en directo.</string>
+    <string name="stat_lap_coverage">La cobertura de tiempos de vuelta comienza en 1996.</string>
+    <string name="stat_choose_driver">Piloto: %1$s</string>
+    <string name="stat_load_laps">Cargar vueltas del piloto</string>
+    <string name="stat_lap_position">Posición registrada en la vuelta: %1$s</string>
+    <string name="stat_no_extra">El endpoint no ofrece datos disponibles para esta selección.</string>
+</resources>

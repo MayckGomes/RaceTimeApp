@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="stat_title">Statistics</string>
+    <string name="stat_highlights">GP highlights</string>
+    <string name="stat_winner">Winner</string>
+    <string name="stat_podium">Podium</string>
+    <string name="stat_fastest">Reported fastest lap</string>
+    <string name="stat_lap">Lap %1$d</string>
+    <string name="stat_most_gained">Most positions gained among valid finishes</string>
+    <string name="stat_gain_driver">%1$s · +%2$d positions</string>
+    <string name="stat_calculation_note">Position changes require a confirmed finish and valid, unambiguous grid and final positions. Pit-lane starts, retirements and incomplete records are excluded.</string>
+    <string name="stat_finished">Finished</string>
+    <string name="stat_retired">Retired</string>
+    <string name="stat_disqualified">Disqualified / excluded</string>
+    <string name="stat_not_started">Did not start / qualify</string>
+    <string name="stat_other">Other / unknown status</string>
+    <string name="stat_grid_final">Grid: %1$s · Result position: %2$s</string>
+    <string name="stat_laps_completed">Completed laps: %1$d</string>
+    <string name="stat_gained">%1$d positions gained</string>
+    <string name="stat_lost">%1$d positions lost</string>
+    <string name="stat_unchanged">Position maintained</string>
+    <string name="stat_personal_fastest">Driver’s reported best lap: %1$s</string>
+    <string name="stat_summary">Summary</string>
+    <string name="stat_pit_stops">Pit stops</string>
+    <string name="stat_laps">Laps</string>
+    <string name="stat_wait_result">Statistics require a published Race or Sprint result.</string>
+    <string name="stat_group_count">%1$s: %2$d</string>
+    <string name="stat_status_note">The original API status is shown for each driver. Unknown statuses are not automatically treated as retirements.</string>
+    <string name="stat_race_only">Pit stops and lap times require the published result of the main Race.</string>
+    <string name="stat_pit_note">Reported duration includes pit entry and exit and may include red-flag time. It is not the wheel-change time.</string>
+    <string name="stat_pit_coverage">Pit-stop coverage starts in 2011.</string>
+    <string name="stat_load_pits">Load pit stops</string>
+    <string name="stat_stop_lap">Stop %1$s · Lap %2$s</string>
+    <string name="stat_duration">Reported duration: %1$s</string>
+    <string name="stat_lap_note">Load one driver’s published lap times. These are historical records, not live timing.</string>
+    <string name="stat_lap_coverage">Lap timing coverage starts in 1996.</string>
+    <string name="stat_choose_driver">Driver: %1$s</string>
+    <string name="stat_load_laps">Load driver’s laps</string>
+    <string name="stat_lap_position">Position recorded on lap: %1$s</string>
+    <string name="stat_no_extra">No data is currently available from this endpoint for this selection.</string>
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="stat_title">Statistiques</string>
+    <string name="stat_highlights">Faits marquants du GP</string>
+    <string name="stat_winner">Vainqueur</string>
+    <string name="stat_podium">Podium</string>
+    <string name="stat_fastest">Meilleur tour indiqué</string>
+    <string name="stat_lap">Tour %1$d</string>
+    <string name="stat_most_gained">Plus grand gain parmi les arrivées valides</string>
+    <string name="stat_gain_driver">%1$s · +%2$d places</string>
+    <string name="stat_calculation_note">La variation exige une arrivée confirmée et des positions de grille et de résultat valides et sans ambiguïté. Départs sans position numérique, abandons et données incomplètes sont exclus.</string>
+    <string name="stat_finished">A terminé</string>
+    <string name="stat_retired">Abandon</string>
+    <string name="stat_disqualified">Disqualifié / exclu</string>
+    <string name="stat_not_started">N’a pas pris le départ / non qualifié</string>
+    <string name="stat_other">Autre statut / inconnu</string>
+    <string name="stat_grid_final">Grille : %1$s · Position au résultat : %2$s</string>
+    <string name="stat_laps_completed">Tours effectués : %1$d</string>
+    <string name="stat_gained">%1$d places gagnées</string>
+    <string name="stat_lost">%1$d places perdues</string>
+    <string name="stat_unchanged">Position maintenue</string>
+    <string name="stat_personal_fastest">Meilleur tour du pilote indiqué : %1$s</string>
+    <string name="stat_summary">Résumé</string>
+    <string name="stat_pit_stops">Arrêts aux stands</string>
+    <string name="stat_laps">Tours</string>
+    <string name="stat_wait_result">Les statistiques exigent un résultat publié de Course ou de Sprint.</string>
+    <string name="stat_group_count">%1$s : %2$d</string>
+    <string name="stat_status_note">Le statut original de l’API est affiché pour chaque pilote. Les statuts inconnus ne sont pas automatiquement considérés comme des abandons.</string>
+    <string name="stat_race_only">Les arrêts et les temps au tour nécessitent le résultat publié de la course principale.</string>
+    <string name="stat_pit_note">La durée inclut l’entrée et la sortie des stands et peut inclure le temps sous drapeau rouge. Ce n’est pas le temps de changement des pneus.</string>
+    <string name="stat_pit_coverage">La couverture des arrêts commence en 2011.</string>
+    <string name="stat_load_pits">Charger les arrêts</string>
+    <string name="stat_stop_lap">Arrêt %1$s · Tour %2$s</string>
+    <string name="stat_duration">Durée indiquée : %1$s</string>
+    <string name="stat_lap_note">Chargez les temps au tour publiés d’un pilote. Ce sont des données historiques, pas du chronométrage en direct.</string>
+    <string name="stat_lap_coverage">La couverture des temps au tour commence en 1996.</string>
+    <string name="stat_choose_driver">Pilote : %1$s</string>
+    <string name="stat_load_laps">Charger les tours du pilote</string>
+    <string name="stat_lap_position">Position enregistrée au tour : %1$s</string>
+    <string name="stat_no_extra">Aucune donnée disponible pour cette sélection sur cet endpoint.</string>
+</resources>

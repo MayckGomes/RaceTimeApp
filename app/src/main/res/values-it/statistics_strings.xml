@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="stat_title">Statistiche</string>
+    <string name="stat_highlights">Dati salienti del GP</string>
+    <string name="stat_winner">Vincitore</string>
+    <string name="stat_podium">Podio</string>
+    <string name="stat_fastest">Giro più veloce riportato</string>
+    <string name="stat_lap">Giro %1$d</string>
+    <string name="stat_most_gained">Maggior guadagno tra gli arrivi validi</string>
+    <string name="stat_gain_driver">%1$s · +%2$d posizioni</string>
+    <string name="stat_calculation_note">La variazione richiede un arrivo confermato e posizioni di griglia e risultato valide e senza ambiguità. Partenze senza posizione numerica, ritiri e dati incompleti sono esclusi.</string>
+    <string name="stat_finished">Ha concluso</string>
+    <string name="stat_retired">Ritirato</string>
+    <string name="stat_disqualified">Squalificato / escluso</string>
+    <string name="stat_not_started">Non partito / non qualificato</string>
+    <string name="stat_other">Altro stato / sconosciuto</string>
+    <string name="stat_grid_final">Griglia: %1$s · Posizione nel risultato: %2$s</string>
+    <string name="stat_laps_completed">Giri completati: %1$d</string>
+    <string name="stat_gained">%1$d posizioni guadagnate</string>
+    <string name="stat_lost">%1$d posizioni perse</string>
+    <string name="stat_unchanged">Posizione mantenuta</string>
+    <string name="stat_personal_fastest">Miglior giro riportato del pilota: %1$s</string>
+    <string name="stat_summary">Riepilogo</string>
+    <string name="stat_pit_stops">Pit stop</string>
+    <string name="stat_laps">Giri</string>
+    <string name="stat_wait_result">Le statistiche richiedono un risultato pubblicato di Gara o Sprint.</string>
+    <string name="stat_group_count">%1$s: %2$d</string>
+    <string name="stat_status_note">Viene mostrato lo stato originale dell’API per ogni pilota. Gli stati sconosciuti non vengono automaticamente considerati ritiri.</string>
+    <string name="stat_race_only">Pit stop e tempi sul giro richiedono il risultato pubblicato della gara principale.</string>
+    <string name="stat_pit_note">La durata include ingresso e uscita dai box e può includere tempo di bandiera rossa. Non è il tempo di cambio gomme.</string>
+    <string name="stat_pit_coverage">La copertura dei pit stop inizia nel 2011.</string>
+    <string name="stat_load_pits">Carica pit stop</string>
+    <string name="stat_stop_lap">Sosta %1$s · Giro %2$s</string>
+    <string name="stat_duration">Durata riportata: %1$s</string>
+    <string name="stat_lap_note">Carica i tempi sul giro pubblicati di un pilota. Sono dati storici, non cronometraggio dal vivo.</string>
+    <string name="stat_lap_coverage">La copertura dei tempi sul giro inizia nel 1996.</string>
+    <string name="stat_choose_driver">Pilota: %1$s</string>
+    <string name="stat_load_laps">Carica giri del pilota</string>
+    <string name="stat_lap_position">Posizione registrata al giro: %1$s</string>
+    <string name="stat_no_extra">Nessun dato disponibile da questo endpoint per la selezione.</string>
+</resources>
