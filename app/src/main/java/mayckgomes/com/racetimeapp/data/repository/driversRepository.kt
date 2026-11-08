@@ -9,26 +9,21 @@ class driversRepository(context: Context) {
 
     fun getFavDriver(): Map<String, *> {
 
-            return db.all
-
+        return db.all
     }
 
-    fun addFavDriver(driverName: String,driverId: String){
+    fun addFavDriver(driverName: String, driverId: String) {
 
         db.edit { putString(driverId, driverName) }
-
     }
 
     fun verifyDriver(driverId: String): String? {
 
-        return db.getString(driverId,null)
-
+        return db.getString(driverId, null)
     }
 
-    fun delDriver(driverId: String){
+    fun delDriver(driverId: String) {
 
-        db.edit{remove(driverId)}
-
+        db.edit { remove(driverId) }
     }
-
 }

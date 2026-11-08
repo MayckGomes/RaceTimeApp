@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fav_loading_standings">Carregando campeonato…</string>
+    <string name="fav_standings_unavailable">Campeonato indisponível</string>
+    <string name="fav_not_ranked">Sem classificação no campeonato de %1$d</string>
+    <string name="fav_latest_race">Última corrida encontrada</string>
+    <string name="fav_race_position">Posição final: %1$s</string>
+    <string name="fav_best_team_position">Melhor posição da equipe: %1$s</string>
+    <string name="fav_result_unavailable">Resultado da corrida indisponível</string>
+    <string name="fav_no_recent_result">Nenhum resultado de corrida encontrado nas temporadas consultadas.</string>
+    <string name="fav_details">Detalhes</string>
+    <string name="fav_remove">Remover</string>
+    <string name="fav_count">Favoritos: %1$d</string>
+    <string name="fav_choose">Escolher favoritos</string>
+    <string name="fav_empty_teams">Nenhuma equipe favorita ainda.</string>
+    <string name="fav_empty_drivers">Nenhum piloto favorito ainda.</string>
+    <string name="fav_empty_hint">Abra o campeonato e toque na estrela para adicionar um favorito.</string>
+    <string name="fav_save_failed">Não foi possível salvar a alteração. Tente novamente.</string>
+    <string name="fav_removed">%1$s removido dos favoritos.</string>
+    <string name="fav_undo">Desfazer</string>
+    <string name="fav_profile_unavailable">Perfil indisponível. Verifique a conexão e tente novamente.</string>
+    <string name="fav_add">Adicionar aos favoritos</string>
+</resources>

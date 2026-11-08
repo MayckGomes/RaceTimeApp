@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="driver_profile_title">Profil du pilote</string>
+    <string name="driver_profile_missing">Les informations du profil sont indisponibles.</string>
+    <string name="driver_championship">Championnat %1$d</string>
+    <string name="driver_wins">Victoires</string>
+    <string name="driver_view_team">Voir l’équipe</string>
+    <string name="driver_personal_info">Informations du pilote</string>
+    <string name="driver_birth">Naissance : %1$s</string>
+    <string name="driver_age">%1$d ans</string>
+    <string name="driver_overview">Vue d’ensemble</string>
+</resources>

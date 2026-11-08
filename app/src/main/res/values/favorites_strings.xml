@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fav_loading_standings">Loading championship…</string>
+    <string name="fav_standings_unavailable">Championship unavailable</string>
+    <string name="fav_not_ranked">No championship entry in %1$d</string>
+    <string name="fav_latest_race">Latest race found</string>
+    <string name="fav_race_position">Final position: %1$s</string>
+    <string name="fav_best_team_position">Best team position: %1$s</string>
+    <string name="fav_result_unavailable">Race result unavailable</string>
+    <string name="fav_no_recent_result">No race result found in the seasons checked.</string>
+    <string name="fav_details">Details</string>
+    <string name="fav_remove">Remove</string>
+    <string name="fav_count">Favorites: %1$d</string>
+    <string name="fav_choose">Choose favorites</string>
+    <string name="fav_empty_teams">No favorite constructors yet.</string>
+    <string name="fav_empty_drivers">No favorite drivers yet.</string>
+    <string name="fav_empty_hint">Open the championship and tap a star to add a favorite.</string>
+    <string name="fav_save_failed">Could not save the change. Try again.</string>
+    <string name="fav_removed">%1$s removed from favorites.</string>
+    <string name="fav_undo">Undo</string>
+    <string name="fav_profile_unavailable">Profile unavailable. Check your connection and try again.</string>
+    <string name="fav_add">Add to favorites</string>
+</resources>

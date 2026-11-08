@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.CancellationException
 import mayckgomes.com.racetimeapp.data.api.Api
 import mayckgomes.com.racetimeapp.data.repository.driversRepository
 import mayckgomes.com.racetimeapp.domain.models.DriverInfo
@@ -32,8 +33,7 @@ class driverViewmodel(): ViewModel() {
     fun getInfo(id: String){
         viewModelScope.launch {
             isLoadingTrue()
-            _driverInfo.value = api.getDriverInfo(id)
-            isLoadingFalse()
+            try { _driverInfo.value = api.getDriverInfo(id) } catch (e: CancellationException) { throw e } catch (_: Exception) { _driverInfo.value = emptyList() } finally { isLoadingFalse() }
         }
 
     }

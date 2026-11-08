@@ -1,193 +1,139 @@
 package mayckgomes.com.racetimeapp.presentation.favorites
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
-import mayckgomes.com.racetimeapp.data.api.Api
-import mayckgomes.com.racetimeapp.data.repository.driversRepository
-import mayckgomes.com.racetimeapp.data.repository.teamsRepository
-import mayckgomes.com.racetimeapp.domain.models.ConstructorStandings
-import mayckgomes.com.racetimeapp.domain.models.DriverPosition
-import mayckgomes.com.racetimeapp.presentation.drivers.driversViewmodel
-import mayckgomes.com.racetimeapp.presentation.teams.teamsViewModel
-
-class favoritesViewmodel: ViewModel() {
-
-    private val api = Api()
-    private val driversVM = driversViewmodel()
-    private val teamsVM = teamsViewModel()
-
-
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading = _isLoading.asStateFlow()
-
-    fun isLoadingTrue(){
-        _isLoading.value = true
-    }
-
-    fun isLoadingFalse(){
-        _isLoading.value = false
-    }
-
-    private val _listDrivers = MutableStateFlow(emptyList<DriverPosition>())
-    val listDrivers = _listDrivers.asStateFlow()
-
-    fun addDriver(driver: DriverPosition){
-
-        _listDrivers.value = (_listDrivers.value + driver).sortedBy { it.position.toInt() }
-
-    }
-
-    fun clearDrivers(){
-
-        _listDrivers.value = emptyList()
-
-    }
-
-
-
-    private val _listTeams = MutableStateFlow(emptyList<ConstructorStandings>())
-    val listTeams = _listTeams.asStateFlow()
-
-    fun addTeam(team: ConstructorStandings){
-
-        _listTeams.value = (_listTeams.value + team).sortedBy { it.position.toInt() }
-
-    }
-
-    fun clearTeams(){
-
-        _listTeams.value = emptyList<ConstructorStandings>()
-
-    }
-
-
-    suspend fun getDriversFav(context:Context){
-
-        clearDrivers()
-
-        val repository = driversRepository(context)
-
-        val listId = mutableListOf<String>()
-
-        if (repository.getFavDriver().keys.isNotEmpty()){
-
-            repository.getFavDriver().keys.forEach {
-                listId.add(it)
-            }
-        }
-
-        if (driversVM.listDrivers.value.isNotEmpty()){
-
-            val drivers = driversVM.listDrivers.value
-
-            drivers.forEach {
-
-                if (it.Driver.driverId in listId){
-
-                    addDriver(it)
-
-                }
-
-            }
-
-        } else {
-
-            val drivers = api.getDriverStandings()
-
-            viewModelScope.launch {
-
-                driversVM.loadListDrivers()
-
-            }
-
-            drivers.forEach {
-
-                if (it.Driver.driverId in listId){
-
-                    addDriver(it)
-
-                }
-
-            }
-
-        }
-
-    }
-
-    suspend fun getTeamsFav(context:Context){
-
-        clearTeams()
-
-        val repository = teamsRepository(context)
-
-        val listId = mutableListOf<String>()
-
-        if (repository.getFavTeam().keys.isNotEmpty()){
-            repository.getFavTeam().keys.forEach {
-                listId.add(it)
-            }
-        }
-
-        if (teamsVM.teamsList.value.isNotEmpty()){
-
-            val teams = teamsVM.teamsList.value
-
-            teams.forEach {
-
-                if (it.Constructor.constructorId in listId){
-
-                    addTeam(it)
-
-                }
-
-            }
-
-        } else {
-
-            val teams = api.getTeamsStandings()
-
-            viewModelScope.launch {
-
-                teamsVM.getTeamsStandings()
-
-            }
-
-            teams.forEach {
-
-                if (it.Constructor.constructorId in listId){
-
-                    addTeam(it)
-
-                }
-
-            }
-
-        }
-
-    }
-
-    fun loadAllData(context: Context){
+import java.time.Clock
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
+import mayckgomes.com.racetimeapp.data.local.FavoritesStore
+import mayckgomes.com.racetimeapp.data.repository.RacingRepository
+import mayckgomes.com.racetimeapp.domain.weekend.*
+
+class FavoritesViewModel(
+    private val repository: RacingRepository,
+    private val store: FavoritesStore,
+    private val clock: Clock,
+) : ViewModel() {
+    val data = repository.data
+    val ids = store.ids
+    private val _details = MutableStateFlow<Map<String, FavoriteDetails>>(emptyMap())
+    val details = _details.asStateFlow()
+    private val _refreshing = MutableStateFlow(false)
+    val refreshing = _refreshing.asStateFlow()
+    private var refreshJob: Job? = null
+    private val jobs = mutableMapOf<String, Job>()
+    private val generations = mutableMapOf<String, Int>()
+
+    init {
         viewModelScope.launch {
-
-            isLoadingTrue()
-
-            val drivers = async {
-            getDriversFav(context)
+            ids.collect { saved ->
+                val allowed =
+                    saved.drivers.keys.map { favoriteKey(it, false) }.toSet() +
+                        saved.constructors.keys.map { favoriteKey(it, true) }
+                jobs.keys
+                    .filter { it !in allowed }
+                    .forEach {
+                        jobs.remove(it)?.cancel()
+                        generations.remove(it)
+                    }
+                _details.update { it.filterKeys { key -> key in allowed } }
             }
-            val teams = async {
-            getTeamsFav(context)
-            }
-
-            drivers.await()
-            teams.await()
-
-            isLoadingFalse()
-
         }
     }
+
+    private fun contains(id: String, constructor: Boolean) =
+        if (constructor) id in ids.value.constructors else id in ids.value.drivers
+
+    fun refresh(force: Boolean = false) {
+        if (refreshJob?.isActive == true) return
+        refreshJob =
+            viewModelScope.launch {
+                _refreshing.value = true
+                try {
+                    repository.refreshChampionship(force = force, includeHistory = false)
+                } finally {
+                    _refreshing.value = false
+                }
+            }
+    }
+
+    fun loadDetails(id: String, constructor: Boolean, force: Boolean = false, generation: Int = 0) {
+        if (!contains(id, constructor)) return
+        val key = favoriteKey(id, constructor)
+        if (jobs[key]?.isActive == true) return
+        val refreshOnce = generation > (generations[key] ?: 0)
+        val shouldForce = force || refreshOnce
+        val old = _details.value[key]
+        if (
+            !shouldForce &&
+                old != null &&
+                old.year == repository.activeYear &&
+                clock.millis() - old.checkedAt in 0L until 600_000L
+        )
+            return
+        generations[key] = maxOf(generation, generations[key] ?: 0)
+        jobs[key] =
+            viewModelScope.launch {
+                _details.update { it + (key to (old ?: FavoriteDetails()).copy(loading = true)) }
+                try {
+                    val standing =
+                        if (constructor)
+                            data.value.championship.data.constructors.firstOrNull { it.id == id }
+                        else data.value.championship.data.drivers.firstOrNull { it.id == id }
+                    val profile: DataBlock<FavoriteProfile?> =
+                        if (standing == null || (!constructor && standing.number.isBlank()))
+                            repository.favoriteProfile(id, constructor, shouldForce)
+                        else old?.profile ?: DataBlock<FavoriteProfile?>(null)
+                    if (contains(id, constructor))
+                        _details.update {
+                            it +
+                                (key to
+                                    (it[key] ?: FavoriteDetails()).copy(
+                                        profile = profile,
+                                        loading = true,
+                                    ))
+                        }
+                    if (!contains(id, constructor)) return@launch
+                    val recent = repository.favoriteRace(id, constructor, shouldForce)
+                    if (contains(id, constructor))
+                        _details.update {
+                            it +
+                                (key to
+                                    FavoriteDetails(
+                                        profile,
+                                        recent,
+                                        clock.millis(),
+                                        repository.activeYear,
+                                    ))
+                        }
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (_: Exception) {
+                    if (contains(id, constructor))
+                        _details.update { details ->
+                            val current = details[key] ?: FavoriteDetails()
+                            details +
+                                (key to
+                                    current.copy(
+                                        profile = current.profile.copy(failed = true),
+                                        loading = false,
+                                        checkedAt = clock.millis(),
+                                        year = repository.activeYear,
+                                    ))
+                        }
+                } finally {
+                    _details.update { value ->
+                        if (contains(id, constructor))
+                            value + (key to (value[key] ?: FavoriteDetails()).copy(loading = false))
+                        else value - key
+                    }
+                }
+            }
+    }
+
+    suspend fun remove(id: String, constructor: Boolean): Boolean =
+        withContext(Dispatchers.IO) { store.remove(id, constructor) }
+
+    suspend fun restore(id: String, label: String, constructor: Boolean): Boolean =
+        withContext(Dispatchers.IO) { store.add(id, label, constructor) }
 }

@@ -10,26 +10,20 @@ class teamsRepository(context: Context) {
     fun getFavTeam(): Map<String, *> {
 
         return db.all
-
     }
 
-    fun addFavTeam(TeamName: String,TeamId: String){
+    fun addFavTeam(TeamName: String, TeamId: String) {
 
         db.edit { putString(TeamId, TeamName) }
-
     }
 
     fun verifyTeam(TeamId: String): String? {
 
-        return db.getString(TeamId,null)
-
+        return db.getString(TeamId, null)
     }
 
-    fun delTeam(driverId: String){
+    fun delTeam(driverId: String) {
 
-        db.edit{remove(driverId)}
-
+        db.edit { remove(driverId) }
     }
-
-
 }
