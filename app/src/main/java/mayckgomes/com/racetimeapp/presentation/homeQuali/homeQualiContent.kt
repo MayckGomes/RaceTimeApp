@@ -1,7 +1,6 @@
 package mayckgomes.com.racetimeapp.presentation.home
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,9 +21,7 @@ import mayckgomes.com.racetimeapp.components.driversQualiResultTable.DriversQual
 import mayckgomes.com.racetimeapp.presentation.homeQuali.HomeQualiViewmodel
 
 @Composable
-fun HomeQualiScreenContent(
-    navController: NavController,
-){
+fun HomeQualiScreenContent(navController: NavController) {
 
     val viewmodel: HomeQualiViewmodel = viewModel()
 
@@ -34,39 +31,30 @@ fun HomeQualiScreenContent(
 
     val isLoading by viewmodel.isLoading.collectAsStateWithLifecycle()
 
-   if (isLoading){
+    if (isLoading) {
 
-       Column(
-           horizontalAlignment = Alignment.CenterHorizontally,
-           verticalArrangement = Arrangement.Center,
-           modifier = Modifier.fillMaxSize()
-       ){
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxSize(),
+        ) {
+            CircularProgressIndicator()
+        }
+    } else {
 
-           CircularProgressIndicator()
+        Column(modifier = Modifier.fillMaxSize()) {
+            Spacer(Modifier.size(20.dp))
 
-       }
+            Text(
+                text = circuitQualiName,
+                fontWeight = FontWeight.Bold,
+                fontSize = MaterialTheme.typography.titleLarge.fontSize,
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+            )
 
-   } else {
+            Spacer(Modifier.size(15.dp))
 
-       Column(
-           modifier = Modifier.fillMaxSize()
-       ) {
-
-           Spacer(Modifier.size(20.dp))
-
-           Text(
-               text = circuitQualiName,
-               fontWeight = FontWeight.Bold,
-               fontSize = MaterialTheme.typography.titleLarge.fontSize,
-               modifier = Modifier.align(Alignment.CenterHorizontally)
-           )
-
-           Spacer(Modifier.size(15.dp))
-
-           DriversQualiTable(navController, lastQualiResults)
-
-       }
-
-   }
-
+            DriversQualiTable(navController, lastQualiResults)
+        }
+    }
 }

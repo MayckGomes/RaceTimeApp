@@ -3,6 +3,7 @@ package mayckgomes.com.racetimeapp.presentation.team
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -10,7 +11,7 @@ import mayckgomes.com.racetimeapp.data.api.Api
 import mayckgomes.com.racetimeapp.data.repository.teamsRepository
 import mayckgomes.com.racetimeapp.domain.models.ConstructorStandings
 
-class teamViewModel: ViewModel() {
+class teamViewModel : ViewModel() {
 
     private val api = Api()
 
@@ -20,66 +21,64 @@ class teamViewModel: ViewModel() {
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
 
-    fun isLoadingTrue(){
+    fun isLoadingTrue() {
         _isLoading.value = true
     }
 
-    fun isLoadingFalse(){
+    fun isLoadingFalse() {
         _isLoading.value = false
     }
 
-
-    fun getInfo(id: String){
+    fun getInfo(id: String) {
         viewModelScope.launch {
             isLoadingTrue()
-            _teamInfo.value = api.getTeamInfo(id)
-            isLoadingFalse()
+            try {
+                _teamInfo.value = api.getTeamInfo(id)
+            } catch (e: CancellationException) {
+                throw e
+            } catch (_: Exception) {
+                _teamInfo.value = emptyList()
+            } finally {
+                isLoadingFalse()
+            }
         }
-
     }
 
     private val _isFavorite = MutableStateFlow(false)
     val isFavorite = _isFavorite.asStateFlow()
 
-    fun isFavoriteTrue(){
+    fun isFavoriteTrue() {
         _isFavorite.value = true
     }
 
-    fun isFavoriteFalse(){
+    fun isFavoriteFalse() {
         _isFavorite.value = false
     }
 
-    fun verifyFav(context: Context, teamId: String){
+    fun verifyFav(context: Context, teamId: String) {
 
         val repository = teamsRepository(context)
 
-        if (repository.verifyTeam(teamId) == null){
+        if (repository.verifyTeam(teamId) == null) {
 
             isFavoriteFalse()
-
         } else {
 
             isFavoriteTrue()
-
         }
     }
 
-    fun saveFav(context: Context, teamid: String){
+    fun saveFav(context: Context, teamid: String) {
 
         val repository = teamsRepository(context)
 
-        repository.addFavTeam(teamid,teamid)
-
+        repository.addFavTeam(teamid, teamid)
     }
 
-    fun delFav(context: Context, teamid: String){
+    fun delFav(context: Context, teamid: String) {
 
         val repository = teamsRepository(context)
 
         repository.delTeam(teamid)
-
     }
-
-
-
 }

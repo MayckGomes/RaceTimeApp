@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
@@ -33,43 +32,34 @@ import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 @Composable
 fun DriversScreen(navControler: NavHostController) {
     RaceTimeAppTheme {
-
         val viewmodel = viewModel<driversViewmodel>()
 
         val isLoading = viewmodel.isLoading.collectAsStateWithLifecycle().value
 
         val driverList = viewmodel.listDrivers.collectAsStateWithLifecycle().value
 
-        if (isLoading){
+        if (isLoading) {
 
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .fillMaxSize(1f)
+                modifier = Modifier.fillMaxSize(1f),
             ) {
-
                 CircularProgressIndicator()
-
             }
-
         } else {
 
             PullToRefreshBox(
                 isRefreshing = isLoading,
-                onRefresh = {
-                    viewmodel.loadListDrivers()
-                }
+                onRefresh = { viewmodel.loadListDrivers() },
             ) {
-
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .fillMaxSize(1f)
-                        .padding(10.dp)
-                        .verticalScroll(rememberScrollState())
+                    modifier =
+                        Modifier.fillMaxSize(1f)
+                            .padding(10.dp)
+                            .verticalScroll(rememberScrollState()),
                 ) {
-
                     Spacer(Modifier.size(5.dp))
 
                     BannerAdView("ca-app-pub-3940256099942544/6300978111")
@@ -80,7 +70,7 @@ fun DriversScreen(navControler: NavHostController) {
                         modifier = Modifier.align(Alignment.Start),
                         text = stringResource(R.string.driverStandings),
                         fontSize = MaterialTheme.typography.headlineMedium.fontSize,
-                        fontWeight = MaterialTheme.typography.headlineMedium.fontWeight
+                        fontWeight = MaterialTheme.typography.headlineMedium.fontWeight,
                     )
 
                     Spacer(Modifier.size(40.dp))
@@ -88,7 +78,7 @@ fun DriversScreen(navControler: NavHostController) {
                     DriversStandingsTable(
                         navControler,
                         list = driverList,
-                        errorMsg = R.string.conection
+                        errorMsg = R.string.conection,
                     )
 
                     Spacer(Modifier.size(5.dp))
@@ -96,18 +86,14 @@ fun DriversScreen(navControler: NavHostController) {
                     BannerAdView("ca-app-pub-3940256099942544/6300978111")
 
                     Spacer(Modifier.size(5.dp))
-
                 }
-
             }
-
         }
-
     }
 }
 
 @Preview(showSystemUi = true)
 @Composable
-fun DriversScreenPreview(){
+fun DriversScreenPreview() {
     DriversScreen(rememberNavController())
 }

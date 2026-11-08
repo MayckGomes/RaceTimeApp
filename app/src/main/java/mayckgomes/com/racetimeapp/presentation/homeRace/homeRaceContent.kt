@@ -21,9 +21,7 @@ import mayckgomes.com.racetimeapp.components.driversResultTable.DriversTable
 import mayckgomes.com.racetimeapp.presentation.homeQuali.HomeRaceViewmodel
 
 @Composable
-fun HomeRaceScreenContent(
-    navController: NavController,
-){
+fun HomeRaceScreenContent(navController: NavController) {
 
     val viewmodel: HomeRaceViewmodel = viewModel()
 
@@ -33,35 +31,29 @@ fun HomeRaceScreenContent(
 
     val isLoading by viewmodel.isLoading.collectAsStateWithLifecycle()
 
-    if (isLoading){
+    if (isLoading) {
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxSize()
-        ){
+            modifier = Modifier.fillMaxSize(),
+        ) {
             CircularProgressIndicator()
         }
-
     } else {
-        Column(
-            modifier = Modifier.fillMaxSize()
-        ) {
-
+        Column(modifier = Modifier.fillMaxSize()) {
             Spacer(Modifier.size(20.dp))
 
             Text(
                 text = circuitRaceName,
                 fontWeight = FontWeight.Bold,
                 fontSize = MaterialTheme.typography.titleLarge.fontSize,
-                modifier = Modifier.align(Alignment.CenterHorizontally)
+                modifier = Modifier.align(Alignment.CenterHorizontally),
             )
 
             Spacer(Modifier.size(20.dp))
 
             DriversTable(navController, lastRaceResults)
-
         }
     }
-
 }

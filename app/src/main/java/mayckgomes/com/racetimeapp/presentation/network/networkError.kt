@@ -48,72 +48,56 @@ fun NetworkScreen(navController: NavController) {
     val isLoading = viewmodel.isLoading.collectAsStateWithLifecycle().value
 
     RaceTimeAppTheme {
-
         Scaffold(
             topBar = {
                 TopAppBar(
-
                     title = {
                         Text(
                             text = stringResource(R.string.topappbar),
                             color = MaterialTheme.colorScheme.secondary,
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Bold,
                         )
                     },
-                    colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        titleContentColor = MaterialTheme.colorScheme.onBackground
-                    )
-
+                    colors =
+                        TopAppBarDefaults.topAppBarColors(
+                            containerColor = MaterialTheme.colorScheme.primary,
+                            titleContentColor = MaterialTheme.colorScheme.onBackground,
+                        ),
                 )
-
-
-            },
+            }
         ) {
-
-            PullToRefreshBox(
-                isRefreshing = isLoading,
-                onRefresh = {
-                }
-            ) {
+            PullToRefreshBox(isRefreshing = isLoading, onRefresh = {}) {
                 Column(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(it)
-                        .verticalScroll(rememberScrollState())
+                    modifier =
+                        Modifier.fillMaxSize().padding(it).verticalScroll(rememberScrollState()),
                 ) {
-
                     Icon(
                         imageVector = Icons.Outlined.Warning,
                         contentDescription = "no Network",
                         tint = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.size(100.dp)
+                        modifier = Modifier.size(100.dp),
                     )
 
                     Spacer(Modifier.size(20.dp))
 
-                    Text(
-                        text = stringResource(R.string.conection)
-                    )
+                    Text(text = stringResource(R.string.conection))
                 }
             }
-
         }
 
-        if (isLoading){
+        if (isLoading) {
 
-            if(repository.verifyNetwork(context)){
+            if (repository.verifyNetwork(context)) {
                 navController.navigate(main)
             }
 
             viewmodel.isLoadingFalse()
-
         }
     }
-
 }
+
 @Preview(showSystemUi = true)
 @Composable
 private fun NetworkScreenPreview() {

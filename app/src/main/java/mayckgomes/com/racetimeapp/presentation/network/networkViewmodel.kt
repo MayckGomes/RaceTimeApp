@@ -4,18 +4,16 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class networkViewmodel: ViewModel() {
+class networkViewmodel : ViewModel() {
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
 
-    fun isLoadingTrue(){
+    fun isLoadingTrue() {
         _isLoading.value = true
     }
 
-    fun isLoadingFalse(){
+    fun isLoadingFalse() {
         _isLoading.value = false
     }
-
-
 }

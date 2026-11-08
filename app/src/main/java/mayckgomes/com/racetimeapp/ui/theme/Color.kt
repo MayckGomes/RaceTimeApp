@@ -1,4 +1,5 @@
 package mayckgomes.com.racetimeapp.ui.theme
+
 // Ajuste o pacote acima para o namespace real do seu projeto
 
 import androidx.compose.ui.graphics.Color
@@ -27,16 +28,16 @@ val LightError = Color(0xFFD84315)
 val LightOnError = Color(0xFFFFFFFF)
 
 // ---------- Dark theme ----------
-val DarkBackground = Color(0xFF0B0C0F)
-val DarkSurface = Color(0xFF16181D)
-val DarkSurfaceVariant = Color(0xFF1C1F24)
+val DarkBackground = Color(0xFF080808)
+val DarkSurface = Color(0xFF151515)
+val DarkSurfaceVariant = Color(0xFF1D1D1D)
 val DarkOnBackground = Color(0xFFF5F6F8)
 val DarkOnSurface = Color(0xFFF5F6F8)
-val DarkOnSurfaceVariant = Color(0xFF9AA0AC)
-val DarkOutline = Color(0xFF2A2D33)
+val DarkOnSurfaceVariant = Color(0xFFA0A0A0)
+val DarkOutline = Color(0xFF2A2A2A)
 
-val DarkPrimary = Color(0xFFFF3B30)
-val DarkOnPrimary = Color(0xFF3A0000)
+val DarkPrimary = Color(0xFFFF453A)
+val DarkOnPrimary = Color(0xFFFFFFFF)
 val DarkPrimaryContainer = Color(0xFF680004)
 val DarkOnPrimaryContainer = Color(0xFFFFDAD8)
 

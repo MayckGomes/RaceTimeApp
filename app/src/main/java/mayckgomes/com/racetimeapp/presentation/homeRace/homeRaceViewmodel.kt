@@ -7,9 +7,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import mayckgomes.com.racetimeapp.data.api.Api
 import mayckgomes.com.racetimeapp.domain.models.LastDriverPosition
-import mayckgomes.com.racetimeapp.domain.models.QualiDriverPosition
 
-class HomeRaceViewmodel(): ViewModel(){
+class HomeRaceViewmodel() : ViewModel() {
 
     val api = Api()
 
@@ -22,18 +21,17 @@ class HomeRaceViewmodel(): ViewModel(){
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
 
-    fun isLoadingTrue(){
+    fun isLoadingTrue() {
         _isLoading.value = true
     }
 
-    fun isLoadingFalse(){
+    fun isLoadingFalse() {
         _isLoading.value = false
     }
 
-    fun getData(){
+    fun getData() {
 
         viewModelScope.launch {
-
             isLoadingTrue()
 
             val request = api.getLastResults()
@@ -42,7 +40,6 @@ class HomeRaceViewmodel(): ViewModel(){
             _circuitName.value = request.first().raceName
 
             isLoadingFalse()
-
         }
     }
 
@@ -50,5 +47,4 @@ class HomeRaceViewmodel(): ViewModel(){
 
         getData()
     }
-
 }

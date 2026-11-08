@@ -9,7 +9,7 @@ import androidx.compose.ui.text.TextStyle
 fun ScreenHeader(
     title: String,
     modifier: Modifier = Modifier,
-    style: TextStyle = TextStyle.Default
+    style: TextStyle = TextStyle.Default,
 ) {
     Text(text = title, modifier = modifier, style = style)
 }

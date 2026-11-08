@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import mayckgomes.com.racetimeapp.data.api.Api
 import mayckgomes.com.racetimeapp.domain.models.QualiDriverPosition
 
-class HomeQualiViewmodel: ViewModel(){
+class HomeQualiViewmodel : ViewModel() {
 
     val api = Api()
 
@@ -21,17 +21,16 @@ class HomeQualiViewmodel: ViewModel(){
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
 
-    fun isLoadingTrue(){
+    fun isLoadingTrue() {
         _isLoading.value = true
     }
 
-    fun isLoadingFalse(){
+    fun isLoadingFalse() {
         _isLoading.value = false
     }
 
-    fun getData(){
+    fun getData() {
         viewModelScope.launch {
-
             isLoadingTrue()
 
             val request = api.getQualiResults()
@@ -40,13 +39,11 @@ class HomeQualiViewmodel: ViewModel(){
             _circuitName.value = request.first().raceName
 
             isLoadingFalse()
-
         }
     }
 
     init {
 
         getData()
-
     }
 }
