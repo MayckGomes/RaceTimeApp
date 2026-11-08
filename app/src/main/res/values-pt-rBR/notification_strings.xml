@@ -1,0 +1,25 @@
+<resources>
+    <string name="settings_tab">Configurações</string>
+    <string name="notifications_heading">Notificações</string>
+    <string name="notifications_intro">Escolha quais sessões acompanhar e quando receber os lembretes.</string>
+    <string name="notifications_channel">Lembretes do fim de semana de corrida</string>
+    <string name="notifications_message">%1$s começa às %2$s.</string>
+    <string name="notifications_enable">Ativar lembretes</string>
+    <string name="notifications_permission_off">As notificações estão bloqueadas no Android. Libere para receber os lembretes.</string>
+    <string name="notifications_system_settings">Abrir configurações do Android</string>
+    <string name="notifications_sessions">Sessões</string>
+    <string name="notifications_qualifying">Qualificação (inclui qualificação sprint)</string>
+    <string name="notifications_practice">Treinos livres 1, 2 e 3</string>
+    <string name="notifications_before">Avisar antes da sessão</string>
+    <string name="notifications_minutes">%1$d min</string>
+    <string name="notifications_exact">Agendamento preciso permitido. A entrega também depende das configurações do aparelho.</string>
+    <string name="notifications_approximate">O Android pode atrasar os lembretes, inclusive além do início da sessão. Alarmes precisos são opcionais; a entrega também depende das restrições do aparelho.</string>
+    <string name="notifications_allow_exact">Permitir alarmes precisos</string>
+    <string name="notifications_status">Situação dos lembretes</string>
+    <string name="notifications_disabled">Os lembretes estão desativados.</string>
+    <string name="notifications_no_reminders">Nenhum lembrete futuro. Confira as sessões escolhidas e atualize o calendário. Sessões sem horário não são agendadas.</string>
+    <string name="notifications_scheduled">%1$d lembretes agendados. Próximo aviso:</string>
+    <string name="notifications_last_sync">Calendário atualizado: %1$s</string>
+    <string name="notifications_sync">Atualizar calendário</string>
+    <string name="notifications_sync_info">O calendário verifica alterações aproximadamente a cada 12 horas, quando ativado e com conexão. Lembretes salvos funcionam offline; sessões sem horário e novos avisos atrasados são ignorados. Mudanças desde a última atualização podem não ser conhecidas.</string>
+</resources>

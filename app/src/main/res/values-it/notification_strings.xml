@@ -1,0 +1,23 @@
+<resources>
+    <string name="notifications_intro">Scegli le sessioni e quando ricevere i promemoria.</string>
+    <string name="notifications_channel">Promemoria del weekend di gara</string>
+    <string name="notifications_message">%1$s inizia alle %2$s.</string>
+    <string name="notifications_enable">Attiva promemoria</string>
+    <string name="notifications_permission_off">Le notifiche sono bloccate in Android. Consentile per ricevere i promemoria.</string>
+    <string name="notifications_system_settings">Apri impostazioni Android</string>
+    <string name="notifications_sessions">Sessioni</string>
+    <string name="notifications_qualifying">Qualifiche (incluse qualifiche sprint)</string>
+    <string name="notifications_practice">Prove libere 1, 2 e 3</string>
+    <string name="notifications_before">Avvisa prima della sessione</string>
+    <string name="notifications_minutes">%1$d min</string>
+    <string name="notifications_exact">Programmazione precisa consentita. La consegna dipende anche dalle impostazioni del dispositivo.</string>
+    <string name="notifications_approximate">Android può ritardare i promemoria, anche oltre l’inizio della sessione. La programmazione precisa è facoltativa; la consegna dipende anche dalle restrizioni del dispositivo.</string>
+    <string name="notifications_allow_exact">Consenti allarmi precisi</string>
+    <string name="notifications_status">Stato dei promemoria</string>
+    <string name="notifications_disabled">I promemoria sono disattivati.</string>
+    <string name="notifications_no_reminders">Nessun promemoria futuro. Controlla le sessioni e aggiorna il calendario. Le sessioni senza orario vengono ignorate.</string>
+    <string name="notifications_scheduled">%1$d promemoria programmati. Prossimo avviso:</string>
+    <string name="notifications_last_sync">Calendario aggiornato: %1$s</string>
+    <string name="notifications_sync">Aggiorna calendario</string>
+    <string name="notifications_sync_info">Il calendario controlla le modifiche circa ogni 12 ore quando è attivo e connesso. I promemoria salvati funzionano offline; le sessioni senza orario e i nuovi avvisi in ritardo vengono ignorati. Le modifiche successive all’ultimo aggiornamento potrebbero non essere note.</string>
+</resources>

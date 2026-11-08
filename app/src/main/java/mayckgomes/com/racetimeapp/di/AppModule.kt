@@ -47,9 +47,11 @@ val databaseModule = module {
     single { androidContext().getSharedPreferences("racetime_app_cache", Context.MODE_PRIVATE) }
     single<Clock> { Clock.systemUTC() }
     single<ResponseCache> { PreferenceResponseCache(get()) }
+    single { mayckgomes.com.racetimeapp.notifications.ReminderScheduler(androidContext(), get()) }
+    single { mayckgomes.com.racetimeapp.data.local.FavoritesStore(androidContext()) }
 }
 val repositoryModule = module { single { RacingRepository(get(), get()) } }
 val viewModelModule = module {
-    viewModel { mayckgomes.com.racetimeapp.presentation.home.HomeViewModel(get(), get()) }
+    viewModel { mayckgomes.com.racetimeapp.presentation.home.HomeViewModel(get(), get(), get(), get()) }
 }
 val appModule = listOf(networkModule, databaseModule, repositoryModule, viewModelModule)

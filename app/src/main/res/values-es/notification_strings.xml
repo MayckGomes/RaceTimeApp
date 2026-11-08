@@ -1,0 +1,23 @@
+<resources>
+    <string name="notifications_intro">Elige las sesiones y cuándo recibir recordatorios.</string>
+    <string name="notifications_channel">Recordatorios del fin de semana de carrera</string>
+    <string name="notifications_message">%1$s empieza a las %2$s.</string>
+    <string name="notifications_enable">Activar recordatorios</string>
+    <string name="notifications_permission_off">Android bloquea las notificaciones. Permítelas para recibir recordatorios.</string>
+    <string name="notifications_system_settings">Abrir ajustes de Android</string>
+    <string name="notifications_sessions">Sesiones</string>
+    <string name="notifications_qualifying">Clasificación (incluye clasificación sprint)</string>
+    <string name="notifications_practice">Entrenamientos libres 1, 2 y 3</string>
+    <string name="notifications_before">Avisar antes de la sesión</string>
+    <string name="notifications_minutes">%1$d min</string>
+    <string name="notifications_exact">Se permite programación precisa. La entrega también depende de los ajustes del dispositivo.</string>
+    <string name="notifications_approximate">Android puede retrasar los avisos, incluso más allá del inicio de la sesión. Los avisos precisos son opcionales; la entrega también depende de las restricciones del dispositivo.</string>
+    <string name="notifications_allow_exact">Permitir alarmas precisas</string>
+    <string name="notifications_status">Estado de los recordatorios</string>
+    <string name="notifications_disabled">Los recordatorios están desactivados.</string>
+    <string name="notifications_no_reminders">No hay recordatorios futuros. Revisa las sesiones y actualiza el calendario. Se omiten las sesiones sin horario.</string>
+    <string name="notifications_scheduled">%1$d recordatorios programados. Próximo aviso:</string>
+    <string name="notifications_last_sync">Calendario actualizado: %1$s</string>
+    <string name="notifications_sync">Actualizar calendario</string>
+    <string name="notifications_sync_info">El calendario busca cambios aproximadamente cada 12 horas mientras está activado y conectado. Los avisos guardados funcionan sin conexión; se omiten sesiones sin hora y nuevos avisos atrasados. Puede haber cambios desconocidos desde la última actualización.</string>
+</resources>

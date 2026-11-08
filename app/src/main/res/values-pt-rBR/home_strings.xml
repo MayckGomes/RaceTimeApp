@@ -1,0 +1,33 @@
+<resources>
+    <string name="home_tagline">VIVA A TEMPORADA</string>
+    <string name="home_next_race">Próxima corrida</string>
+    <string name="home_last_race">Última corrida</string>
+    <string name="home_round">Etapa</string>
+    <string name="home_days">DIAS</string>
+    <string name="home_hours">HORAS</string>
+    <string name="home_minutes">MIN</string>
+    <string name="home_seconds">SEG</string>
+    <string name="home_time_unknown">Horário de início indisponível</string>
+    <string name="home_cached">Dados salvos · atualização pendente</string>
+    <string name="home_podium">Pódio</string>
+    <string name="home_no_results">Ainda não há resultados disponíveis.</string>
+    <string name="home_no_standings">Ainda não há classificação disponível.</string>
+    <string name="home_drivers">Classificação de pilotos</string>
+    <string name="home_teams">Classificação de equipes</string>
+    <string name="home_points">PTS</string>
+    <string name="home_view_all">Ver todos</string>
+    <string name="home_season_finished">Nenhuma próxima corrida no calendário carregado.</string>
+    <string name="home_next_session">Próxima sessão programada</string>
+    <string name="home_fp1">Treino livre 1</string>
+    <string name="home_fp2">Treino livre 2</string>
+    <string name="home_fp3">Treino livre 3</string>
+    <string name="home_qualifying">Qualificação</string>
+    <string name="home_sprint">Sprint</string>
+    <string name="home_sprint_qualifying">Qualificação sprint</string>
+    <string name="home_race">Corrida</string>
+    <string name="home_local_time">Horários no fuso do seu aparelho</string>
+    <string name="home_calendar">Calendário</string>
+    <string name="home_refresh">Atualizar</string>
+    <string name="home_load_error">Não foi possível atualizar esta seção.</string>
+    <string name="home_retry">Tentar novamente</string>
+</resources>

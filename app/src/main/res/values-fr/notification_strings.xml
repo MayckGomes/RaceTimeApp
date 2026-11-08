@@ -1,0 +1,23 @@
+<resources>
+    <string name="notifications_intro">Choisissez les séances et le moment des rappels.</string>
+    <string name="notifications_channel">Rappels du week-end de course</string>
+    <string name="notifications_message">%1$s commence à %2$s.</string>
+    <string name="notifications_enable">Activer les rappels</string>
+    <string name="notifications_permission_off">Les notifications sont bloquées dans Android. Autorisez-les pour recevoir les rappels.</string>
+    <string name="notifications_system_settings">Ouvrir les paramètres Android</string>
+    <string name="notifications_sessions">Séances</string>
+    <string name="notifications_qualifying">Qualifications (y compris sprint)</string>
+    <string name="notifications_practice">Essais libres 1, 2 et 3</string>
+    <string name="notifications_before">Rappel avant la séance</string>
+    <string name="notifications_minutes">%1$d min</string>
+    <string name="notifications_exact">Planification précise autorisée. La réception dépend aussi des paramètres de votre appareil.</string>
+    <string name="notifications_approximate">Android peut retarder les rappels, même après le début de la séance. La programmation précise est facultative ; la réception dépend aussi des restrictions de l’appareil.</string>
+    <string name="notifications_allow_exact">Autoriser les alarmes précises</string>
+    <string name="notifications_status">État des rappels</string>
+    <string name="notifications_disabled">Les rappels sont désactivés.</string>
+    <string name="notifications_no_reminders">Aucun rappel futur. Vérifiez les séances et actualisez le calendrier. Les séances sans horaire sont ignorées.</string>
+    <string name="notifications_scheduled">%1$d rappels programmés. Prochain rappel :</string>
+    <string name="notifications_last_sync">Calendrier mis à jour : %1$s</string>
+    <string name="notifications_sync">Actualiser le calendrier</string>
+    <string name="notifications_sync_info">Le calendrier recherche les changements environ toutes les 12 heures lorsque les rappels sont activés et connectés. Les rappels enregistrés fonctionnent hors ligne ; les séances sans horaire et les nouveaux rappels tardifs sont ignorés. Des changements depuis la dernière mise à jour peuvent être inconnus.</string>
+</resources>

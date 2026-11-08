@@ -1,0 +1,33 @@
+<resources>
+    <string name="home_tagline">LIVE THE SEASON</string>
+    <string name="home_next_race">Next race</string>
+    <string name="home_last_race">Last race</string>
+    <string name="home_round">Round</string>
+    <string name="home_days">DAYS</string>
+    <string name="home_hours">HOURS</string>
+    <string name="home_minutes">MIN</string>
+    <string name="home_seconds">SEC</string>
+    <string name="home_time_unknown">Start time unavailable</string>
+    <string name="home_cached">Saved data · update pending</string>
+    <string name="home_podium">Podium</string>
+    <string name="home_no_results">No results available yet.</string>
+    <string name="home_no_standings">No standings available yet.</string>
+    <string name="home_drivers">Drivers’ standings</string>
+    <string name="home_teams">Constructors’ standings</string>
+    <string name="home_points">PTS</string>
+    <string name="home_view_all">View all</string>
+    <string name="home_season_finished">No upcoming races in the loaded calendar.</string>
+    <string name="home_next_session">Next scheduled session</string>
+    <string name="home_fp1">Free practice 1</string>
+    <string name="home_fp2">Free practice 2</string>
+    <string name="home_fp3">Free practice 3</string>
+    <string name="home_qualifying">Qualifying</string>
+    <string name="home_sprint">Sprint</string>
+    <string name="home_sprint_qualifying">Sprint qualifying</string>
+    <string name="home_race">Race</string>
+    <string name="home_local_time">Times shown in your device’s time zone</string>
+    <string name="home_calendar">Calendar</string>
+    <string name="home_refresh">Refresh</string>
+    <string name="home_load_error">Could not update this section.</string>
+    <string name="home_retry">Try again</string>
+</resources>

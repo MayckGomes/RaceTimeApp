@@ -1,0 +1,25 @@
+<resources>
+    <string name="settings_tab">Settings</string>
+    <string name="notifications_heading">Notifications</string>
+    <string name="notifications_intro">Choose which sessions to follow and when to receive reminders.</string>
+    <string name="notifications_channel">Race weekend reminders</string>
+    <string name="notifications_message">%1$s starts at %2$s.</string>
+    <string name="notifications_enable">Enable reminders</string>
+    <string name="notifications_permission_off">Notifications are blocked in Android settings. Enable them to receive reminders.</string>
+    <string name="notifications_system_settings">Open notification settings</string>
+    <string name="notifications_sessions">Sessions</string>
+    <string name="notifications_qualifying">Qualifying (including sprint qualifying)</string>
+    <string name="notifications_practice">Free practice 1, 2 and 3</string>
+    <string name="notifications_before">Remind me before the session</string>
+    <string name="notifications_minutes">%1$d min</string>
+    <string name="notifications_exact">Precise scheduling is allowed. Delivery also depends on device settings.</string>
+    <string name="notifications_approximate">Android may delay reminders, even past the session start. Precise scheduling is optional; delivery also depends on device restrictions.</string>
+    <string name="notifications_allow_exact">Allow precise reminders</string>
+    <string name="notifications_status">Reminder status</string>
+    <string name="notifications_disabled">Reminders are turned off.</string>
+    <string name="notifications_no_reminders">No future reminders. Check session choices and sync the calendar. Sessions without a start time are skipped.</string>
+    <string name="notifications_scheduled">%1$d reminders scheduled. Next alert:</string>
+    <string name="notifications_last_sync">Calendar updated: %1$s</string>
+    <string name="notifications_sync">Update calendar</string>
+    <string name="notifications_sync_info">The calendar checks for changes approximately every 12 hours while enabled and online. Saved reminders work offline; sessions with unknown times and late new reminders are skipped. Changes since the last update may not be known.</string>
+</resources>
