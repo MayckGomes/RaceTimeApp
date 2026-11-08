@@ -55,6 +55,13 @@ val viewModelModule = module {
     viewModel {
         mayckgomes.com.racetimeapp.presentation.driver.DriverDetailsViewModel(get(), get(), get())
     }
+    viewModel {
+        mayckgomes.com.racetimeapp.presentation.settings.SettingsViewModel(
+            androidContext(),
+            get(),
+            get(),
+        )
+    }
     viewModel { mayckgomes.com.racetimeapp.presentation.home.HomeViewModel(get(), get(), get(), get()) }
     viewModel {
         mayckgomes.com.racetimeapp.presentation.favorites.FavoritesViewModel(get(), get(), get())

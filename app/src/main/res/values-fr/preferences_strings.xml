@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notify_at_start">À l’heure prévue</string>
+    <string name="notify_title">RaceTimeApp — %1$s</string>
+    <string name="notify_starts_at">Le début de %1$s est prévu à %2$s.</string>
+    <string name="notify_scheduled_at">%1$s : heure de début prévue %2$s.</string>
+    <string name="notify_save_failed">Impossible d’enregistrer la modification. Réessayez.</string>
+    <string name="notify_open_failed">Impossible d’ouvrir cet écran sur cet appareil.</string>
+    <string name="notify_sync_failed">Échec de la mise à jour du calendrier. Les rappels enregistrés sont conservés ; leurs horaires peuvent être obsolètes.</string>
+    <string name="notify_schedule_failed">Certains rappels n’ont pas pu être programmés. Rouvrez cet écran pour réessayer.</string>
+    <string name="notify_sync_requested">Mise à jour demandée. Android l’exécutera quand une connexion sera disponible.</string>
+    <string name="notify_favorite_results">Les alertes de résultats favoris ne sont pas activées : cette API ne propose pas de push en temps réel.</string>
+    <string name="pref_appearance">Apparence</string>
+    <string name="pref_system">Système</string>
+    <string name="pref_dark">Sombre</string>
+    <string name="pref_light">Clair</string>
+    <string name="pref_language">Langue</string>
+    <string name="pref_language_info">Choisissez la langue de l’application dans les paramètres Android.</string>
+    <string name="pref_language_legacy">Sur cette version d’Android, l’application suit la langue de l’appareil. Langues disponibles : portugais du Brésil, anglais, espagnol, français et italien.</string>
+    <string name="pref_choose_language">Choisir la langue de l’application</string>
+    <string name="pref_device_language">Ouvrir les langues de l’appareil</string>
+    <string name="pref_version">Version %1$s</string>
+    <string name="pref_project">Projet sur GitHub</string>
+    <string name="pref_legal">Informations légales et crédits</string>
+    <string name="pref_legal_info">Données sportives : Jolpica F1. Publicité : Google AdMob. L’utilisation commerciale des données dépend des conditions du fournisseur.</string>
+    <string name="pref_license">Licence Jolpica</string>
+</resources>

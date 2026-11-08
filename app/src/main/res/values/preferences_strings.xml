@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notify_at_start">At start time</string>
+    <string name="notify_title">RaceTimeApp — %1$s</string>
+    <string name="notify_starts_at">%1$s is scheduled to start at %2$s.</string>
+    <string name="notify_scheduled_at">%1$s: scheduled start time %2$s.</string>
+    <string name="notify_save_failed">Could not save the change. Try again.</string>
+    <string name="notify_open_failed">This screen could not be opened on this device.</string>
+    <string name="notify_sync_failed">Calendar update failed. Saved reminders are retained; their times may be outdated.</string>
+    <string name="notify_schedule_failed">Some reminders could not be scheduled. Reopen this screen to try again.</string>
+    <string name="notify_sync_requested">Update requested. Android runs it when a connection is available.</string>
+    <string name="notify_favorite_results">Favorite result alerts are not enabled: this API has no real-time push service.</string>
+    <string name="pref_appearance">Appearance</string>
+    <string name="pref_system">System</string>
+    <string name="pref_dark">Dark</string>
+    <string name="pref_light">Light</string>
+    <string name="pref_language">Language</string>
+    <string name="pref_language_info">Choose the app language in Android settings.</string>
+    <string name="pref_language_legacy">On this Android version, the app follows the device language. Available: English, Portuguese (Brazil), Spanish, French and Italian.</string>
+    <string name="pref_choose_language">Choose app language</string>
+    <string name="pref_device_language">Open device language settings</string>
+    <string name="pref_version">Version %1$s</string>
+    <string name="pref_project">Project on GitHub</string>
+    <string name="pref_legal">Legal information and credits</string>
+    <string name="pref_legal_info">Sports data: Jolpica F1. Ads: Google AdMob. Commercial use of data is subject to the provider’s terms.</string>
+    <string name="pref_license">Jolpica license</string>
+</resources>

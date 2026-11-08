@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notify_at_start">A la hora de inicio</string>
+    <string name="notify_title">RaceTimeApp — %1$s</string>
+    <string name="notify_starts_at">%1$s tiene previsto comenzar a las %2$s.</string>
+    <string name="notify_scheduled_at">%1$s: hora de inicio prevista %2$s.</string>
+    <string name="notify_save_failed">No se pudo guardar el cambio. Inténtalo de nuevo.</string>
+    <string name="notify_open_failed">No se pudo abrir esta pantalla en el dispositivo.</string>
+    <string name="notify_sync_failed">Error al actualizar el calendario. Se conservan los avisos guardados; sus horarios pueden estar desactualizados.</string>
+    <string name="notify_schedule_failed">No se pudieron programar algunos avisos. Vuelve a abrir esta pantalla para reintentar.</string>
+    <string name="notify_sync_requested">Actualización solicitada. Android la ejecutará cuando haya conexión.</string>
+    <string name="notify_favorite_results">Los avisos de resultados favoritos no están activados: esta API no ofrece push en tiempo real.</string>
+    <string name="pref_appearance">Apariencia</string>
+    <string name="pref_system">Sistema</string>
+    <string name="pref_dark">Oscuro</string>
+    <string name="pref_light">Claro</string>
+    <string name="pref_language">Idioma</string>
+    <string name="pref_language_info">Elige el idioma de la aplicación en los ajustes de Android.</string>
+    <string name="pref_language_legacy">En esta versión de Android, la app sigue el idioma del dispositivo. Disponibles: portugués de Brasil, inglés, español, francés e italiano.</string>
+    <string name="pref_choose_language">Elegir idioma de la app</string>
+    <string name="pref_device_language">Abrir idiomas del dispositivo</string>
+    <string name="pref_version">Versión %1$s</string>
+    <string name="pref_project">Proyecto en GitHub</string>
+    <string name="pref_legal">Información legal y atribuciones</string>
+    <string name="pref_legal_info">Datos deportivos: Jolpica F1. Anuncios: Google AdMob. El uso comercial de los datos depende de las condiciones del proveedor.</string>
+    <string name="pref_license">Licencia de Jolpica</string>
+</resources>
