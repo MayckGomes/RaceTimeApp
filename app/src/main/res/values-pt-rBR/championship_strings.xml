@@ -1,0 +1,12 @@
+<resources>
+    <string name="champ_number">Número %1$s</string>
+    <string name="champ_wins">Vitórias: %1$s</string>
+    <string name="champ_favorite">Favorito</string>
+    <string name="champ_moved_up">Subiu %1$d posições</string>
+    <string name="champ_moved_down">Caiu %1$d posições</string>
+    <string name="champ_unchanged">Manteve a posição</string>
+    <string name="champ_comparison">Variação de posição: etapa %1$s → %2$s.</string>
+    <string name="champ_comparison_cached">Variação com dados salvos: etapa %1$s → %2$s.</string>
+    <string name="champ_history_loading">Verificando rodadas concluídas comparáveis…</string>
+    <string name="champ_history_unavailable">A variação aparece somente quando há classificações comparáveis de duas rodadas concluídas.</string>
+</resources>

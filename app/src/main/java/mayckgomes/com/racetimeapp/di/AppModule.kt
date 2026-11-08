@@ -53,5 +53,8 @@ val databaseModule = module {
 val repositoryModule = module { single { RacingRepository(get(), get()) } }
 val viewModelModule = module {
     viewModel { mayckgomes.com.racetimeapp.presentation.home.HomeViewModel(get(), get(), get(), get()) }
+    viewModel {
+        mayckgomes.com.racetimeapp.presentation.championship.ChampionshipViewModel(get(), get())
+    }
 }
 val appModule = listOf(networkModule, databaseModule, repositoryModule, viewModelModule)

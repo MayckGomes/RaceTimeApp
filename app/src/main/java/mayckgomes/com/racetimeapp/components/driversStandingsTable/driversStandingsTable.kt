@@ -30,32 +30,24 @@ import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 fun DriversStandingsTable(
     navControler: NavHostController,
     list: List<DriverPosition>,
-    errorMsg: Int = R.string.nofavdriver
+    errorMsg: Int = R.string.nofavdriver,
 ) {
     RaceTimeAppTheme {
-
         Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .heightIn(0.dp, 1000.dp),
+            modifier = Modifier.fillMaxWidth().heightIn(0.dp, 1000.dp),
             shape = RoundedCornerShape(8.dp),
-            color = MaterialTheme.colorScheme.surface
+            color = MaterialTheme.colorScheme.surface,
         ) {
-
-            Column(
-            ) {
+            Column() {
                 // cabeçario
                 Row(
                     horizontalArrangement = Arrangement.Center,
-                    modifier = Modifier
-                        .padding(5.dp)
-                        .fillMaxWidth(1f)
-                        .height(35.dp)
+                    modifier = Modifier.padding(5.dp).fillMaxWidth(1f).height(35.dp),
                 ) {
                     Text(
                         text = stringResource(R.string.position),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(0.3f)
+                        modifier = Modifier.weight(0.3f),
                     )
 
                     Spacer(Modifier.size(5.dp))
@@ -67,7 +59,7 @@ fun DriversStandingsTable(
                     Text(
                         text = stringResource(R.string.driver),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(1.5f)
+                        modifier = Modifier.weight(1.5f),
                     )
 
                     Spacer(Modifier.size(5.dp))
@@ -79,7 +71,7 @@ fun DriversStandingsTable(
                     Text(
                         text = stringResource(R.string.team),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(1f),
                     )
 
                     Spacer(Modifier.size(5.dp))
@@ -91,38 +83,23 @@ fun DriversStandingsTable(
                     Text(
                         text = stringResource(R.string.points),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(0.5f)
+                        modifier = Modifier.weight(0.5f),
                     )
                 }
 
-                if (list.isNotEmpty()){
+                if (list.isNotEmpty()) {
 
-                    LazyColumn {
-                        items(list) {
-                            DriversStandingsItem(navControler,it)
-                        }
-                    }
-
+                    LazyColumn { items(list) { DriversStandingsItem(navControler, it) } }
                 } else {
 
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .heightIn(min = 100.dp)
+                        modifier = Modifier.fillMaxWidth().heightIn(min = 100.dp),
                     ) {
-
-                        Text(
-                            text = stringResource(errorMsg)
-                        )
-
+                        Text(text = stringResource(errorMsg))
                     }
-
                 }
-
-
-
             }
         }
     }

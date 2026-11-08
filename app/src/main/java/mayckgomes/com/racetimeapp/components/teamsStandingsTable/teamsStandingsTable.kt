@@ -31,36 +31,27 @@ import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 fun TeamsStandingsTable(
     navController: NavController,
     list: List<ConstructorStandings>,
-    errorMsg: Int = R.string.nofavteam
+    errorMsg: Int = R.string.nofavteam,
 ) {
 
     Log.d("teste", "TeamsStandingsTable: $list")
 
     RaceTimeAppTheme {
-
         Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .heightIn(min = 0.dp, max = 500.dp),
+            modifier = Modifier.fillMaxWidth().heightIn(min = 0.dp, max = 500.dp),
             shape = RoundedCornerShape(8.dp),
-            color = MaterialTheme.colorScheme.surface
+            color = MaterialTheme.colorScheme.surface,
         ) {
-
-            Column(
-
-            ) {
+            Column() {
                 // cabeçario
                 Row(
                     horizontalArrangement = Arrangement.Center,
-                    modifier = Modifier
-                        .padding(5.dp)
-                        .fillMaxWidth(1f)
-                        .height(35.dp)
+                    modifier = Modifier.padding(5.dp).fillMaxWidth(1f).height(35.dp),
                 ) {
                     Text(
                         text = stringResource(R.string.position),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(0.25f)
+                        modifier = Modifier.weight(0.25f),
                     )
 
                     Spacer(Modifier.size(5.dp))
@@ -72,7 +63,7 @@ fun TeamsStandingsTable(
                     Text(
                         text = stringResource(R.string.team),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(1.5f)
+                        modifier = Modifier.weight(1.5f),
                     )
 
                     Spacer(Modifier.size(5.dp))
@@ -84,35 +75,22 @@ fun TeamsStandingsTable(
                     Text(
                         text = stringResource(R.string.points),
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(1f),
                     )
                 }
 
-
-                if (list.isNotEmpty()){
-                    LazyColumn {
-                        items(list) {
-                            TeamsStandingsItem(navController, it)
-                        }
-                    }
+                if (list.isNotEmpty()) {
+                    LazyColumn { items(list) { TeamsStandingsItem(navController, it) } }
                 } else {
 
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .heightIn(min = 100.dp)
+                        modifier = Modifier.fillMaxWidth().heightIn(min = 100.dp),
                     ) {
-
-                        Text(
-                            text = stringResource(errorMsg)
-                        )
-
+                        Text(text = stringResource(errorMsg))
                     }
-
                 }
-
             }
         }
     }

@@ -20,29 +20,25 @@ import mayckgomes.com.racetimeapp.domain.models.DriverPosition
 import mayckgomes.com.racetimeapp.navgation.driverRoute
 
 @Composable
-fun DriversStandingsItem(navController: NavController,driver: DriverPosition) {
+fun DriversStandingsItem(navController: NavController, driver: DriverPosition) {
     Log.d("teste", "DriversStandingsItem: $driver")
     Row(
         horizontalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .padding(5.dp)
-            .fillMaxWidth(1f)
-
-            .clickable{
-
+        modifier =
+            Modifier.padding(5.dp).fillMaxWidth(1f).clickable {
                 navController.navigate(driverRoute(driver.Driver.driverId))
-
-            }
+            },
     ) {
         Text(
             text = driver.position,
-            color = when(driver.position){
-                "1" -> Color.Yellow
-                "2" -> Color.Gray
-                "3" -> Color(0xFFCE8946)
-                else -> MaterialTheme.colorScheme.primary
-            },
-            modifier = Modifier.weight(0.3f)
+            color =
+                when (driver.position) {
+                    "1" -> Color.Yellow
+                    "2" -> Color.Gray
+                    "3" -> Color(0xFFCE8946)
+                    else -> MaterialTheme.colorScheme.primary
+                },
+            modifier = Modifier.weight(0.3f),
         )
 
         Spacer(Modifier.size(5.dp))
@@ -51,7 +47,7 @@ fun DriversStandingsItem(navController: NavController,driver: DriverPosition) {
             text = "${driver.Driver.givenName} ${driver.Driver.familyName}",
             color = MaterialTheme.colorScheme.onBackground,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.weight(1.3f)
+            modifier = Modifier.weight(1.3f),
         )
 
         Spacer(Modifier.size(5.dp))
@@ -59,7 +55,7 @@ fun DriversStandingsItem(navController: NavController,driver: DriverPosition) {
         Text(
             text = driver.Constructors.first().name,
             color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
 
         Spacer(Modifier.size(5.dp))
@@ -67,7 +63,7 @@ fun DriversStandingsItem(navController: NavController,driver: DriverPosition) {
         Text(
             text = driver.points,
             color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.weight(0.25f)
+            modifier = Modifier.weight(0.25f),
         )
     }
 }

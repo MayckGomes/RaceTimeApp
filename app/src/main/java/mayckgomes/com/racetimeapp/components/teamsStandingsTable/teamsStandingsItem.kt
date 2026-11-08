@@ -22,26 +22,23 @@ import mayckgomes.com.racetimeapp.navgation.teamRoute
 fun TeamsStandingsItem(navController: NavController, teamPosition: ConstructorStandings) {
     Row(
         horizontalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .padding(5.dp)
-            .fillMaxWidth(1f)
-            .clickable{
-
+        modifier =
+            Modifier.padding(5.dp).fillMaxWidth(1f).clickable {
                 navController.navigate(teamRoute(teamPosition.Constructor.constructorId))
-
-            }
+            },
     ) {
-
         Spacer(Modifier.size(5.dp))
 
         Text(
             text = teamPosition.position,
-            color = when(teamPosition.position){
-                "1" -> Color.Yellow
-                "2" -> Color.Gray
-                "3" -> Color(0xFFCE8946)
-                else -> MaterialTheme.colorScheme.primary },
-            modifier = Modifier.weight(0.25f)
+            color =
+                when (teamPosition.position) {
+                    "1" -> Color.Yellow
+                    "2" -> Color.Gray
+                    "3" -> Color(0xFFCE8946)
+                    else -> MaterialTheme.colorScheme.primary
+                },
+            modifier = Modifier.weight(0.25f),
         )
 
         Spacer(Modifier.size(5.dp))
@@ -50,7 +47,7 @@ fun TeamsStandingsItem(navController: NavController, teamPosition: ConstructorSt
             text = teamPosition.Constructor.name,
             color = MaterialTheme.colorScheme.onBackground,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.weight(1.5f)
+            modifier = Modifier.weight(1.5f),
         )
 
         Spacer(Modifier.size(5.dp))
@@ -58,7 +55,7 @@ fun TeamsStandingsItem(navController: NavController, teamPosition: ConstructorSt
         Text(
             text = teamPosition.points,
             color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
     }
 }

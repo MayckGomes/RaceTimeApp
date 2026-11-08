@@ -1,0 +1,12 @@
+<resources>
+    <string name="champ_number">Numero %1$s</string>
+    <string name="champ_wins">Vittorie: %1$s</string>
+    <string name="champ_favorite">Preferito</string>
+    <string name="champ_moved_up">Sale di %1$d posizioni</string>
+    <string name="champ_moved_down">Scende di %1$d posizioni</string>
+    <string name="champ_unchanged">Posizione invariata</string>
+    <string name="champ_comparison">Variazione di posizione: round %1$s → %2$s.</string>
+    <string name="champ_comparison_cached">Variazione da dati salvati: round %1$s → %2$s.</string>
+    <string name="champ_history_loading">Verifica dei round conclusi confrontabili…</string>
+    <string name="champ_history_unavailable">Le variazioni compaiono solo con classifiche confrontabili di due round conclusi.</string>
+</resources>

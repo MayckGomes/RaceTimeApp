@@ -1,0 +1,12 @@
+<resources>
+    <string name="champ_number">Numéro %1$s</string>
+    <string name="champ_wins">Victoires : %1$s</string>
+    <string name="champ_favorite">Favori</string>
+    <string name="champ_moved_up">Gagne %1$d places</string>
+    <string name="champ_moved_down">Perd %1$d places</string>
+    <string name="champ_unchanged">Position inchangée</string>
+    <string name="champ_comparison">Évolution : manche %1$s → %2$s.</string>
+    <string name="champ_comparison_cached">Évolution selon les données enregistrées : manche %1$s → %2$s.</string>
+    <string name="champ_history_loading">Vérification des manches terminées comparables…</string>
+    <string name="champ_history_unavailable">Les évolutions sont affichées uniquement avec deux manches terminées et comparables.</string>
+</resources>
