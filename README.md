@@ -1,77 +1,64 @@
-# RaceTimeApp
+# RaceTime App
 
----
+![RaceTime App — The race weekend at a glance](Images/racetime-hero.png)
 
-EN 🇺🇸
+An Android companion for Formula 1 fans. Check when the next session starts, catch up on published results, and follow the drivers and teams you care about.
 
-Disclaimer: This app was created by a fan, for other Formula 1 fans. We have no affiliation with Formula 1, the FIA, or any official team. All names, logos, trademarks, and related content are the property of their respective owners. All rights reserved.
+**Android 8.0+ · Kotlin · Jetpack Compose**
 
-RaceTime App is an app for Formula 1 fans, designed to track the results of race weekends!
+[Features](#features) · [Screenshots](#screenshots) · [Getting started](#getting-started) · [Tech stack](#tech-stack)
 
-App developed to learn best practices using the mvvm architecture and the use of external APIs.
+## Features
 
-## Available languages:
+| Screen | What you can do |
+| --- | --- |
+| **Home** | See the countdown to the next session, the latest published result, and a snapshot of the standings. |
+| **Calendar** | Browse Grand Prix weekends by season and see session times in your device's time zone. |
+| **Grand Prix details** | Check the weekend schedule and see qualifying, Sprint, and race results when available. |
+| **Championship** | Track driver and constructor positions, points, and wins. |
+| **Favorites** | Keep your favorite drivers and teams within easy reach. |
+| **Settings** | Choose which sessions to get local reminders for. Set them for the scheduled start or 15, 30, or 60 minutes beforehand. |
 
-- Brazilian Portuguese
-- French
-- English
-- Spanish
-- Italian
+Race statistics include podiums, grid and finishing positions, fastest laps, and lap or pit stop data where available. The app supports English, Brazilian Portuguese, Spanish, French, and Italian.
 
-## Tools used:
+## Screenshots
 
-- Ktor
-- SharedPreferences
-- Navgation
-- MaterialTheme
+These screenshots show the app before the 2.0 redesign.
 
----
+| Results | Drivers | Constructors |
+| :---: | :---: | :---: |
+| <img src="Images/last.png" alt="Latest result screen" width="220"> | <img src="Images/drivers.png" alt="Driver standings" width="220"> | <img src="Images/teams.png" alt="Constructor standings" width="220"> |
 
-PT-BR 🇧🇷
+| Favorites | Driver profile | Constructor profile |
+| :---: | :---: | :---: |
+| <img src="Images/fav.png" alt="Favorites list" width="220"> | <img src="Images/driver.png" alt="Driver profile" width="220"> | <img src="Images/team.png" alt="Constructor profile" width="220"> |
 
-Aviso Legal: Este aplicativo foi criado por um fã, para outros fãs da Fórmula 1. Não possuímos qualquer vínculo com a Fórmula 1, FIA ou qualquer equipe oficial. Todos os nomes, logotipos, marcas registradas e conteúdos relacionados à Fórmula 1 pertencem aos seus respectivos proprietários. Todos os direitos reservados.
+## Getting started
 
-RaceTime App é um aplicativo para fãs de Formula 1, feito para acompanhamento dos resultados dos finais de semana de corrida!
+1. Clone the repository or extract the project ZIP.
+2. Open the project folder in Android Studio, install Android SDK 35, and sync Gradle.
+3. Select the `app` run configuration and launch it on an emulator or device running Android 8.0 or newer.
 
-App desenvolvido para o apendizado de boas praticas usando a arquitetura mvvm, e o uso de Apis externas.
+To build a debug APK from the project root:
 
-## Idiomas disponiveis:
+| Platform | Command |
+| --- | --- |
+| Windows PowerShell | `.\gradlew.bat :app:assembleDebug` |
+| macOS or Linux | `./gradlew :app:assembleDebug` |
 
-- Português Brasil
-- Françês
-- Inglês
-- Espanhol
-- Italiano
+## Tech stack
 
-## Ferramentas usadas:
+| Area | Tools |
+| --- | --- |
+| **UI and navigation** | Jetpack Compose, Material 3, Navigation Compose |
+| **Architecture and state** | Kotlin, MVVM, Coroutines, StateFlow, Koin |
+| **Networking and local storage** | Ktor, Kotlin Serialization, SharedPreferences |
+| **Scheduled reminders** | AlarmManager, WorkManager |
 
-- Ktor
-- SharedPreferences
-- Navgation
-- MaterialTheme
+See the [redesign notes](ALTERACOES_HOME.md) and [technical documentation](docs/) for implementation details and validation status.
 
-## UI:
+## Data and attribution
 
-### home
+Schedules, standings, and published results come from the [Jolpica F1 API](https://github.com/jolpica/jolpica-f1). Results and statistics depend on the source's coverage and publication schedule.
 
-![home](Images/last.png)
-
-### Classificação de Pilotos
-
-![drivers](Images/drivers.png)
-
-### Classificação de Construtores
-
-![teams](Images/teams.png)
-
-### Favoritos
-
-![fav](Images/fav.png)
-
-### Piloto
-
-![driver](Images/driver.png)
-
-### Construtor
-
-![team](Images/team.png) 
+RaceTime App is an independent fan project with no affiliation with Formula 1, the FIA, or any team. Third-party marks belong to their respective owners.

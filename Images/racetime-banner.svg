@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320" role="img" aria-labelledby="title desc">
+  <title id="title">RaceTime App</title>
+  <desc id="desc">Banner preto e vermelho com um traçado abstrato de corrida e o texto Corridas, resultados e campeonato.</desc>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#242429" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="320" fill="#0b0b0e"/>
+  <path d="M845 0h435v320H680z" fill="#15151a"/>
+  <path d="M845 0h435v320H680z" fill="url(#grid)"/>
+  <path d="M845 0 680 320" stroke="#e10600" stroke-width="3"/>
+  <path d="M60 58h36L78 82H42zm46 0h22l-18 24H88z" fill="#ff453a"/>
+  <text x="60" y="164" font-family="system-ui, sans-serif" font-size="78" font-weight="800" fill="#fff">RaceTime</text>
+  <text x="479" y="163" font-family="system-ui, sans-serif" font-size="25" font-weight="700" letter-spacing="4" fill="#ff6259">APP</text>
+  <text x="64" y="217" font-family="system-ui, sans-serif" font-size="27" fill="#d0d0d7">Corridas, resultados e campeonato</text>
+  <text x="65" y="271" font-family="system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="4" fill="#aaaab4">FÓRMULA 1  /  ANDROID</text>
+  <path d="M900 223 1061 252q26 5 43-13l66-78q13-17-4-30l-95-56q-22-13-45 1l-53 34q-12 8-6 21l7 15q7 16-10 23l-69 26q-24 10 5 28z" fill="none" stroke="#ff453a" stroke-width="7" stroke-linejoin="round"/>
+  <path d="m1117 214 18 15m-10-25 18 15" stroke="#fff" stroke-width="3"/>
+  <path d="M0 315h1280v5H0z" fill="#e10600"/>
+</svg>
