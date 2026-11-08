@@ -4,56 +4,52 @@ import android.content.Context
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.DefaultRequest
+import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.header
 import io.ktor.http.HttpHeaders
 import io.ktor.serialization.kotlinx.json.json
+import java.time.Clock
 import kotlinx.serialization.json.Json
-import mayckgomes.com.racetimeapp.data.local.LocalCache
-import mayckgomes.com.racetimeapp.data.remote.JolpicaApiClient
-import mayckgomes.com.racetimeapp.data.remote.JolpicaApiService
-import mayckgomes.com.racetimeapp.data.repository.SeasonRepository
-import mayckgomes.com.racetimeapp.ui.screen.TestViewModel
+import mayckgomes.com.racetimeapp.data.local.PreferenceResponseCache
+import mayckgomes.com.racetimeapp.data.local.ResponseCache
+import mayckgomes.com.racetimeapp.data.remote.JolpicaGateway
+import mayckgomes.com.racetimeapp.data.repository.RacingRepository
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
 val networkModule = module {
     single {
+        val app = androidContext()
+        val version = app.packageManager.getPackageInfo(app.packageName, 0).versionName.orEmpty()
         HttpClient(CIO) {
             install(ContentNegotiation) {
                 json(
                     Json {
-                        isLenient = true
                         ignoreUnknownKeys = true
-                        prettyPrint = true
+                        coerceInputValues = true
                         explicitNulls = false
                     }
                 )
             }
-
-            install(DefaultRequest) {
-                header(HttpHeaders.UserAgent, "RaceTimeApp/2.0.0")
+            install(HttpTimeout) {
+                requestTimeoutMillis = 20_000
+                connectTimeoutMillis = 10_000
+                socketTimeoutMillis = 20_000
             }
+            install(DefaultRequest) { header(HttpHeaders.UserAgent, "RaceTimeApp/$version") }
         }
     }
-
-    single { JolpicaApiClient(get()) }
-    single { JolpicaApiService(get()) }
+    single { JolpicaGateway(get(), get(), get()) }
 }
-
 val databaseModule = module {
     single { androidContext().getSharedPreferences("racetime_app_cache", Context.MODE_PRIVATE) }
-    single { LocalCache(get()) }
+    single<Clock> { Clock.systemUTC() }
+    single<ResponseCache> { PreferenceResponseCache(get()) }
 }
-
-val repositoryModule = module {
-    single { SeasonRepository(get()) }
-}
-
+val repositoryModule = module { single { RacingRepository(get(), get()) } }
 val viewModelModule = module {
-    viewModel { TestViewModel(get()) }
     viewModel { mayckgomes.com.racetimeapp.presentation.home.HomeViewModel(get(), get()) }
 }
-
 val appModule = listOf(networkModule, databaseModule, repositoryModule, viewModelModule)

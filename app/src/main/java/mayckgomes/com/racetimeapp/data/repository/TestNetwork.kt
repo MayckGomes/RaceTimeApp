@@ -15,7 +15,9 @@ class TestNetwork {
         val network = cm.activeNetwork
         val networkCapabilities = cm.getNetworkCapabilities(network)
 
-        return if (networkCapabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true) {
+        return if (
+            networkCapabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
+        ) {
             true
         } else {
             false

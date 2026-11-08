@@ -1,173 +1,76 @@
 package mayckgomes.com.racetimeapp.data.api
 
-import io.ktor.client.HttpClient
-import io.ktor.client.call.body
-import io.ktor.client.engine.cio.CIO
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.request.get
-import io.ktor.client.request.request
-import io.ktor.serialization.kotlinx.json.json
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.withContext
-import kotlinx.serialization.json.Json
-import mayckgomes.com.racetimeapp.domain.models.Circuits
-import mayckgomes.com.racetimeapp.domain.models.ConstructorStandings
-import mayckgomes.com.racetimeapp.domain.models.DriverInfo
-import mayckgomes.com.racetimeapp.domain.models.DriverInfoResponse
-import mayckgomes.com.racetimeapp.domain.models.DriverPosition
-import mayckgomes.com.racetimeapp.domain.models.LastResultsResponse
-import mayckgomes.com.racetimeapp.domain.models.QualiCircuits
-import mayckgomes.com.racetimeapp.domain.models.QualiResultsResponse
-import mayckgomes.com.racetimeapp.domain.models.RacesCalendar
-import mayckgomes.com.racetimeapp.domain.models.SeasonCalendarResponse
-import mayckgomes.com.racetimeapp.domain.models.TeamsStandingsResponse
-import mayckgomes.com.racetimeapp.domain.models.driversStadingsResponse
+import kotlinx.serialization.json.*
+import mayckgomes.com.racetimeapp.data.remote.*
+import mayckgomes.com.racetimeapp.data.repository.RacingRepository
+import mayckgomes.com.racetimeapp.domain.models.*
+import org.koin.core.context.GlobalContext
 
 class Api {
+    private val gateway: JolpicaGateway
+        get() = GlobalContext.get().get()
 
-    private val client = HttpClient(CIO){
-        install(ContentNegotiation){
-            json(Json{
-                isLenient = true
-                ignoreUnknownKeys = true
-                prettyPrint = true
-            })
+    private val repository: RacingRepository
+        get() = GlobalContext.get().get()
+
+    private val json = Json {
+        ignoreUnknownKeys = true
+        coerceInputValues = true
+    }
+    private val year
+        get() = repository.activeYear
+
+    suspend fun getDriverStandings(): List<DriverPosition> {
+        val rows =
+            gateway
+                .query("$year/driverstandings", "StandingsTable.StandingsLists", 600_000)
+                .rows
+                .flatMap { it.items("DriverStandings") }
+        return rows.mapNotNull {
+            runCatching { json.decodeFromJsonElement(DriverPosition.serializer(), it) }.getOrNull()
         }
     }
-
-    suspend fun getDriverStandings(): List<DriverPosition>{
-
-        return try {
-
-            val request:driversStadingsResponse = client.get("https://api.jolpi.ca/ergast/f1/current/driverstandings.json").body()
-
-            request.MRData.StandingsTable.StandingsLists.first().DriverStandings
-
-        } catch(e: Exception) {
-            emptyList()
-        }
-    }
-
 
     suspend fun getTeamsStandings(): List<ConstructorStandings> {
-
-        return try {
-
-            val request: TeamsStandingsResponse = client.get("https://api.jolpi.ca/ergast/f1/current/constructorstandings.json").body()
-
-            request.MRData.StandingsTable.StandingsLists.first().ConstructorStandings
-
-        } catch (e: Exception){
-            emptyList()
+        val rows =
+            gateway
+                .query("$year/constructorstandings", "StandingsTable.StandingsLists", 600_000)
+                .rows
+                .flatMap { it.items("ConstructorStandings") }
+        return rows.mapNotNull {
+            runCatching { json.decodeFromJsonElement(ConstructorStandings.serializer(), it) }
+                .getOrNull()
         }
-
     }
 
     suspend fun getLastResults(): List<Circuits> {
-        return try{
-            withContext(Dispatchers.IO) {
-
-
-                val next = async {
-                    val requestNext: LastResultsResponse = client
-                        .get("https://api.jolpi.ca/ergast/f1/current/next/results.json")
-                        .body()
-
-                    requestNext.MRData.RaceTable.Races
-                }
-
-                val last = async {
-                    val requestLast: LastResultsResponse = client
-                        .get("https://api.jolpi.ca/ergast/f1/current/last/results.json")
-                        .body()
-
-                    requestLast.MRData.RaceTable.Races
-                }
-
-
-                val nextResults = next.await()
-                val lastResults = last.await()
-
-                nextResults.ifEmpty { lastResults }
-
-            }
-        } catch (e: Exception){
-            emptyList()
+        val rows = gateway.query("$year/last/results", "RaceTable.Races", 300_000).rows
+        return rows.mapNotNull {
+            runCatching { json.decodeFromJsonElement(Circuits.serializer(), it) }.getOrNull()
         }
     }
 
-    suspend fun getDriverInfo(driverId: String): List<DriverInfo> {
-
-        return try {
-
-
-            val response: DriverInfoResponse = client
-                .get("https://api.jolpi.ca/ergast/f1/drivers/${driverId}.json")
-                .body()
-
-
-            response.MRData.DriverTable.Drivers
-
-        } catch (e: Exception){
-            emptyList()
+    suspend fun getDriverInfo(driverId: String): List<DriverInfo> =
+        repository.driver(driverId).mapNotNull {
+            runCatching { json.decodeFromJsonElement(DriverInfo.serializer(), it) }.getOrNull()
         }
-
-    }
 
     suspend fun getTeamInfo(teamID: String): List<ConstructorStandings> {
-        return try {
-
-            val request: TeamsStandingsResponse = client.get("https://api.jolpi.ca/ergast/f1/current/constructors/${teamID}/constructorstandings.json").body()
-
-            request.MRData.StandingsTable.StandingsLists.first().ConstructorStandings
-
-        } catch (e: Exception){
-            emptyList()
-        }
-    }
-
-    suspend fun getCalendar(): List<RacesCalendar> {
-
-        return try {
-            val request: SeasonCalendarResponse = client.get("https://api.jolpi.ca/ergast/f1/current/races.json").body()
-
-            request.MRData.RaceTable.Races
-        } catch (e: Exception){
-            emptyList()
-        }
-    }
-
-
-    suspend fun getQualiResults(): List<QualiCircuits>{
-        return try {
-            withContext(Dispatchers.IO) {
-
-                val next = async {
-                    val responseNext: QualiResultsResponse = client
-                        .get("https://api.jolpi.ca/ergast/f1/current/next/qualifying.json")
-                        .body()
-
-                    responseNext.MRData.RaceTable.Races
-                }
-
-                val last = async {
-                    val responseLast: QualiResultsResponse = client
-                        .get("https://api.jolpi.ca/ergast/f1/current/last/qualifying.json")
-                        .body()
-
-                    responseLast.MRData.RaceTable.Races
-                }
-
-
-                val nextResults = next.await()
-                val lastResults = last.await()
-
-                nextResults.ifEmpty { lastResults }
+        val current = getTeamsStandings().filter { it.Constructor.constructorId == teamID }
+        if (current.isNotEmpty()) return current
+        return repository
+            .favoriteProfile(teamID, true)
+            .data
+            ?.let {
+                listOf(ConstructorStandings("", "", Constructors(it.id, it.name, it.nationality)))
             }
-        } catch (e: Exception){
-            emptyList()
-        }
-
+            .orEmpty()
     }
+
+    suspend fun getCalendar(): List<RacesCalendar> = repository.calendar(year).data
+
+    suspend fun getQualiResults(): List<QualiCircuits> =
+        gateway.query("$year/last/qualifying", "RaceTable.Races", 300_000).rows.mapNotNull {
+            runCatching { json.decodeFromJsonElement(QualiCircuits.serializer(), it) }.getOrNull()
+        }
 }
