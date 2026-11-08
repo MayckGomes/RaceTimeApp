@@ -11,20 +11,16 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 
 @Composable
-fun BannerAdView(
-    adUnitId: String,
-    modifier: Modifier = Modifier
-) {
+fun BannerAdView(adUnitId: String, modifier: Modifier = Modifier) {
     AndroidView(
         factory = { context ->
             AdView(context).apply {
                 setAdSize(AdSize.BANNER) // Tamanho fixo 320x50
-                setAdUnitId(adUnitId)    // ID do tipo Banner
+                setAdUnitId(adUnitId) // ID do tipo Banner
                 loadAd(AdRequest.Builder().build())
             }
         },
-        modifier = modifier
-            .fillMaxWidth()
-            .height(50.dp)
+        modifier = modifier.fillMaxWidth().height(50.dp),
+        onRelease = { ad -> ad.destroy() },
     )
 }
