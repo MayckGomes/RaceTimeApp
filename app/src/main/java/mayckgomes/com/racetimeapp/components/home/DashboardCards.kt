@@ -39,7 +39,7 @@ fun RaceTimeHeader(year: Int, onSettings: () -> Unit) {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Image(
-                painter = painterResource(R.drawable.racetime_header_logo),
+                painter = painterResource(R.mipmap.ic_launcher),
                 contentDescription = null,
                 modifier = Modifier.size(36.dp),
             )
