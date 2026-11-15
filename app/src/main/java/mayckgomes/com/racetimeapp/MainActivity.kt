@@ -6,7 +6,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.*
-import com.google.android.gms.ads.MobileAds
 import mayckgomes.com.racetimeapp.navgation.Navgation
 import mayckgomes.com.racetimeapp.notifications.ReminderTarget
 import mayckgomes.com.racetimeapp.notifications.reminderTarget
@@ -25,7 +24,6 @@ class MainActivity : ComponentActivity() {
                 if (season > 0 && round != null) ReminderTarget(season, round) else null
             }
         enableEdgeToEdge()
-        MobileAds.initialize(this) {}
         setContent {
             RaceTimeAppTheme {
                 Navgation(pendingReminder, onReminderHandled = { pendingReminder = null })

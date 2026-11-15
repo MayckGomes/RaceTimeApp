@@ -19,7 +19,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.awaitCancellation
 import mayckgomes.com.racetimeapp.R
-import mayckgomes.com.racetimeapp.components.ads.BannerAdView
 import mayckgomes.com.racetimeapp.components.championship.StandingItem
 import mayckgomes.com.racetimeapp.components.home.DataNotice
 import mayckgomes.com.racetimeapp.components.home.localDateTime
@@ -147,12 +146,6 @@ fun ChampionshipScreen(
                             onOpen = { if (constructor) onTeam(row.id) else onDriver(row.id) },
                         )
                     }
-                    // Mantém um único banner de teste depois da classificação, sem interromper as
-                    // linhas.
-                    if (rows.isNotEmpty())
-                        item(key = "test_ad") {
-                            BannerAdView("ca-app-pub-3940256099942544/6300978111")
-                        }
                 }
             }
         }

@@ -24,7 +24,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import mayckgomes.com.racetimeapp.R
-import mayckgomes.com.racetimeapp.components.ads.BannerAdView
 import mayckgomes.com.racetimeapp.components.teamsStandingsTable.TeamsStandingsTable
 import mayckgomes.com.racetimeapp.ui.theme.RaceTimeAppTheme
 
@@ -61,12 +60,6 @@ fun TeamsScreen(navControler: NavHostController) {
                             .padding(10.dp)
                             .verticalScroll(rememberScrollState()),
                 ) {
-                    Spacer(Modifier.size(5.dp))
-
-                    BannerAdView("ca-app-pub-3940256099942544/6300978111")
-
-                    Spacer(Modifier.size(5.dp))
-
                     Text(
                         modifier = Modifier.align(Alignment.Start),
                         text = stringResource(R.string.teamsStandings),
@@ -81,10 +74,6 @@ fun TeamsScreen(navControler: NavHostController) {
                         list = teamsList,
                         errorMsg = R.string.conection,
                     )
-
-                    Spacer(Modifier.size(25.dp))
-
-                    BannerAdView("ca-app-pub-3940256099942544/6300978111")
                 }
             }
         }

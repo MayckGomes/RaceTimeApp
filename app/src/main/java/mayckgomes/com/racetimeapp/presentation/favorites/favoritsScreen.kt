@@ -23,7 +23,6 @@ import androidx.navigation.NavHostController
 import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.launch
 import mayckgomes.com.racetimeapp.R
-import mayckgomes.com.racetimeapp.components.ads.BannerAdView
 import mayckgomes.com.racetimeapp.components.favorites.FavoriteCard
 import mayckgomes.com.racetimeapp.components.home.DataNotice
 import mayckgomes.com.racetimeapp.domain.weekend.*
@@ -169,10 +168,6 @@ fun FavoritesScreen(
                                 },
                             )
                         }
-                        if (rows.isNotEmpty())
-                            item(key = "ad") {
-                                BannerAdView("ca-app-pub-3940256099942544/6300978111")
-                            }
                     }
                 }
             }

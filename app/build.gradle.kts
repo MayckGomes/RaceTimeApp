@@ -83,6 +83,4 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
     implementation(libs.koin.androidx.compose)
-
-    implementation(libs.play.services.ads)
 }

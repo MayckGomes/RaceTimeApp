@@ -22,6 +22,6 @@
     <string name="pref_version">Version %1$s</string>
     <string name="pref_project">Projet sur GitHub</string>
     <string name="pref_legal">Informations légales et crédits</string>
-    <string name="pref_legal_info">Données sportives : Jolpica F1. Publicité : Google AdMob. L’utilisation commerciale des données dépend des conditions du fournisseur.</string>
+    <string name="pref_legal_info">Données sportives : Jolpica F1. L’utilisation commerciale des données dépend des conditions du fournisseur.</string>
     <string name="pref_license">Licence Jolpica</string>
 </resources>
