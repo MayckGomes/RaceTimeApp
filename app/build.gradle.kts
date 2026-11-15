@@ -1,20 +1,22 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    kotlin("plugin.serialization") version "2.2.10"
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
     namespace = "mayckgomes.com.racetimeapp"
-    compileSdk = 35
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "mayckgomes.com.racetimeapp"
         minSdk = 26
-        targetSdk = 35
+        targetSdk = 37
         versionCode = 4
-        versionName = "1.0.3"
+        versionName = "2.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -34,13 +36,18 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions { jvmTarget = "11" }
     buildFeatures { compose = true }
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_11)
+    }
+}
+
 dependencies {
-    implementation("androidx.work:work-runtime-ktx:2.10.1")
-    implementation("androidx.compose.material:material-icons-core")
+    implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.androidx.compose.material.icons.core)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -51,8 +58,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     testImplementation(libs.junit)
-    testImplementation("io.ktor:ktor-client-mock:3.1.3")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
+    testImplementation(libs.ktor.client.mock)
+    testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
@@ -60,28 +67,22 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
+    implementation(libs.kotlinx.serialization.json)
 
-    val lifecycle_version = "2.8.7"
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
+    implementation(libs.androidx.navigation.compose)
 
-    val nav_version = "2.8.4"
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
 
-    implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation(libs.ktor.client.content.negotiation)
 
-    val ktor_version = "3.1.3"
+    implementation(libs.ktor.serialization.kotlinx.json)
 
-    implementation("io.ktor:ktor-client-core:$ktor_version")
-    implementation("io.ktor:ktor-client-cio:$ktor_version")
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
+    implementation(libs.koin.androidx.compose)
 
-    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
-
-    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
-
-    implementation("io.insert-koin:koin-android:4.1.0")
-    implementation("io.insert-koin:koin-compose:4.1.0")
-    implementation("io.insert-koin:koin-androidx-compose:4.1.0")
-
-    implementation("com.google.android.gms:play-services-ads:24.4.0")
+    implementation(libs.play.services.ads)
 }
