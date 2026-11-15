@@ -1,12 +1,12 @@
 # RaceTime App
 
-![RaceTime App — The race weekend at a glance](Images/racetime-hero.png)
+![RaceTime App — The race weekend at a glance](images/racetime-hero.png)
 
 An Android companion for Formula 1 fans. Check when the next session starts, catch up on published results, and follow the drivers and teams you care about.
 
 **Android 8.0+ · Kotlin · Jetpack Compose**
 
-[Features](#features) · [Screenshots](#screenshots) · [Getting started](#getting-started) · [Tech stack](#tech-stack)
+[Features](#features) · [Getting started](#getting-started) · [Tech stack](#tech-stack)
 
 ## Features
 
@@ -20,18 +20,6 @@ An Android companion for Formula 1 fans. Check when the next session starts, cat
 | **Settings** | Choose which sessions to get local reminders for. Set them for the scheduled start or 15, 30, or 60 minutes beforehand. |
 
 Race statistics include podiums, grid and finishing positions, fastest laps, and lap or pit stop data where available. The app supports English, Brazilian Portuguese, Spanish, French, and Italian.
-
-## Screenshots
-
-These screenshots show the app before the 2.0 redesign.
-
-| Results | Drivers | Constructors |
-| :---: | :---: | :---: |
-| <img src="Images/last.png" alt="Latest result screen" width="220"> | <img src="Images/drivers.png" alt="Driver standings" width="220"> | <img src="Images/teams.png" alt="Constructor standings" width="220"> |
-
-| Favorites | Driver profile | Constructor profile |
-| :---: | :---: | :---: |
-| <img src="Images/fav.png" alt="Favorites list" width="220"> | <img src="Images/driver.png" alt="Driver profile" width="220"> | <img src="Images/team.png" alt="Constructor profile" width="220"> |
 
 ## Getting started
 
@@ -55,7 +43,7 @@ To build a debug APK from the project root:
 | **Networking and local storage** | Ktor, Kotlin Serialization, SharedPreferences |
 | **Scheduled reminders** | AlarmManager, WorkManager |
 
-See the [redesign notes](ALTERACOES_HOME.md) and [technical documentation](docs/) for implementation details and validation status.
+See the [redesign notes](ALTERACOES_HOME.md)
 
 ## Data and attribution
 
